@@ -47,8 +47,6 @@ public class GameManager : Singleton<GameManager>
 
     public void EndTurn()
     {
-        Debug.Log(true);
-
         if (isPlayerTurn) // End of player's turn
         {
             hand.DiscardHand();
