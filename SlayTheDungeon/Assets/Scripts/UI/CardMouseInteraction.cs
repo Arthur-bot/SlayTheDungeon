@@ -12,6 +12,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     private Hand hand;
     private TargetingSystem targetingSystem;
     private GameManager gameManager;
+    private CardData cardData;
 
     #endregion
 
@@ -26,6 +27,11 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         hand = gameUI.PlayerHand;
         targetingSystem = TargetingSystem.Instance;
         gameManager = GameManager.Instance;
+    }
+
+    protected void Start()
+    {
+        cardData = GetComponent<CardUI>().Data;
     }
 
     #endregion
@@ -54,6 +60,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             if (targetingSystem.getTarget() != null)
             {
                 hand.RemoveCard(thisTransform);
+                cardData.Use();
             }
             targetingSystem.StopTargeting();
         }

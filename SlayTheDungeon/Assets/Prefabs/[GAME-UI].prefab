@@ -324,7 +324,7 @@ Canvas:
   m_GameObject: {fileID: 4755857868621211076}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -334,7 +334,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &4755857868621211075
 MonoBehaviour:
@@ -702,9 +702,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
+  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
-  - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
-  - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
+  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}
   - {fileID: 11400000, guid: 6b439b27d8be28443beaad77a65bd5c7, type: 2}

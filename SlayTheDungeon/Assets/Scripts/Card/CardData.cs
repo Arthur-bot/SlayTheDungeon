@@ -44,7 +44,19 @@ public class CardData : ScriptableObject
     {
         foreach (var ce in cardEffects)
         {
-            ce.ApplyEffect();
+            switch (ce.TargetTyPe)
+            {
+                case CardEffect.Target.Aoe:
+                    ce.ApplyEffect(GameManager.Instance.Enemies);
+                    break;
+                case CardEffect.Target.Self:
+                    ce.ApplyEffect(GameManager.Instance.Player);
+                    break;
+                case CardEffect.Target.SingleTarget:
+                    ce.ApplyEffect(TargetingSystem.Instance.getTarget());
+                    break;
+
+            }
         }
     }
 

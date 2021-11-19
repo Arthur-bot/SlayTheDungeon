@@ -13,6 +13,13 @@ public class CardUI : MonoBehaviour
 
     // Private variables
     private RectTransform thisTransform; // Usefull for every tweening animation
+    private CardData cardData;
+
+    #endregion
+
+    #region Properties
+
+    public CardData Data => cardData;
 
     #endregion
 
@@ -45,6 +52,7 @@ public class CardUI : MonoBehaviour
     public void SetupCard(CardData data)
     {
         // Setup the visual of the card
+        cardData = data;
         setSprite(data.Sprite);
         setText(data.CardName, data.Description);
     }

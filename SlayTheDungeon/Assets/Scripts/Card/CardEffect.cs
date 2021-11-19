@@ -22,17 +22,16 @@ public abstract class CardEffect : ScriptableObject
 
     #region Public Methods
 
-    public virtual void ApplyEffect()
-    {
+    public virtual void ApplyEffect(List<Enemy> targets) { }
 
-    }
+    public virtual void ApplyEffect(CharacterData target) { }
 
     #endregion
 
     #region Enum
 
     public enum Target
-    {
+    { 
         Self,
         SingleTarget,
         Aoe

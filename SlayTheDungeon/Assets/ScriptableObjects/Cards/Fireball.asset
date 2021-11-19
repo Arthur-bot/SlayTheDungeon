@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
-  m_Name: TestCard
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5c2da03616ae3ca43bc0b29efe3132b5, type: 3}
-  cardName: Lava Burst
-  description: 5 damage to all enemies
+  sprite: {fileID: 21300000, guid: 20110cb3cc2c3a545ba1824eb7adf93b, type: 3}
+  cardName: Fireball
+  description: 5 damage
   cardEffects:
-  - {fileID: 2188735106561536780}
---- !u!114 &2188735106561536780
+  - {fileID: 6403037615767258404}
+--- !u!114 &6403037615767258404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,5 +30,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: 
-  targetType: 2
+  targetType: 1
   value: 5

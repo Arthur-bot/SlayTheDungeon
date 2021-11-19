@@ -7,16 +7,23 @@ public class GameManager : Singleton<GameManager>
 {
     #region Fields
 
+    [SerializeField] private CharacterData player;
+    [SerializeField] private List<Enemy> enemies;
+
     private DeckPile playerDeck;
     private bool isPlayerTurn;
     private Hand hand;
-    private List<Enemy> enemies;
+
 
     #endregion
 
     #region Properties
 
     public bool IsPlayerTurn { get => isPlayerTurn; set => isPlayerTurn = value; }
+
+    public List<Enemy> Enemies => enemies;
+
+    public CharacterData Player => player;
 
     #endregion
 
@@ -25,8 +32,6 @@ public class GameManager : Singleton<GameManager>
     protected override void OnAwake()
     {
         base.OnAwake();
-
-        enemies = new List<Enemy>();
     }
 
     protected void Start()
@@ -39,6 +44,9 @@ public class GameManager : Singleton<GameManager>
             playerDeck = gameUI.PlayerDeck;
             gameUI.EndTurnButton.onClick.AddListener(EndTurn);
         }
+
+        // Start combat 
+        EndTurn();
     }
 
     #endregion
@@ -49,9 +57,9 @@ public class GameManager : Singleton<GameManager>
     {
         if (isPlayerTurn) // End of player's turn
         {
-            hand.DiscardHand();
-            EnnemyTurn();
             isPlayerTurn = false;
+            hand.DiscardHand();
+            StartCoroutine(EnnemyTurn());
         }
         else // Start of player's turn
         {
@@ -64,12 +72,15 @@ public class GameManager : Singleton<GameManager>
 
     #region Private Methods
 
-    private void EnnemyTurn()
+    private IEnumerator EnnemyTurn()
     {
         foreach (Enemy monster in enemies)
         {
             monster.Attack();
+            yield return new WaitForSeconds(1.0f);
         }
+
+        EndTurn();
     }
     private IEnumerator DrawHand()
     {

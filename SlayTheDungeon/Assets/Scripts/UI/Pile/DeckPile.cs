@@ -16,10 +16,7 @@ public class DeckPile : Pile
 
     protected void Awake()
     {
-        if (GameUI.HasInstance)
-        {
-            hand = GameUI.Instance.PlayerHand;
-        }
+        hand = GameUI.Instance.PlayerHand;
     }
 
     #endregion

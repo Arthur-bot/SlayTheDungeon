@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemy : CharacterData
 {
+    [SerializeField] private int damageValue;
+
     public void Attack()
     {
-        // TO COMPLETE
+        GameManager.Instance.Player.TakeDamage(damageValue);
     }
 }

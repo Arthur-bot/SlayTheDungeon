@@ -67,7 +67,6 @@ public class HandAnimation : MonoBehaviour
     public void RemoveCard()
     {
         howManyCard--;
-        Debug.Log(howManyCard);
     }
 
     // Setter
