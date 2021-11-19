@@ -8,8 +8,6 @@ public class TestEffect : CardEffect
 
     public override void ApplyEffect(List<Enemy> targets)
     {
-        Debug.Log(targets.Count);
-
         foreach (var target in targets)
         {
             target.TakeDamage(value);

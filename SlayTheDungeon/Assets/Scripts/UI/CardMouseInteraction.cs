@@ -42,7 +42,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (gameManager.IsPlayerTurn)
         {
-            handAnimation.MemorizeCardGeometry(thisTransform);
+            handAnimation.MemorizeCardGeometry(cardUI.MinPosition);
             // Memorize the position in hand if need to get it back
             if (cardData.NeedTarget())
             {
@@ -60,6 +60,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         if (gameManager.IsPlayerTurn)
         {
             cardUI.EndZoom();
+            cardUI.CanZoom = false;
             if (cardData.NeedTarget())
             {
                 cardUI.Highlight(Color.white);
@@ -84,6 +85,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (gameManager.IsPlayerTurn)
         {
+            cardUI.CanZoom = true;
             cardUI.DisableHighlight();
             handAnimation.ReturnHandAnimation(thisTransform);
             if (cardData.NeedTarget() && targetingSystem.getTarget() != null || !cardData.NeedTarget() && targetingSystem.MouseIsOutsideHand)

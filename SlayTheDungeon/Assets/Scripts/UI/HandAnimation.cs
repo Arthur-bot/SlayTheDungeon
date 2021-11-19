@@ -10,11 +10,11 @@ public class HandAnimation : MonoBehaviour
     [SerializeField] private Transform deckPile;
     [SerializeField] private Transform discardPile;
     [SerializeField] private AnimationCurve animationCurve;
+    [SerializeField] private float gapBetweenCard;
+    [SerializeField] private Vector2 handCenter;
 
     private List<RectTransform> cards;
     private int howManyCard;
-    private Vector2 handCenter;
-    private float gapBetweenCard;
     private Vector2 memoryPosition;
 
     #endregion
@@ -25,16 +25,17 @@ public class HandAnimation : MonoBehaviour
     public void FitCards()
     {
         // Replaces correctly all the cards already in hand
-        Vector2 end = handCenter - new Vector2(howManyCard * gapBetweenCard / 2, 0);
+        Vector2 end = handCenter - new Vector2((howManyCard - 1) * gapBetweenCard / 2, 0);
         for (int i = 0; i < howManyCard; i++)
         {
-            cards[i].DOAnchorPos(end, 0.2f);
+            Debug.Log(end);
+            cards[i].DOAnchorPos(end, 0.2f).OnComplete(cards[i].GetComponent<CardUI>().InitPosition);
             end += new Vector2(gapBetweenCard, 0);
         }
     }
-    public void MemorizeCardGeometry(RectTransform card)
+    public void MemorizeCardGeometry(Vector2 position)
     {
-        memoryPosition = card.anchoredPosition;
+        memoryPosition = position;
     }
     public void MoveCardForward(RectTransform card)
     {
@@ -42,16 +43,16 @@ public class HandAnimation : MonoBehaviour
     }
     public void DrawAnimation(RectTransform card)
     {
+        howManyCard++;
         // Animates the size
         card.localScale = Vector2.zero;
         card.DOScale(new Vector2(1f, 1f), 0.3f);
         // Animates the trajectory
         card.position = deckPile.transform.position; // start point
         // Computes the end position of the card
-        Vector3 end = handCenter + new Vector2(howManyCard * gapBetweenCard / 2, 0);
-        card.DOAnchorPos(end, 0.3f);
+        //Vector3 end = handCenter + new Vector2(howManyCard * gapBetweenCard / 2, 0);
+        //card.DOAnchorPos(end, 0.3f);
         FitCards();
-        howManyCard++;
     }
     public void DiscardAnimation(RectTransform card)
     {
@@ -81,9 +82,7 @@ public class HandAnimation : MonoBehaviour
 
     protected void Awake()
     {
-        gapBetweenCard = 190f;
         howManyCard = 0;
-        handCenter = new Vector2(0, 150);
     }
 
     #endregion

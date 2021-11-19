@@ -11,18 +11,27 @@ public class CardUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
     [SerializeField] private Image cardHighlight;
-    [SerializeField] private RectTransform hitbox;
+
+    [Header("Zoom Parameters")] 
+    [SerializeField] private float zoomMultiplier;
+    [SerializeField] private Vector2 zoomVector2;
 
     // Private variables
     private RectTransform thisTransform; // Usefull for every tweening animation
     private CardData cardData;
-    private bool isZoomed;
+    public bool isZoomed;
 
     #endregion
 
     #region Properties
 
     public CardData Data => cardData;
+
+    public bool CanZoom { get; set; } = true;
+
+    public Vector2 MinPosition { get; private set; }
+
+    public Vector2 MaxPosition { get; private set; }
 
     #endregion
 
@@ -52,6 +61,12 @@ public class CardUI : MonoBehaviour
 
     #region Public Methods
 
+    public void InitPosition()
+    {
+        MinPosition = thisTransform.anchoredPosition;
+        MaxPosition = MinPosition + zoomVector2;
+    }
+
     // Public Methods
     public void SetupCard(CardData data)
     {
@@ -60,42 +75,44 @@ public class CardUI : MonoBehaviour
         setSprite(data.Sprite);
         setText(data.CardName, data.Description);
     }
+
     public void Highlight (Color color)
     {
         cardHighlight.enabled = true;
         cardHighlight.color = color;
     }
+
     public void StartZoom()
     {
-        if (!isZoomed)
+        if (!isZoomed && CanZoom)
         {
-            //thisTransform.anchoredPosition += new Vector2(0, 120);
-            //hitbox.anchoredPosition -= new Vector2(0, 60);
-            isZoomed = true;
-            transform.localScale = Vector3.one * 2;
-            hitbox.localScale = Vector3.one / 2;
+            thisTransform.DOAnchorPos(MaxPosition, 0.1f);
+            transform.DOScale(Vector3.one * zoomMultiplier, 0.1f);
             transform.SetAsLastSibling();
+            isZoomed = true;
         }
     }
+
     public void EndZoom()
     {
-        if (isZoomed)
+        if (isZoomed && CanZoom)
         {
-            //thisTransform.anchoredPosition -= new Vector2(0, 120);
-            //hitbox.anchoredPosition += new Vector2(0, 60);
-            hitbox.localScale = Vector3.one;
-            transform.localScale = Vector3.one;
+            thisTransform.DOAnchorPos(MinPosition, 0.1f);
+            transform.DOScale(Vector3.one, 0.1f);
             isZoomed = false;
         }
     }
+
     public void DisableHighlight()
     {
         cardHighlight.enabled = false;
     }
+
     public void HideCard()
     {
         thisTransform.DOScale(new Vector3(0f, 0f, 0f), 0.2f);
     }
+
     public void ShowCard()
     {
         thisTransform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
