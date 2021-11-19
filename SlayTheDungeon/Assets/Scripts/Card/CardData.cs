@@ -60,6 +60,18 @@ public class CardData : ScriptableObject
         }
     }
 
+    public bool NeedTarget()
+    {
+        foreach (var ce in cardEffects)
+        {
+            if (ce.TargetTyPe == CardEffect.Target.SingleTarget)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     #endregion
 }
 

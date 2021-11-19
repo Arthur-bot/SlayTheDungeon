@@ -13,6 +13,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     private TargetingSystem targetingSystem;
     private GameManager gameManager;
     private CardData cardData;
+    private CardUI cardUI;
 
     #endregion
 
@@ -27,11 +28,12 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         hand = gameUI.PlayerHand;
         targetingSystem = TargetingSystem.Instance;
         gameManager = GameManager.Instance;
+        cardUI = GetComponent<CardUI>();
     }
 
     protected void Start()
     {
-        cardData = GetComponent<CardUI>().Data;
+        cardData = cardUI.Data;
     }
 
     #endregion
@@ -40,24 +42,51 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (gameManager.IsPlayerTurn)
         {
-            // Memorize the position in hand if need to get it back
             handAnimation.MemorizeCardGeometry(thisTransform);
-            handAnimation.MoveCardForward(thisTransform);
+            // Memorize the position in hand if need to get it back
+            if (cardData.NeedTarget())
+            {
+                handAnimation.MoveCardForward(thisTransform);
+            }
+            else
+            {
+                targetingSystem.SetTargetMode(TargetingSystem.TargetMode.WithoutTarget);
+            }
         }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (gameManager.IsPlayerTurn)
-            targetingSystem.StartTargeting(transform.position.x, transform.position.y);
+        {
+            cardUI.EndZoom();
+            if (cardData.NeedTarget())
+            {
+                cardUI.Highlight(Color.white);
+                targetingSystem.StartTargeting(transform.position.x, transform.position.y);
+            }
+            else
+            {
+                if (targetingSystem.MouseIsOutsideHand)
+                {
+                    cardUI.Highlight(Color.yellow);
+                }
+                else
+                {
+                    cardUI.Highlight(Color.white);
+                }
+                transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            }
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (gameManager.IsPlayerTurn)
         {
+            cardUI.DisableHighlight();
             handAnimation.ReturnHandAnimation(thisTransform);
-            if (targetingSystem.getTarget() != null)
+            if (cardData.NeedTarget() && targetingSystem.getTarget() != null || !cardData.NeedTarget() && targetingSystem.MouseIsOutsideHand)
             {
                 hand.RemoveCard(thisTransform);
                 cardData.Use();
@@ -68,11 +97,13 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // TO DO:HIGHLIGHT
+        cardUI.Highlight(Color.white);
+        cardUI.StartZoom();
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        // TO DO:DISABLE HIGHLIGHT
+        cardUI.EndZoom();
+        cardUI.DisableHighlight();
     }
 }

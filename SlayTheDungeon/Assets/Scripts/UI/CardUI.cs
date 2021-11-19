@@ -10,10 +10,13 @@ public class CardUI : MonoBehaviour
     [SerializeField] private Image cardArtwork;
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
+    [SerializeField] private Image cardHighlight;
+    [SerializeField] private RectTransform hitbox;
 
     // Private variables
     private RectTransform thisTransform; // Usefull for every tweening animation
     private CardData cardData;
+    private bool isZoomed;
 
     #endregion
 
@@ -28,6 +31,7 @@ public class CardUI : MonoBehaviour
     private void Awake()
     {
         thisTransform = GetComponent<RectTransform>();
+        DisableHighlight();
     }
 
     #endregion
@@ -56,15 +60,37 @@ public class CardUI : MonoBehaviour
         setSprite(data.Sprite);
         setText(data.CardName, data.Description);
     }
-
+    public void Highlight (Color color)
+    {
+        cardHighlight.enabled = true;
+        cardHighlight.color = color;
+    }
     public void StartZoom()
     {
-        thisTransform.SetAsLastSibling(); // Puts the card in the foreground
-        thisTransform.DOScale(new Vector3(1.3f, 1.3f, 1f), 0.2f);
+        if (!isZoomed)
+        {
+            //thisTransform.anchoredPosition += new Vector2(0, 120);
+            //hitbox.anchoredPosition -= new Vector2(0, 60);
+            isZoomed = true;
+            transform.localScale = Vector3.one * 2;
+            hitbox.localScale = Vector3.one / 2;
+            transform.SetAsLastSibling();
+        }
     }
     public void EndZoom()
     {
-        thisTransform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+        if (isZoomed)
+        {
+            //thisTransform.anchoredPosition -= new Vector2(0, 120);
+            //hitbox.anchoredPosition += new Vector2(0, 60);
+            hitbox.localScale = Vector3.one;
+            transform.localScale = Vector3.one;
+            isZoomed = false;
+        }
+    }
+    public void DisableHighlight()
+    {
+        cardHighlight.enabled = false;
     }
     public void HideCard()
     {

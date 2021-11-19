@@ -7,39 +7,55 @@ public class TargetingSystem : Singleton<TargetingSystem>
     #region Fields
 
     [SerializeField] private LayerMask targetMask;
+    [SerializeField] private LayerMask outsideZoneMask;
     [SerializeField] GameObject targetingArrow;
 
     private CharacterData target;
-    private bool isTargeting;
-    private GameManager gameManager;
+    private TargetMode targetMode;
+    private bool mouseOutsideHand;
+
+    public bool MouseIsOutsideHand { get => mouseOutsideHand; set => mouseOutsideHand = value; }
 
     #endregion
 
     private void Update()
     {
-        // if targetting, look for a target
-        if (isTargeting)
+        RaycastHit2D hit;
+        switch (targetMode)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, targetMask);
-            if (hit.collider != null)
-            {
-                SetTarget(hit.collider.GetComponent<CharacterData>());
-            }
-            else
-            {
+            case TargetMode.None:
                 target = null;
-            }
-        }
-        else
-        {
-            target = null;
+                break;
+            case TargetMode.SingleTarget:
+                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, targetMask);
+                if (hit.collider != null)
+                {
+                    SetTarget(hit.collider.GetComponent<CharacterData>());
+                }
+                else
+                {
+                    target = null;
+                }
+                break;
+            case TargetMode.WithoutTarget:
+                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, outsideZoneMask);
+                if (hit.collider != null)
+                {
+                    mouseOutsideHand = true;
+                }
+                else
+                {
+                    mouseOutsideHand = false;
+                }
+                break;
+
         }
     }
 
     // Public Methods
     public void SetTarget(CharacterData newTarget)
     {
-        if (isTargeting)
+        if (targetMode == TargetMode.SingleTarget)
         {
             target = newTarget;
         }
@@ -48,14 +64,26 @@ public class TargetingSystem : Singleton<TargetingSystem>
     {
         targetingArrow.SetActive(true);
         targetingArrow.transform.position = new Vector2(x, y);
-        isTargeting = true;
+        SetTargetMode(TargetMode.SingleTarget);
     }
 
     public void StopTargeting()
     {
         targetingArrow.SetActive(false);
-        isTargeting = false;
+        SetTargetMode(TargetMode.None);
     }
     // Getter
     public CharacterData getTarget() { return target; }
+
+    public void SetTargetMode(TargetMode mode)
+    {
+        targetMode = mode;
+    }
+
+    public enum TargetMode
+    {
+        None,
+        WithoutTarget,
+        SingleTarget
+    }
 }

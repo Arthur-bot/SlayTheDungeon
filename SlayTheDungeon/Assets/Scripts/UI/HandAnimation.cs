@@ -81,7 +81,7 @@ public class HandAnimation : MonoBehaviour
 
     protected void Awake()
     {
-        gapBetweenCard = 180f;
+        gapBetweenCard = 190f;
         howManyCard = 0;
         handCenter = new Vector2(0, 150);
     }

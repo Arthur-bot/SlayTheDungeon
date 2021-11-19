@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
   m_Name: TestCard
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5c2da03616ae3ca43bc0b29efe3132b5, type: 3}
+  sprite: {fileID: 21300000, guid: 082b47b6fff7a1d4a8decb22144d17f4, type: 3}
   cardName: Lava Burst
   description: 5 damage to all enemies
   cardEffects:
