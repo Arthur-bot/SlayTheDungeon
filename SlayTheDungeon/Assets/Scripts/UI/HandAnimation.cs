@@ -28,7 +28,6 @@ public class HandAnimation : MonoBehaviour
         Vector2 end = handCenter - new Vector2((howManyCard - 1) * gapBetweenCard / 2, 0);
         for (int i = 0; i < howManyCard; i++)
         {
-            Debug.Log(end);
             cards[i].DOAnchorPos(end, 0.2f).OnComplete(cards[i].GetComponent<CardUI>().InitPosition);
             end += new Vector2(gapBetweenCard, 0);
         }
