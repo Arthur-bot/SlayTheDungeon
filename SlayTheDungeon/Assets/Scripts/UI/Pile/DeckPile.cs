@@ -17,6 +17,7 @@ public class DeckPile : Pile
     protected void Awake()
     {
         hand = GameUI.Instance.PlayerHand;
+        countText.text = cards.Count.ToString();
     }
 
     #endregion
@@ -37,6 +38,8 @@ public class DeckPile : Pile
             hand.DrawCard(newCard.GetComponent<CardUI>());
             // Removes the card from the pile
             cards.RemoveAt(randomIndex);
+
+            countText.text = cards.Count.ToString();
         }
         else
         {

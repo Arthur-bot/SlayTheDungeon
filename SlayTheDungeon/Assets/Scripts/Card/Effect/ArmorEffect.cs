@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorEffect : MonoBehaviour
+public class ArmorEffect : CardEffect
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int value;
 
-    // Update is called once per frame
-    void Update()
+    public override void ApplyEffect(CharacterData target)
     {
-        
+        target.StackArmor(value);
     }
 }

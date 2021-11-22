@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterData : MonoBehaviour
 {
@@ -13,30 +14,37 @@ public class CharacterData : MonoBehaviour
     [SerializeField] private int armor;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
-    // Start is called before the first frame update
+    [SerializeField] private Slider healthSlider;
 
     #endregion
 
-    private void Start()
+    #region Protected Methods
+
+    protected void Awake()
     {
         health = maxHealth;
-        healthText.text = "Health : " + health;
-        armorText.text = "Armor : " + armor;
+        healthText.text = health + "/" + maxHealth;
+
+        armorText.text = armor.ToString();
+        armorText.gameObject.SetActive(armor != 0);
     }
+
+    #endregion
 
     public void TakeDamage(int amount)
     {
-        Debug.Log(transform.position);
         GameUI.Instance.DamageUI.NewDamage(amount, transform.position);
         int lifeDamage = amount - armor;
+        armorText.gameObject.SetActive(armor != 0);
         armor = Mathf.Max(armor - amount, 0);
         if (lifeDamage > 0)
         {
             health -= lifeDamage;
             StartCoroutine(GameManager.Instance.ShakeCamera(0.1f, 0.1f));
+            healthSlider.value = health / (float)maxHealth;
         }
-        healthText.text = "Health : " + health;
-        armorText.text = "Armor : " + armor;
+        healthText.text = health + "/" + maxHealth;
+        armorText.text = armor.ToString();
     }
 
     public void Heal(int amount)
@@ -48,7 +56,8 @@ public class CharacterData : MonoBehaviour
     public void StackArmor(int amount)
     {
         armor += amount;
-        armorText.text = health.ToString();
+        armorText.text = armor.ToString();
+        armorText.gameObject.SetActive(armor != 0);
     }
 }
 

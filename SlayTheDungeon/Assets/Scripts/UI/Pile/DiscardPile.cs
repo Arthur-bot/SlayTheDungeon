@@ -9,6 +9,7 @@ public class DiscardPile : Pile
     private void Start()
     {
         handAnimation = HandAnimation.Instance;
+        countText.text = cards.Count.ToString();
     }
     public void Shuffle(Pile deck)
     {

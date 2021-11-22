@@ -29,6 +29,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: fad8943cfc776814d9d0f9aab54769dd, type: 3}
   cardName: Fireball
-  description: Deals 5 damage to one ennemy
+  description: Deals 5 damages to one ennemy
   cardEffects:
   - {fileID: -623105241831542108}

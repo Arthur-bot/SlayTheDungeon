@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LavaBurst
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: ee667935024e8f242a6e9c33ef13b952, type: 3}
-  cardName: LavaBurst
+  cardName: Flame Burst
   description: Deals 5 damages to all ennemies
   cardEffects:
   - {fileID: 8533547459064131965}
