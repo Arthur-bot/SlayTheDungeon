@@ -42,11 +42,13 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (gameManager.IsPlayerTurn)
         {
+            cardUI.EndZoom();
+            cardUI.CanZoom = false;
             handAnimation.MemorizeCardGeometry(cardUI.MinPosition);
             // Memorize the position in hand if need to get it back
             if (cardData.NeedTarget())
             {
-                handAnimation.MoveCardForward(thisTransform);
+                cardUI.MoveCardForward();
             }
             else
             {
@@ -59,11 +61,16 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (gameManager.IsPlayerTurn)
         {
-            cardUI.EndZoom();
-            cardUI.CanZoom = false;
             if (cardData.NeedTarget())
             {
-                cardUI.Highlight(Color.white);
+                if (targetingSystem.getTarget() != null)
+                {
+                    cardUI.Highlight(Color.yellow);
+                }
+                else
+                {
+                    cardUI.Highlight(Color.white);
+                }
                 targetingSystem.StartTargeting(transform.position.x, transform.position.y);
             }
             else

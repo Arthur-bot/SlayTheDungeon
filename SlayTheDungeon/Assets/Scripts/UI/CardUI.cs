@@ -27,7 +27,7 @@ public class CardUI : MonoBehaviour
 
     public CardData Data => cardData;
 
-    public bool CanZoom { get; set; } = true;
+    public bool CanZoom { get; set; } = false;
 
     public Vector2 MinPosition { get; private set; }
 
@@ -65,6 +65,7 @@ public class CardUI : MonoBehaviour
     {
         MinPosition = thisTransform.anchoredPosition;
         MaxPosition = MinPosition + zoomVector2;
+        CanZoom = true;
     }
 
     // Public Methods
@@ -80,6 +81,11 @@ public class CardUI : MonoBehaviour
     {
         cardHighlight.enabled = true;
         cardHighlight.color = color;
+    }
+
+    public void MoveCardForward()
+    {
+        thisTransform.DOAnchorPos(MinPosition + new Vector2(0.0f, 50f), 0.1f);
     }
 
     public void StartZoom()

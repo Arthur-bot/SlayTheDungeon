@@ -37,10 +37,6 @@ public class HandAnimation : MonoBehaviour
     {
         memoryPosition = position;
     }
-    public void MoveCardForward(RectTransform card)
-    {
-        card.DOAnchorPos(card.anchoredPosition + new Vector2(0.0f, 50f), 0.2f);
-    }
     public void DrawAnimation(RectTransform card)
     {
         howManyCard++;
