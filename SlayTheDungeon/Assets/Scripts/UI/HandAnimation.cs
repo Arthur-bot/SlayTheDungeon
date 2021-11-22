@@ -54,14 +54,14 @@ public class HandAnimation : Singleton<HandAnimation>
     {
         card.DORotate(new Vector3(0, 0, 540), 0.4f);
         card.DOScale(new Vector2(0.1f, 0.1f), 0.4f);
-        StartCoroutine(CardMove(card, discardPile.position));
+        StartCoroutine(CardMove(card, discardPile.transform));
         RemoveCard();
     }
     public void ShuffleAnimation(RectTransform card)
     {
         card.localScale = new Vector2(0.2f, 0.2f);
         card.DORotate(new Vector3(0, 0, 540), 0.4f);
-        StartCoroutine(CardMove(card, deckPile.position));
+        StartCoroutine(CardMove(card, deckPile.transform));
     }
     public void ReturnHandAnimation(RectTransform card)
     {
@@ -93,12 +93,12 @@ public class HandAnimation : Singleton<HandAnimation>
 
     #region Private Methods
 
-    private IEnumerator CardMove(RectTransform card, Vector2 endPos)
+    private IEnumerator CardMove(RectTransform card, Transform endTransform)
     {
         float time = 0f;
         float duration = Random.Range(0.4f, 0.7f);
         Vector2 start = card.position;
-        Vector2 end = endPos;
+        Vector2 end = endTransform.position;
 
         while (time < duration)
         {
@@ -108,6 +108,9 @@ public class HandAnimation : Singleton<HandAnimation>
             card.position = Vector2.Lerp(start, end, normalizedTimeOnCurve) + new Vector2(0f, yValueOfCurve);
             yield return null;
         }
+        endTransform.DOScale(new Vector2(1.2f, 1.2f), 0.2f).OnComplete(() => {
+            endTransform.DOScale(Vector2.one, 0.2f);
+        });
         Destroy(card.gameObject);
     }
 
