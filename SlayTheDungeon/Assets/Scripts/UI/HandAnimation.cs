@@ -82,8 +82,10 @@ public class HandAnimation : Singleton<HandAnimation>
 
     #region Protected Methods
 
-    protected void Awake()
+    protected override void OnAwake()
     {
+        base.OnAwake();
+
         howManyCard = 0;
     }
 

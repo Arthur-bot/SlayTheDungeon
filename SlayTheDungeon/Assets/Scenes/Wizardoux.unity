@@ -152,8 +152,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107849408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.22, y: -0.75, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -17.22, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 205169057}
   m_RootOrder: 1
@@ -198,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 014985aa70a67224eb65aa64c1ead6ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b9a2f82df02af8488f015290a9fc11b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -238,18 +238,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.65755415, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.4, y: 4.1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 5.4, y: 4.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.4273386, y: 4.1}
+  m_Size: {x: 2, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &107849413
 MonoBehaviour:
@@ -562,7 +562,7 @@ MonoBehaviour:
   armor: 7
   healthText: {fileID: 1666088512}
   armorText: {fileID: 1170654247}
-  damageValue: 5
+  damageValue: 2
 --- !u!61 &335466152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -827,7 +827,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Health : 10'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 18786e975d956594d955482a0b006882, type: 2}
   m_sharedMaterial: {fileID: 4306867346923590402, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &513919220
@@ -1075,7 +1075,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 18786e975d956594d955482a0b006882, type: 2}
   m_sharedMaterial: {fileID: 4306867346923590402, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &741982300
@@ -1211,7 +1211,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 18786e975d956594d955482a0b006882, type: 2}
   m_sharedMaterial: {fileID: 4306867346923590402, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1170654248
@@ -1286,25 +1286,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170654245}
   m_CullTransparentMesh: 1
---- !u!1 &1435330770 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6894707509535821543, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
-  m_PrefabInstance: {fileID: 5216670712678014817}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1435330773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435330770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fb3b2550b6cad84d9d4e3d1e4acbf36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 107849411}
-  enemies: []
 --- !u!1 &1666088510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1345,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Health : 10'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 18786e975d956594d955482a0b006882, type: 2}
   m_sharedMaterial: {fileID: 4306867346923590402, guid: a79d2aa22b3ae6345908d91c5b71898c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1428,7 +1409,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1666088513
@@ -1514,11 +1495,6 @@ MonoBehaviour:
   enemies:
   - {fileID: 462119648}
   - {fileID: 335466151}
---- !u!1 &1970503805 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1831905053705292288, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-  m_PrefabInstance: {fileID: 4755857868686558526}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2074366527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1599,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 626817126837625188, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 18786e975d956594d955482a0b006882, type: 2}
+    - target: {fileID: 626817126837625188, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2643817118067618460, guid: 18786e975d956594d955482a0b006882, type: 2}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1675,22 +1659,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4755857869740088049, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: fightMaterial
-      value: 
-      objectReference: {fileID: 1970503805}
-    - target: {fileID: 4755857869740088049, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: positionFightUI.y
-      value: -400
-      objectReference: {fileID: 0}
     - target: {fileID: 4755857869740088051, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Name
       value: '[GAME-UI]'
       objectReference: {fileID: 0}
-    - target: {fileID: 6935493222666059622, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -400
-      objectReference: {fileID: 0}
+    - target: {fileID: 5044354148359326132, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 18786e975d956594d955482a0b006882, type: 2}
+    - target: {fileID: 5044354148359326132, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2643817118067618460, guid: 18786e975d956594d955482a0b006882, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
 --- !u!1001 &5216670712678014817
@@ -1700,6 +1680,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 556130968872285821, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 107849411}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1764,5 +1748,6 @@ PrefabInstance:
       propertyPath: enemies.Array.data[1]
       value: 
       objectReference: {fileID: 335466151}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7826882792515316204, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}

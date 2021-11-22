@@ -10,6 +10,7 @@ public class GameUI : Singleton<GameUI>
 
     [SerializeField] private Hand playerHand;
     [SerializeField] private HandAnimation handAnimation;
+    [SerializeField] private DamageUI damageUI;
     [SerializeField] private DeckPile playerDeck;
     [SerializeField] private Button endTurnButton;
 
@@ -23,6 +24,8 @@ public class GameUI : Singleton<GameUI>
     public Hand PlayerHand => playerHand;
 
     public HandAnimation HandAnimation => handAnimation;
+
+    public DamageUI DamageUI => damageUI;
 
     public DeckPile PlayerDeck => playerDeck;
 

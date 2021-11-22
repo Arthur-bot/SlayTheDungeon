@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,6 +16,8 @@ public class GameManager : Singleton<GameManager>
     private Hand hand;
     private GameUI gameUI;
     private bool inFight;
+    private Camera currentCamera;
+    private bool cameraShaking;
 
     #endregion
 
@@ -35,6 +38,8 @@ public class GameManager : Singleton<GameManager>
     protected override void OnAwake()
     {
         base.OnAwake();
+
+        currentCamera = Camera.main;
     }
 
     protected void Start()
@@ -80,6 +85,30 @@ public class GameManager : Singleton<GameManager>
     {
         gameUI.StopFight();
         inFight = false;
+    }
+
+    public IEnumerator ShakeCamera(float duration, float magnitude)
+    {
+        if (cameraShaking) yield break;
+
+        cameraShaking = true;
+        var elapsedTime = 0.0f;
+        var initialPosition = currentCamera.gameObject.transform.position;
+        var zoom = currentCamera.orthographicSize;
+
+        while (elapsedTime < duration)
+        {
+            var x = zoom - Random.Range(0, 2f) * magnitude;
+
+            currentCamera.orthographicSize = x;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        currentCamera.orthographicSize = zoom;
+        currentCamera.gameObject.transform.position = initialPosition;
+        cameraShaking = false;
     }
 
     #endregion

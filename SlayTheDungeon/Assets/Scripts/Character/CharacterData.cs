@@ -26,11 +26,14 @@ public class CharacterData : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        Debug.Log(transform.position);
+        GameUI.Instance.DamageUI.NewDamage(amount, transform.position);
         int lifeDamage = amount - armor;
         armor = Mathf.Max(armor - amount, 0);
         if (lifeDamage > 0)
         {
             health -= lifeDamage;
+            StartCoroutine(GameManager.Instance.ShakeCamera(0.1f, 0.1f));
         }
         healthText.text = "Health : " + health;
         armorText.text = "Armor : " + armor;
