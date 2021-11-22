@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pile : MonoBehaviour
 {
     // Protected variables
+    [SerializeField] protected CardUI cardTemplate;
     [SerializeField] protected List<CardData> cards;
 
     // Public Functions

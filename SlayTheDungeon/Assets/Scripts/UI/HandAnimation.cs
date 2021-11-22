@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class HandAnimation : MonoBehaviour
+public class HandAnimation : Singleton<HandAnimation>
 {
     #region Fields
 
@@ -13,7 +13,7 @@ public class HandAnimation : MonoBehaviour
     [SerializeField] private float gapBetweenCard;
     [SerializeField] private Vector2 handCenter;
 
-    private List<RectTransform> cards;
+    private List<CardUI> cards;
     private int howManyCard;
     private Vector2 memoryPosition;
 
@@ -29,7 +29,7 @@ public class HandAnimation : MonoBehaviour
         for (int i = 0; i < howManyCard; i++)
         {
             cards[i].GetComponent<CardUI>().CanZoom = false;
-            cards[i].DOAnchorPos(end, 0.2f).OnComplete(cards[i].GetComponent<CardUI>().InitPosition);
+            cards[i].ThisTransform.DOAnchorPos(end, 0.2f).OnComplete(cards[i].GetComponent<CardUI>().InitPosition);
             end += new Vector2(gapBetweenCard, 0);
         }
     }
@@ -54,8 +54,14 @@ public class HandAnimation : MonoBehaviour
     {
         card.DORotate(new Vector3(0, 0, 540), 0.4f);
         card.DOScale(new Vector2(0.1f, 0.1f), 0.4f);
-        StartCoroutine(DiscardMove(card));
+        StartCoroutine(CardMove(card, discardPile.position));
         RemoveCard();
+    }
+    public void ShuffleAnimation(RectTransform card)
+    {
+        card.localScale = new Vector2(0.2f, 0.2f);
+        card.DORotate(new Vector3(0, 0, 540), 0.4f);
+        StartCoroutine(CardMove(card, deckPile.position));
     }
     public void ReturnHandAnimation(RectTransform card)
     {
@@ -67,7 +73,7 @@ public class HandAnimation : MonoBehaviour
     }
 
     // Setter
-    public void SetCards(List<RectTransform> toSet)
+    public void SetCards(List<CardUI> toSet)
     {
         cards = toSet;
     }
@@ -85,12 +91,12 @@ public class HandAnimation : MonoBehaviour
 
     #region Private Methods
 
-    private IEnumerator DiscardMove(RectTransform card)
+    private IEnumerator CardMove(RectTransform card, Vector2 endPos)
     {
         float time = 0f;
         float duration = Random.Range(0.4f, 0.7f);
         Vector2 start = card.position;
-        Vector2 end = discardPile.position;
+        Vector2 end = endPos;
 
         while (time < duration)
         {

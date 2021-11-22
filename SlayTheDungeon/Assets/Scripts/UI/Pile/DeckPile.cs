@@ -6,7 +6,7 @@ public class DeckPile : Pile
 {
     #region Fields
 
-    [SerializeField] private CardUI cardTemplate;
+    [SerializeField] private DiscardPile discardPile;
 
     private Hand hand;
 
@@ -34,9 +34,14 @@ public class DeckPile : Pile
             // Initializes it whit the random card
             newCard.SetupCard(cards[randomIndex]);
             // Adds the card to the hand
-            hand.DrawCard(newCard.GetComponent<RectTransform>());
+            hand.DrawCard(newCard.GetComponent<CardUI>());
             // Removes the card from the pile
             cards.RemoveAt(randomIndex);
+        }
+        else
+        {
+            discardPile.Shuffle(this);
+            DrawCard();
         }
     }
 

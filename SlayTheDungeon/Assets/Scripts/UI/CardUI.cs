@@ -32,6 +32,7 @@ public class CardUI : MonoBehaviour
     public Vector2 MinPosition { get; private set; }
 
     public Vector2 MaxPosition { get; private set; }
+    public RectTransform ThisTransform { get => thisTransform; set => thisTransform = value; }
 
     #endregion
 

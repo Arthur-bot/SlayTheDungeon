@@ -6,9 +6,10 @@ public class Hand : MonoBehaviour
 
     #region Fields
 
+    [SerializeField] private Pile discardPile;
     private HandAnimation handAnimation;
     private RectTransform thisTransform;
-    private List<RectTransform> cards;
+    private List<CardUI> cards;
 
     #endregion
 
@@ -17,7 +18,7 @@ public class Hand : MonoBehaviour
     protected void Awake()
     {
         handAnimation = GetComponent<HandAnimation>();
-        cards = new List<RectTransform>();
+        cards = new List<CardUI>();
         thisTransform = GetComponent<RectTransform>();
         handAnimation.SetCards(cards);
     }
@@ -29,21 +30,23 @@ public class Hand : MonoBehaviour
     public void DiscardHand()
     {
         // Discards all cards
-        foreach (RectTransform card in cards)
+        foreach (CardUI card in cards)
         {
-            handAnimation.DiscardAnimation(card);
+            handAnimation.DiscardAnimation(card.ThisTransform);
+            discardPile.AddCard(card.Data);
         }
         // The hand is empty
         cards.Clear();
     }
-    public void DrawCard(RectTransform card)
+    public void DrawCard(CardUI card)
     {
         cards.Add(card);
-        handAnimation.DrawAnimation(card);
+        handAnimation.DrawAnimation(card.ThisTransform);
     }
-    public void RemoveCard(RectTransform card)
+    public void RemoveCard(CardUI card)
     {
-        handAnimation.DiscardAnimation(card);
+        discardPile.AddCard(card.Data);
+        handAnimation.DiscardAnimation(card.ThisTransform);
         cards.Remove(card);
         handAnimation.FitCards();
     }
