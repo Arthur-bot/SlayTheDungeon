@@ -13,7 +13,8 @@ public class GameManager : Singleton<GameManager>
     private DeckPile playerDeck;
     private bool isPlayerTurn;
     private Hand hand;
-
+    private GameUI gameUI;
+    private bool inFight;
 
     #endregion
 
@@ -21,9 +22,11 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsPlayerTurn { get => isPlayerTurn; set => isPlayerTurn = value; }
 
-    public List<Enemy> Enemies => enemies;
+    public List<Enemy> Enemies { get => enemies; set => enemies = value; }
 
     public CharacterData Player => player;
+
+    public bool InFight => inFight;
 
     #endregion
 
@@ -38,21 +41,18 @@ public class GameManager : Singleton<GameManager>
     {
         if (GameUI.HasInstance)
         {
-            var gameUI = GameUI.Instance;
+            gameUI = GameUI.Instance;
 
             hand = gameUI.PlayerHand;
             playerDeck = gameUI.PlayerDeck;
             gameUI.EndTurnButton.onClick.AddListener(EndTurn);
         }
-
-        // Start combat 
-        EndTurn();
+        gameUI.StopFight();
     }
 
     #endregion
 
     #region Public Methods
-
     public void EndTurn()
     {
         if (isPlayerTurn) // End of player's turn
@@ -66,6 +66,20 @@ public class GameManager : Singleton<GameManager>
             StartCoroutine(DrawHand());
             isPlayerTurn = true;
         }
+    }
+    public void StartCombat()
+    {
+        inFight = true;
+        gameUI.SetupFight();
+        // Start combat 
+        isPlayerTurn = false;
+        Invoke("EndTurn",1.0f);
+    }
+
+    public void EndCombat()
+    {
+        gameUI.StopFight();
+        inFight = false;
     }
 
     #endregion
