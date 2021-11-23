@@ -9,6 +9,8 @@ public class Pile : MonoBehaviour
     [SerializeField] protected CardUI cardTemplate;
     [SerializeField] protected List<CardData> cards;
     [SerializeField] protected TextMeshProUGUI countText;
+    [SerializeField] private ScrollCardView scrollCards;
+    [SerializeField] private GameObject scrollPanel;
 
     // Public Functions
     public void AddCard(CardData cardData)
@@ -18,9 +20,7 @@ public class Pile : MonoBehaviour
     }
     public void ShowCards()
     {
-        foreach (CardData card in cards)
-        {
-            // nothing to do
-        }
+        scrollPanel.SetActive(true);
+        scrollCards.ShowCards(cards);
     }
 }

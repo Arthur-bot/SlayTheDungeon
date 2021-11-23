@@ -112,7 +112,8 @@ public class CardUI : MonoBehaviour
 
     public void DisableHighlight()
     {
-        cardHighlight.enabled = false;
+        if (cardHighlight != null)
+            cardHighlight.enabled = false;
     }
 
     public void HideCard()

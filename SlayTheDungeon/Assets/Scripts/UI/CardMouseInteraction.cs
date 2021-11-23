@@ -97,6 +97,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             handAnimation.ReturnHandAnimation(thisTransform);
             if (cardData.NeedTarget() && targetingSystem.getTarget() != null || !cardData.NeedTarget() && targetingSystem.MouseIsOutsideHand)
             {
+                cardUI.CanZoom = false;
                 hand.RemoveCard(cardUI);
                 cardData.Use();
             }
