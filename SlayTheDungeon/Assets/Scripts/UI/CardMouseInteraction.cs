@@ -40,7 +40,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (gameManager.IsPlayerTurn)
+        if (gameManager.Turn == GameManager.TurnType.PlayerTurn)
         {
             cardUI.EndZoom();
             cardUI.CanZoom = false;
@@ -52,6 +52,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             }
             else
             {
+                transform.SetAsLastSibling();
                 targetingSystem.SetTargetMode(TargetingSystem.TargetMode.WithoutTarget);
             }
         }
@@ -59,7 +60,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (gameManager.IsPlayerTurn)
+        if (gameManager.Turn == GameManager.TurnType.PlayerTurn)
         {
             if (cardData.NeedTarget())
             {
@@ -90,7 +91,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (gameManager.IsPlayerTurn)
+        if (gameManager.Turn == GameManager.TurnType.PlayerTurn)
         {
             cardUI.CanZoom = true;
             cardUI.DisableHighlight();

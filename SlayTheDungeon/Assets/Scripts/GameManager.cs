@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private List<Enemy> enemies;
 
     private DeckPile playerDeck;
-    private bool isPlayerTurn;
+    private TurnType turn;
     private Hand hand;
     private GameUI gameUI;
     private bool inFight;
@@ -23,13 +23,13 @@ public class GameManager : Singleton<GameManager>
 
     #region Properties
 
-    public bool IsPlayerTurn { get => isPlayerTurn; set => isPlayerTurn = value; }
-
     public List<Enemy> Enemies { get => enemies; set => enemies = value; }
 
     public CharacterData Player => player;
 
     public bool InFight => inFight;
+
+    public TurnType Turn { get => turn; set => turn = value; }
 
     #endregion
 
@@ -60,16 +60,19 @@ public class GameManager : Singleton<GameManager>
     #region Public Methods
     public void EndTurn()
     {
-        if (isPlayerTurn) // End of player's turn
+        switch (turn)
         {
-            isPlayerTurn = false;
-            hand.DiscardHand();
-            StartCoroutine(EnnemyTurn());
-        }
-        else // Start of player's turn
-        {
-            StartCoroutine(DrawHand());
-            isPlayerTurn = true;
+            case TurnType.PlayerTurn:
+                turn = TurnType.None;
+                hand.DiscardHand();
+                StartCoroutine(EnnemyTurn());
+                break;
+            case TurnType.EnemyTurn:
+                StartCoroutine(DrawHand());
+                turn = TurnType.None;
+                break;
+            case TurnType.None:
+                break;
         }
     }
     public void StartCombat()
@@ -77,8 +80,7 @@ public class GameManager : Singleton<GameManager>
         inFight = true;
         gameUI.SetupFight();
         // Start combat 
-        isPlayerTurn = false;
-        Invoke("EndTurn",1.0f);
+        Invoke("FirstDraw",1.0f);
     }
 
     public void EndCombat()
@@ -115,6 +117,11 @@ public class GameManager : Singleton<GameManager>
 
     #region Private Methods
 
+    private void FirstDraw()
+    {
+        turn = TurnType.EnemyTurn;
+        EndTurn();
+    }
     private IEnumerator EnnemyTurn()
     {
         foreach (Enemy monster in enemies)
@@ -122,7 +129,7 @@ public class GameManager : Singleton<GameManager>
             monster.Attack();
             yield return new WaitForSeconds(1.0f);
         }
-
+        turn = TurnType.EnemyTurn;
         EndTurn();
     }
     private IEnumerator DrawHand()
@@ -132,7 +139,15 @@ public class GameManager : Singleton<GameManager>
             playerDeck.DrawCard();
             yield return new WaitForSeconds(0.2f);
         }
+        turn = TurnType.PlayerTurn;
     }
 
     #endregion
+    public enum TurnType
+    {
+        None,
+        PlayerTurn,
+        EnemyTurn
+    }
 }
+
