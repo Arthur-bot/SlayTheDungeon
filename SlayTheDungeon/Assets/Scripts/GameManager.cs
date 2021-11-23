@@ -80,7 +80,7 @@ public class GameManager : Singleton<GameManager>
         inFight = true;
         gameUI.SetupFight();
         // Start combat 
-        Invoke("FirstDraw",1.0f);
+        Invoke("FirstDraw",1.5f);
     }
 
     public void EndCombat()

@@ -15,7 +15,9 @@ public class GameUI : Singleton<GameUI>
     [SerializeField] private Button endTurnButton;
 
     [SerializeField] private GameObject fightMaterial;
+    [SerializeField] private GameObject exploreMaterial;
     [SerializeField] private Vector2 positionFightUI;
+    [SerializeField] private Vector2 positionExploreUI;
 
     #endregion
 
@@ -36,21 +38,31 @@ public class GameUI : Singleton<GameUI>
     #region Public Methods
     public void SetupFight()
     {
-        fightMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f).OnStart(EnableFight);
+        Debug.Log("SetupFight");
+        exploreMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f).OnComplete(() => {
+            EnableFight();
+            fightMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f);
+        });
     }
 
     public void StopFight()
     {
-        fightMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f).OnComplete(DisableFight);
+        Debug.Log("StopFight");
+        exploreMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f).OnComplete(() => {
+            DisableFight();
+            fightMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f);
+        });
     }
 
     public void EnableFight()
     {
         fightMaterial.SetActive(true);
+        exploreMaterial.SetActive(false);
     }
     public void DisableFight()
     {
         fightMaterial.SetActive(false);
+        exploreMaterial.SetActive(true);
     }
 
     #endregion

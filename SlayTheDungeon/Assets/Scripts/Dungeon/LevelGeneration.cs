@@ -7,9 +7,13 @@ public class LevelGeneration : MonoBehaviour
 	[SerializeField] private Vector2 worldSize = new Vector2(4, 4);
 	Room[,] rooms;
 	List<Vector2> takenPositions = new List<Vector2>();
-	int gridSizeX, gridSizeY, numberOfRooms = 20;
+	int gridSizeX, gridSizeY;
+	[SerializeField] private int numberOfRooms = 20;
 	[SerializeField] private GameObject roomMap;
 	[SerializeField] private Transform mapRoot;
+	[SerializeField] private float randomCompare = 0.2f;
+	[SerializeField] private float randomCompareStart = 0.2f;
+	[SerializeField] private float randomCompareEnd = 0.01f;
 	void Start()
 	{
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
@@ -29,8 +33,6 @@ public class LevelGeneration : MonoBehaviour
 		rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 1);
 		takenPositions.Insert(0, Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
-		//magic numbers
-		float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f;
 		//add rooms
 		for (int i = 0; i < numberOfRooms - 1; i++)
 		{
@@ -171,9 +173,8 @@ public class LevelGeneration : MonoBehaviour
 				continue; //skip where there is no room
 			}
 			//create map obj and assign its variables
-			Debug.Log(room.gridPos.x.ToString() + " " + room.gridPos.y.ToString());
 			GameObject newRoom = Instantiate(roomMap, mapRoot);
-			newRoom.GetComponent<RectTransform>().anchoredPosition = room.gridPos * 100;
+			newRoom.GetComponent<RectTransform>().anchoredPosition = room.gridPos * 80;
 
 		}
 	}
