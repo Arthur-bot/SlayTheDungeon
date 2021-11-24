@@ -38,7 +38,6 @@ public class GameUI : Singleton<GameUI>
     #region Public Methods
     public void SetupFight()
     {
-        Debug.Log("SetupFight");
         exploreMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f).OnComplete(() => {
             EnableFight();
             fightMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f);
@@ -47,7 +46,6 @@ public class GameUI : Singleton<GameUI>
 
     public void StopFight()
     {
-        Debug.Log("StopFight");
         exploreMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f).OnComplete(() => {
             DisableFight();
             fightMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f);

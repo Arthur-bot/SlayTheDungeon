@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room
+public class Room : DungeonElement
 {
-	public Vector2 gridPos;
-	public int type;
-	public bool doorTop, doorBot, doorLeft, doorRight;
-	public Room(Vector2 _gridPos, int _type)
-	{
-		gridPos = _gridPos;
-		type = _type;
-	}
+
+    private Corridor? c_Left = null;
+    private Corridor? c_Right = null;
+    private Corridor? c_Up = null;
+    private Corridor? c_Down = null;
+
+    public Corridor C_Left { get => c_Left; set => c_Left = value; }
+    public Corridor C_Right { get => c_Right; set => c_Right = value; }
+    public Corridor C_Up { get => c_Up; set => c_Up = value; }
+    public Corridor C_Down { get => c_Down; set => c_Down = value; }
 }

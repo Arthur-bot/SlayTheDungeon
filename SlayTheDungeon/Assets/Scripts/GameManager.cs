@@ -14,10 +14,13 @@ public class GameManager : Singleton<GameManager>
     private DeckPile playerDeck;
     private TurnType turn;
     private Hand hand;
+
     private GameUI gameUI;
     private bool inFight;
     private Camera currentCamera;
     private bool cameraShaking;
+
+    private DungeonElement currentRoom;
 
     #endregion
 
@@ -30,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     public bool InFight => inFight;
 
     public TurnType Turn { get => turn; set => turn = value; }
+    public DungeonElement CurrentRoom { get => currentRoom; set => currentRoom = value; }
 
     #endregion
 
@@ -89,7 +93,46 @@ public class GameManager : Singleton<GameManager>
         inFight = false;
     }
 
-    public IEnumerator ShakeCamera(float duration, float magnitude)
+    public void EnterRoom(DungeonElement room, Transform startPosition)
+    {
+        if (currentRoom != null)
+            currentRoom.gameObject.SetActive(false);
+        room.gameObject.SetActive(true);
+        currentRoom = room;
+        player.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, 0);
+        Debug.Log("Player is in " + room.GridPos.x + " " + room.GridPos.y);
+    }
+
+    public void MoveToCorridor(Vector2 gridPos)
+    {
+        if (currentRoom is Corridor)
+        {
+            return;
+        }
+        Room thisRoom = currentRoom as Room;
+        float dist = Mathf.Abs(currentRoom.GridPos.x - gridPos.x) + Mathf.Abs(currentRoom.GridPos.y - gridPos.y);
+        if (dist <= 1 && dist != 0)
+        {
+            if (currentRoom.GridPos.x - gridPos.x == 1)
+            {
+                EnterRoom(thisRoom.C_Left, thisRoom.C_Left.EndPoint);
+            }
+            else if (currentRoom.GridPos.x - gridPos.x == -1)
+            {
+                EnterRoom(thisRoom.C_Right, thisRoom.C_Right.StartPoint);
+            }
+            else if (currentRoom.GridPos.y - gridPos.y == 1)
+            {
+                EnterRoom(thisRoom.C_Down, thisRoom.C_Down.EndPoint);
+            }
+            else if (currentRoom.GridPos.y - gridPos.y == -1)
+            {
+                EnterRoom(thisRoom.C_Up, thisRoom.C_Up.StartPoint);
+            }
+        }
+    }
+
+public IEnumerator ShakeCamera(float duration, float magnitude)
     {
         if (cameraShaking) yield break;
 
@@ -143,11 +186,15 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
+
+    #region Others
+
     public enum TurnType
     {
         None,
         PlayerTurn,
         EnemyTurn
     }
+    #endregion
 }
 

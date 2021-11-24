@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
         if (!gameManager.InFight)
         {
             moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.Translate(new Vector3(moveX, 0, 0));
+            transform.position = transform.position + new Vector3(moveX, 0, 0);
         }
     }
 }
