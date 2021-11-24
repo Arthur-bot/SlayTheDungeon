@@ -7,6 +7,8 @@ public class DeckPile : Pile
     #region Fields
 
     [SerializeField] private DiscardPile discardPile;
+    [SerializeField] private AudioClip audioDraw;
+    private AudioManager audioManager;
 
     private Hand hand;
 
@@ -18,6 +20,10 @@ public class DeckPile : Pile
     {
         hand = GameUI.Instance.PlayerHand;
         countText.text = cards.Count.ToString();
+    }
+    protected void Start()
+    {
+        audioManager = AudioManager.Instance;
     }
 
     #endregion
@@ -36,6 +42,7 @@ public class DeckPile : Pile
             newCard.SetupCard(cards[randomIndex]);
             // Adds the card to the hand
             hand.DrawCard(newCard.GetComponent<CardUI>());
+            audioManager.PlaySFX(audioDraw);
             // Removes the card from the pile
             cards.RemoveAt(randomIndex);
 

@@ -15,6 +15,7 @@ public class CardData : ScriptableObject
     [SerializeField] private Sprite sprite;
     [SerializeField] private string cardName;
     [SerializeField] private string description;
+    [SerializeField] private AudioClip cardSoundEffect;
     [SerializeField] private List<CardEffect> cardEffects;
 
     #endregion
@@ -58,6 +59,7 @@ public class CardData : ScriptableObject
 
             }
         }
+        AudioManager.Instance.PlaySFX(cardSoundEffect);
     }
 
     public bool NeedTarget()
@@ -84,6 +86,7 @@ public class CardEditor : Editor
     SerializedProperty _nameProperty;
     SerializedProperty _spriteProperty;
     SerializedProperty _descriptionProperty;
+    SerializedProperty _cardSoundEffectProperty;
 
     List<string> _availableEffectType;
     SerializedProperty _equippedEffectListProperty;
@@ -96,6 +99,7 @@ public class CardEditor : Editor
         _nameProperty = serializedObject.FindProperty("cardName");
         _spriteProperty = serializedObject.FindProperty("sprite");
         _descriptionProperty = serializedObject.FindProperty("description");
+        _cardSoundEffectProperty = serializedObject.FindProperty("cardSoundEffect");
 
         var lookup = typeof(CardEffect);
         _availableEffectType = System.AppDomain.CurrentDomain.GetAssemblies()
@@ -109,6 +113,7 @@ public class CardEditor : Editor
     {
         EditorGUILayout.PropertyField(_nameProperty);
         EditorGUILayout.PropertyField(_spriteProperty);
+        EditorGUILayout.PropertyField(_cardSoundEffectProperty);
         EditorGUILayout.PropertyField(_descriptionProperty, GUILayout.MinHeight(128));
 
         int choice = EditorGUILayout.Popup("Add new CardData Effect", -1, _availableEffectType.ToArray());
