@@ -8,6 +8,6 @@ public class ArmorEffect : CardEffect
 
     public override void ApplyEffect(CharacterData target)
     {
-        target.StackArmor(value);
+        target.Stats.ChangeArmor(value);
     }
 }

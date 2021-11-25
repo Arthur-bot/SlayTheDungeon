@@ -12,6 +12,7 @@ public class GameUI : Singleton<GameUI>
     [SerializeField] private HandAnimation handAnimation;
     [SerializeField] private DamageUI damageUI;
     [SerializeField] private DeckPile playerDeck;
+    [SerializeField] private DiscardPile discardPile;
     [SerializeField] private Button endTurnButton;
 
     [SerializeField] private GameObject fightMaterial;
@@ -31,13 +32,18 @@ public class GameUI : Singleton<GameUI>
 
     public DeckPile PlayerDeck => playerDeck;
 
+    public DiscardPile DiscardPile => discardPile;
+
     public Button EndTurnButton => endTurnButton;
 
     #endregion
 
     #region Public Methods
-    public void SetupFight()
+    public void SetupFight(List<CardData> cards)
     {
+        discardPile.ResetDiscardPile();
+        playerDeck.ResetDeckPile(cards);
+
         exploreMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f).OnComplete(() => {
             EnableFight();
             fightMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f);
@@ -57,6 +63,7 @@ public class GameUI : Singleton<GameUI>
         fightMaterial.SetActive(true);
         exploreMaterial.SetActive(false);
     }
+
     public void DisableFight()
     {
         fightMaterial.SetActive(false);

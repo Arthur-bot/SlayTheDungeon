@@ -40,7 +40,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (gameManager.Turn == GameManager.TurnType.PlayerTurn)
+        if (gameManager.BattleGround.TurnType == TurnType.PlayerTurn && gameManager.Player.CanPlayCard(cardData))
         {
             cardUI.EndZoom();
             cardUI.CanZoom = false;
@@ -60,7 +60,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (gameManager.Turn == GameManager.TurnType.PlayerTurn)
+        if (gameManager.BattleGround.TurnType == TurnType.PlayerTurn)
         {
             if (cardData.NeedTarget())
             {
@@ -91,7 +91,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (gameManager.Turn == GameManager.TurnType.PlayerTurn)
+        if (gameManager.BattleGround.TurnType == TurnType.PlayerTurn)
         {
             cardUI.CanZoom = true;
             cardUI.DisableHighlight();
@@ -101,6 +101,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 cardUI.CanZoom = false;
                 hand.RemoveCard(cardUI);
                 cardData.Use();
+                gameManager.Player.PlayCard(cardData);
             }
             targetingSystem.StopTargeting();
         }

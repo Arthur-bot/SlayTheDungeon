@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class DeckPile : Pile
@@ -30,6 +32,16 @@ public class DeckPile : Pile
 
     #region Public Methods
 
+    public void ResetDeckPile(List<CardData> cardsList)
+    {
+        cards.Clear();
+        cards = new List<CardData>(cardsList);
+
+        Shuffle();
+
+        countText.text = cards.Count.ToString();
+    }
+
     public void DrawCard()
     {
         if (cards.Count > 0)
@@ -51,7 +63,23 @@ public class DeckPile : Pile
         else
         {
             discardPile.Shuffle(this);
+            Shuffle();
             DrawCard();
+        }
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void Shuffle()
+    {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            var card = cards[i];
+            var random = Random.Range(1, cards.Count);
+            cards[i] = cards[random];
+            cards[random] = card;
         }
     }
 

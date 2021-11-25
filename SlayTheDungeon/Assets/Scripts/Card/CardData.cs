@@ -13,6 +13,7 @@ public class CardData : ScriptableObject
     #region Fields
 
     [SerializeField] private Sprite sprite;
+    [SerializeField] private int cost;
     [SerializeField] private string cardName;
     [SerializeField] private string description;
     [SerializeField] private AudioClip cardSoundEffect;
@@ -23,6 +24,8 @@ public class CardData : ScriptableObject
     #region Properties
 
     public Sprite Sprite => sprite;
+
+    public int Cost => cost;
 
     public string CardName => cardName;
 
@@ -48,7 +51,7 @@ public class CardData : ScriptableObject
             switch (ce.TargetTyPe)
             {
                 case CardEffect.Target.Aoe:
-                    ce.ApplyEffect(GameManager.Instance.Enemies);
+                    ce.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
                     break;
                 case CardEffect.Target.Self:
                     ce.ApplyEffect(GameManager.Instance.Player);

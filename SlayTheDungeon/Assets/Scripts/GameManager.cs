@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,33 +7,39 @@ public class GameManager : Singleton<GameManager>
 {
     #region Fields
 
-    [SerializeField] private CharacterData player;
-    [SerializeField] private List<Enemy> enemies;
+    [SerializeField] private PlayerData player;
 
     private DeckPile playerDeck;
-    private TurnType turn;
     private Hand hand;
 
     private GameUI gameUI;
-    private bool inFight;
     private Camera currentCamera;
     private bool cameraShaking;
 
     private DungeonElement currentRoom;
     [SerializeField] private MiniMap miniMap;
 
+
     #endregion
 
     #region Properties
 
-    public List<Enemy> Enemies { get => enemies; set => enemies = value; }
+    public PlayerData Player => player;
 
-    public CharacterData Player => player;
+    public bool InBattle { get; private set; }
 
-    public bool InFight => inFight;
-
-    public TurnType Turn { get => turn; set => turn = value; }
     public DungeonElement CurrentRoom { get => currentRoom; set => currentRoom = value; }
+
+    public BattleGround BattleGround { get; private set; }
+
+    public bool TurnEnded { get; set; }
+
+    #endregion
+
+    #region Delegates
+
+    public delegate void OnCharacterDeathEventHandler(CharacterData character);
+    public event OnCharacterDeathEventHandler OnCharacterDeath;
 
     #endregion
 
@@ -45,6 +50,7 @@ public class GameManager : Singleton<GameManager>
         base.OnAwake();
 
         currentCamera = Camera.main;
+        BattleGround = GetComponent<BattleGround>();
     }
 
     protected void Start()
@@ -55,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
             hand = gameUI.PlayerHand;
             playerDeck = gameUI.PlayerDeck;
-            gameUI.EndTurnButton.onClick.AddListener(EndTurn);
+            gameUI.EndTurnButton.onClick.AddListener(EndPlayerTurn);
         }
         gameUI.StopFight();
     }
@@ -63,36 +69,6 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region Public Methods
-    public void EndTurn()
-    {
-        switch (turn)
-        {
-            case TurnType.PlayerTurn:
-                turn = TurnType.None;
-                hand.DiscardHand();
-                StartCoroutine(EnnemyTurn());
-                break;
-            case TurnType.EnemyTurn:
-                StartCoroutine(DrawHand());
-                turn = TurnType.None;
-                break;
-            case TurnType.None:
-                break;
-        }
-    }
-    public void StartCombat()
-    {
-        inFight = true;
-        gameUI.SetupFight();
-        // Start combat 
-        Invoke("FirstDraw",1.5f);
-    }
-
-    public void EndCombat()
-    {
-        gameUI.StopFight();
-        inFight = false;
-    }
 
     public void EnterRoom(DungeonElement room, Transform startPosition)
     {
@@ -147,7 +123,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-public IEnumerator ShakeCamera(float duration, float magnitude)
+    public IEnumerator ShakeCamera(float duration, float magnitude)
     {
         if (cameraShaking) yield break;
 
@@ -171,45 +147,121 @@ public IEnumerator ShakeCamera(float duration, float magnitude)
         cameraShaking = false;
     }
 
+    public void StartEncounter(List<Enemy> enemies) => StartCoroutine(EncounterEvent(enemies));
+
+    public void RaiseOnEnemyDeathEvent(CharacterData character) => OnCharacterDeath?.Invoke(character);
+
     #endregion
 
     #region Private Methods
 
     private void FirstDraw()
     {
-        turn = TurnType.EnemyTurn;
-        EndTurn();
+        BattleGround.TurnType = TurnType.PlayerTurn;
     }
-    private IEnumerator EnnemyTurn()
+
+    private IEnumerator EncounterEvent(List<Enemy> enemies)
     {
-        foreach (Enemy monster in enemies)
+        InBattle = true;
+
+        // Announce Fight
+        // Change Sounds & Music
+        // Change UI
+        gameUI.SetupFight(player.Deck);
+
+        BattleGround.InitBattle(enemies);
+        yield return new WaitForSeconds(1.0f);
+        BattleGround.SpawnEnemies();
+        yield return new WaitForSeconds(0.5f);
+
+        FirstDraw();
+
+        while (BattleGround.BattleStatus != BattleStatus.Finished)
         {
-            monster.Attack();
-            yield return new WaitForSeconds(1.0f);
+            switch (BattleGround.TurnType)
+            {
+                case TurnType.PlayerTurn:
+                    yield return StartCoroutine(PlayerTurn());
+                    break;
+                case TurnType.EnemyTurn:
+                    yield return StartCoroutine(EnemyTurn());
+                    break;
+            }
         }
-        turn = TurnType.EnemyTurn;
-        EndTurn();
+
+        yield return StartCoroutine(FinishEncounter());
     }
-    private IEnumerator DrawHand()
+
+    private IEnumerator FinishEncounter()
     {
+        InBattle = false;
+        hand.DiscardHand();
+
+        yield return new WaitForSeconds(0.5f);
+
+        // Change Sounds & Music
+        // Check victory or GameOver & say it accordingly
+        // Change UI
+        gameUI.StopFight();
+
+        yield return new WaitForSeconds(1.0f);
+
+        BattleGround.FinishBattle();
+        // Reset player Status & modifiers
+        // Provide Loot & exp pts
+        // Remove combat state & restrictions (movements, inventory, ...)
+
+        BattleGround.LeaveBattleGround();
+    }
+
+    private IEnumerator EnemyTurn()
+    {
+        foreach (var monster in BattleGround.Enemies)
+        {
+            monster.UpdateDurations();
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        foreach (var monster in BattleGround.Enemies)
+        {
+            if (monster.IsAlive)
+            {
+                monster.Attack();
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
+
+        BattleGround.TurnType = TurnType.PlayerTurn;
+        yield return new WaitForEndOfFrame();
+    }
+
+    private IEnumerator PlayerTurn()
+    {
+        TurnEnded = false;
+        player.UpdateDurations();
+        player.ResetEnergy();
+        BattleGround.TurnType = TurnType.PlayerTurn;
+
         for (int i = 0; i < 5; i++)
         {
             playerDeck.DrawCard();
             yield return new WaitForSeconds(0.2f);
         }
-        turn = TurnType.PlayerTurn;
+
+        while (!TurnEnded)
+        {
+            yield return null;
+        }
     }
 
-    #endregion
-
-    #region Others
-
-    public enum TurnType
+    private void EndPlayerTurn()
     {
-        None,
-        PlayerTurn,
-        EnemyTurn
+        TurnEnded = true;
+        hand.DiscardHand();
+        BattleGround.TurnType = TurnType.EnemyTurn;
     }
+
     #endregion
 }
 

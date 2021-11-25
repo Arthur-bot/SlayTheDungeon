@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Room : DungeonElement
 {
-
     private Corridor? c_Left = null;
     private Corridor? c_Right = null;
     private Corridor? c_Up = null;
