@@ -30,5 +30,6 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: fad8943cfc776814d9d0f9aab54769dd, type: 3}
   cardName: Fireball
   description: Deals 5 damages to one ennemy
+  cardSoundEffect: {fileID: 8300000, guid: 44a1bd7f3ba2240adb720e6a670513b2, type: 3}
   cardEffects:
   - {fileID: -623105241831542108}

@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     private bool cameraShaking;
 
     private DungeonElement currentRoom;
+    [SerializeField] private MiniMap miniMap;
 
     #endregion
 
@@ -96,7 +97,29 @@ public class GameManager : Singleton<GameManager>
     public void EnterRoom(DungeonElement room, Transform startPosition)
     {
         if (currentRoom != null)
+        {
             currentRoom.gameObject.SetActive(false);
+            if (room.GridPos.x > currentRoom.GridPos.x)
+            {
+                miniMap.Move(new Vector2(-50f, 0));
+            }
+            else if (room.GridPos.x < currentRoom.GridPos.x)
+            {
+                miniMap.Move(new Vector2(50f, 0));
+            }
+            else if (room.GridPos.y > currentRoom.GridPos.y)
+            {
+                miniMap.Move(new Vector2(0f, -50));
+            }
+            else if (room.GridPos.y < currentRoom.GridPos.y)
+            {
+                miniMap.Move(new Vector2(0, 50));
+            }
+        }
+        if (room is Room)
+        {
+            (room as Room).EnterRoom();
+        }
         room.gameObject.SetActive(true);
         currentRoom = room;
         player.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, 0);
@@ -105,30 +128,22 @@ public class GameManager : Singleton<GameManager>
 
     public void MoveToCorridor(Vector2 gridPos)
     {
-        if (currentRoom is Corridor)
-        {
-            return;
-        }
         Room thisRoom = currentRoom as Room;
-        float dist = Mathf.Abs(currentRoom.GridPos.x - gridPos.x) + Mathf.Abs(currentRoom.GridPos.y - gridPos.y);
-        if (dist <= 1 && dist != 0)
+        if (currentRoom.GridPos.x - gridPos.x == 1)
         {
-            if (currentRoom.GridPos.x - gridPos.x == 1)
-            {
-                EnterRoom(thisRoom.C_Left, thisRoom.C_Left.EndPoint);
-            }
-            else if (currentRoom.GridPos.x - gridPos.x == -1)
-            {
-                EnterRoom(thisRoom.C_Right, thisRoom.C_Right.StartPoint);
-            }
-            else if (currentRoom.GridPos.y - gridPos.y == 1)
-            {
-                EnterRoom(thisRoom.C_Down, thisRoom.C_Down.EndPoint);
-            }
-            else if (currentRoom.GridPos.y - gridPos.y == -1)
-            {
-                EnterRoom(thisRoom.C_Up, thisRoom.C_Up.StartPoint);
-            }
+            EnterRoom(thisRoom.C_Left, thisRoom.C_Left.EndPoint);
+        }
+        else if (currentRoom.GridPos.x - gridPos.x == -1)
+        {
+            EnterRoom(thisRoom.C_Right, thisRoom.C_Right.StartPoint);
+        }
+        else if (currentRoom.GridPos.y - gridPos.y == 1)
+        {
+            EnterRoom(thisRoom.C_Down, thisRoom.C_Down.EndPoint);
+        }
+        else if (currentRoom.GridPos.y - gridPos.y == -1)
+        {
+            EnterRoom(thisRoom.C_Up, thisRoom.C_Up.StartPoint);
         }
     }
 

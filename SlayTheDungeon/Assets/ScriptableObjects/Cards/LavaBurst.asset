@@ -15,6 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: ee667935024e8f242a6e9c33ef13b952, type: 3}
   cardName: Flame Burst
   description: Deals 5 damages to all ennemies
+  cardSoundEffect: {fileID: 8300000, guid: 5622e53e90c3d4259ba374df91f6a052, type: 3}
   cardEffects:
   - {fileID: 8533547459064131965}
 --- !u!114 &8533547459064131965

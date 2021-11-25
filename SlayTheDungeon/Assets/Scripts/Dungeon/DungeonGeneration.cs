@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DungeonGeneration : MonoBehaviour
 {
 	[SerializeField] private Vector2 worldSize = new Vector2(4, 4);
-	MapRoomBtn[,] mapRooms;
 	List<Vector2> takenPositions = new List<Vector2>();
 	int gridSizeX, gridSizeY;
 	[SerializeField] private int numberOfRooms = 20;
@@ -13,8 +13,8 @@ public class DungeonGeneration : MonoBehaviour
 	[SerializeField] private float randomCompareStart = 0.2f;
 	[SerializeField] private float randomCompareEnd = 0.01f;
 	// Map Fields
-	[SerializeField] private MapRoomBtn roomMapPrefab;
-	[SerializeField] private Transform mapRoot;
+	[SerializeField] private MiniMap miniMap;
+	MapRoomBtn[,] mapRooms;
 	// WorldField
 	private GameManager gameManager;
 	Room[,] rooms;
@@ -33,20 +33,19 @@ public class DungeonGeneration : MonoBehaviour
 		gridSizeY = Mathf.RoundToInt(worldSize.y);
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
+		gameManager.EnterRoom(rooms[gridSizeX, gridSizeY], rooms[gridSizeX, gridSizeY].StartPoint);
 	}
 	void CreateRooms()
 	{
 		//setup
-		mapRooms = new MapRoomBtn[gridSizeX * 2, gridSizeY * 2];
+		miniMap.SetWorldSize(gridSizeX, gridSizeY);
 		rooms = new Room[gridSizeX * 2, gridSizeY * 2];
-		// First Btn on Map
-		mapRooms[gridSizeX, gridSizeY] = Instantiate(roomMapPrefab, mapRoot);
-		mapRooms[gridSizeX, gridSizeY].GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+		mapRooms = new MapRoomBtn[gridSizeX * 2, gridSizeY * 2];
 		// FirstRoom
 		rooms[gridSizeX, gridSizeY] = Instantiate(RoomPrefab, worldRoot);
-		gameManager.EnterRoom(rooms[gridSizeX, gridSizeY], rooms[gridSizeX, gridSizeY].StartPoint);
 		takenPositions.Insert(0, Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
+		mapRooms[gridSizeX, gridSizeY] = miniMap.AddRoom(Vector2.zero);
 		//add rooms
 		for (int i = 0; i < numberOfRooms - 1; i++)
 		{
@@ -67,10 +66,9 @@ public class DungeonGeneration : MonoBehaviour
 					print("error: could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
 			}
 			//finalize position
-			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(roomMapPrefab, mapRoot);
-			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].GetComponent<RectTransform>().anchoredPosition = checkPos * 80;
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
+			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
 			takenPositions.Insert(0, checkPos);
 		}
 	}
@@ -187,44 +185,53 @@ public class DungeonGeneration : MonoBehaviour
 		{
 			for (int y = 0; y < ((gridSizeY * 2)); y++)
 			{
-				if (mapRooms[x, y] == null)
+				if (rooms[x, y] == null)
 				{
 					continue;
 				}
+				rooms[x, y].Btn = mapRooms[x, y];
 				Vector2 gridPosition = new Vector2(x, y);
-				mapRooms[x, y].GridPos = gridPosition;
 				rooms[x, y].GridPos = gridPosition;
-				if (y - 1 >= 0 && mapRooms[x, y - 1] != null)
+				if (y - 1 >= 0 && rooms[x, y - 1] != null)
 				{
+					// Create corridor
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
+					newCorridor.GridPos = new Vector2(x, y - 0.5f);
 					newCorridor.SetRooms(rooms[x, y - 1], rooms[x, y]);
 					rooms[x, y].C_Down = newCorridor;
 					rooms[x, y - 1].C_Up = newCorridor;
 					newCorridor.gameObject.SetActive(false);
+					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(0f ,- 0.5f), 90, mapRooms[x, y], mapRooms[x, y - 1]));
 				}
-				if (y + 1 < gridSizeY * 2 && mapRooms[x, y + 1] != null)
+				if (y + 1 < gridSizeY * 2 && rooms[x, y + 1] != null)
 				{
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
+					newCorridor.GridPos = new Vector2(x, y + 0.5f);
 					newCorridor.SetRooms(rooms[x, y], rooms[x, y + 1]);
 					rooms[x, y + 1].C_Down = newCorridor;
 					rooms[x, y ].C_Up = newCorridor;
 					newCorridor.gameObject.SetActive(false);
+					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(0f, 0.5f), 90, mapRooms[x, y], mapRooms[x, y + 1]));
 				}
-				if (x - 1 >= 0 && mapRooms[x - 1, y] != null)
+				if (x - 1 >= 0 && rooms[x - 1, y] != null)
 				{
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
+					newCorridor.GridPos = new Vector2(x - 0.5f, y);
 					newCorridor.SetRooms(rooms[x - 1, y], rooms[x, y]);
 					rooms[x - 1, y].C_Right = newCorridor;
 					rooms[x, y].C_Left = newCorridor;
 					newCorridor.gameObject.SetActive(false);
+					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(-0.5f, 0f), 0, mapRooms[x, y], mapRooms[x - 1, y]));
 				}
-				if (x + 1 < gridSizeX * 2 && mapRooms[x + 1, y] != null)
+				if (x + 1 < gridSizeX * 2 && rooms[x + 1, y] != null)
 				{
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
+					newCorridor.GridPos = new Vector2(x + 0.5f, y);
 					newCorridor.SetRooms(rooms[x, y], rooms[x + 1, y]);
 					rooms[x, y].C_Right = newCorridor;
 					rooms[x + 1, y].C_Left = newCorridor;
 					newCorridor.gameObject.SetActive(false);
+					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(0.5f, 0f), 0, mapRooms[x, y], mapRooms[x + 1, y]));
 				}
 			}
 		}
