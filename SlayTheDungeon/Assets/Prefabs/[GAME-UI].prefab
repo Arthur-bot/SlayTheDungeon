@@ -1562,8 +1562,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 349079237
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &4755857868621211075
 MonoBehaviour:
@@ -1929,14 +1929,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardTemplate: {fileID: 4796387833899899547, guid: bc18b69feb17b8e4aa249940251c744f, type: 3}
-  cards:
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: be733771c245481409a7e020f9c11b48, type: 2}
-  - {fileID: 11400000, guid: be733771c245481409a7e020f9c11b48, type: 2}
   countText: {fileID: 1318025891078692867}
   scrollCards: {fileID: 2051400787}
   scrollPanel: {fileID: 1892177404}
@@ -2170,6 +2162,7 @@ MonoBehaviour:
   handAnimation: {fileID: 4755857868734692431}
   damageUI: {fileID: 4547900249061223643}
   playerDeck: {fileID: 4755857869280437203}
+  discardPile: {fileID: 7507904177609980226}
   endTurnButton: {fileID: 4755857869496464492}
   fightMaterial: {fileID: 1831905053705292288}
   exploreMaterial: {fileID: 136874834719505868}
@@ -2266,7 +2259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardTemplate: {fileID: 4796387833899899547, guid: 06687a1ff06d68d4ab40e04b3a6a8a6a, type: 3}
-  cards: []
   countText: {fileID: 5023375532744216109}
   scrollCards: {fileID: 2051400787}
   scrollPanel: {fileID: 1892177404}
