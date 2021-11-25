@@ -71,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 390759367
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c787b839cd2ce264f9d3f4d4953f2058, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,8 +123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cb4b0b1a7d7e64386031d616fa29a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
-  armor: 0
+  stats:
+    baseStats:
+      Health: 15
+      Armor: 0
+      Strength: 0
+      Agility: 0
+      elementalProtection: 000000000000000000000000
+      elementalBoosts: 000000000000000000000000
   healthText: {fileID: 7474759164070763486}
   armorText: {fileID: 7474759164701192127}
   healthSlider: {fileID: 7474759163529075443}
@@ -186,8 +192,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: -10
+  m_SortingLayerID: 390759367
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &7474759163368713405
 MonoBehaviour:

@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class EnnemyTriger : MonoBehaviour
 {
-    private GameManager gameManager;
+    #region Fields
+
     [SerializeField] private List<Enemy> enemies;
-    private void Start()
+
+    private GameManager gameManager;
+
+    #endregion
+
+    #region Protected Methods
+
+    protected void Start()
     {
         gameManager = GameManager.Instance;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.GetComponent<PlayerController>())
         {
-            foreach(Enemy enemy in enemies)
-            {
-                enemy.gameObject.SetActive(true);
-            }
-            gameManager.Enemies = enemies;
-            gameManager.StartCombat();
+            gameManager.StartEncounter(enemies);
+            Destroy(this);
         }
     }
+
+    #endregion
 }

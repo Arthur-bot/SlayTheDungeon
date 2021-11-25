@@ -8,13 +8,21 @@ public class CharacterData : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private int maxHealth;
+    [Header("Stats")]
+    [SerializeField] protected StatSystem stats;
 
-    private int health;
-    [SerializeField] private int armor;
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private Slider healthSlider;
+
+    #endregion
+
+    #region Properties
+
+    public StatSystem Stats => stats;
+
+    public bool IsAlive { get; private set; } = true;
 
     #endregion
 
@@ -22,42 +30,52 @@ public class CharacterData : MonoBehaviour
 
     protected void Awake()
     {
-        health = maxHealth;
-        healthText.text = health + "/" + maxHealth;
+        Stats.Init(this);
+        UpdateHUD(this);
 
-        armorText.text = armor.ToString();
-        armorText.gameObject.SetActive(armor != 0);
+        stats.OnHit += UpdateHUD;
+    }
+
+    protected void Update()
+    {
+        if (IsAlive && stats.CurrentHealth <= 0)
+        {
+            IsAlive = false;
+            OnDeath();
+            GameManager.Instance.RaiseOnEnemyDeathEvent(this);
+        }
+    }
+
+    protected virtual void OnDeath()
+    {
+        stats.OnDeath();
     }
 
     #endregion
 
+    #region Public Methods
+
     public void TakeDamage(int amount)
     {
-        GameUI.Instance.DamageUI.NewDamage(amount, transform.position);
-        int lifeDamage = amount - armor;
-        armorText.gameObject.SetActive(armor != 0);
-        armor = Mathf.Max(armor - amount, 0);
-        if (lifeDamage > 0)
-        {
-            health -= lifeDamage;
-            StartCoroutine(GameManager.Instance.ShakeCamera(0.1f, 0.1f));
-            healthSlider.value = health / (float)maxHealth;
-        }
-        healthText.text = health + "/" + maxHealth;
-        armorText.text = armor.ToString();
+        stats.Damage(amount);
+
+        StartCoroutine(GameManager.Instance.ShakeCamera(0.1f, 0.1f));
     }
 
-    public void Heal(int amount)
+    public void UpdateHUD(CharacterData data)
     {
-        health = Mathf.Min(maxHealth, health + amount);
-        healthText.text = health.ToString();
+        healthText.text = stats.CurrentHealth + "/" + stats.StatsCopy.Health;
+        armorText.text = stats.CurrentArmor.ToString();
+        armorText.gameObject.SetActive(stats.CurrentArmor > 0);
+
+        healthSlider.value = stats.CurrentHealth / (float)stats.StatsCopy.Health;
     }
 
-    public void StackArmor(int amount)
+    public void UpdateDurations()
     {
-        armor += amount;
-        armorText.text = armor.ToString();
-        armorText.gameObject.SetActive(armor != 0);
+        Stats.Tick();
     }
+
+    #endregion
 }
 
