@@ -62,6 +62,7 @@ public class GameManager : Singleton<GameManager>
             hand = gameUI.PlayerHand;
             playerDeck = gameUI.PlayerDeck;
             gameUI.EndTurnButton.onClick.AddListener(EndPlayerTurn);
+            gameUI.EndTurnButton.interactable = false;
         }
         gameUI.StopFight();
     }
@@ -195,6 +196,7 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator FinishEncounter()
     {
         InBattle = false;
+        gameUI.EndTurnButton.interactable = false;
         hand.DiscardHand();
 
         yield return new WaitForSeconds(0.5f);
@@ -249,6 +251,8 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(0.2f);
         }
 
+        gameUI.EndTurnButton.interactable = true;
+
         while (!TurnEnded)
         {
             yield return null;
@@ -258,6 +262,7 @@ public class GameManager : Singleton<GameManager>
     private void EndPlayerTurn()
     {
         TurnEnded = true;
+        gameUI.EndTurnButton.interactable = false;
         hand.DiscardHand();
         BattleGround.TurnType = TurnType.EnemyTurn;
     }
