@@ -67,7 +67,6 @@ public class CharacterData : MonoBehaviour
         healthText.text = stats.CurrentHealth + "/" + stats.StatsCopy.Health;
         armorText.text = stats.CurrentArmor.ToString();
         armorText.gameObject.SetActive(stats.CurrentArmor > 0);
-
         healthSlider.value = stats.CurrentHealth / (float)stats.StatsCopy.Health;
     }
 
