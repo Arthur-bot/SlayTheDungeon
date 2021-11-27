@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MiniMap : MonoBehaviour
@@ -10,6 +11,7 @@ public class MiniMap : MonoBehaviour
     [SerializeField] private MapRoomBtn roomMapPrefab;
     [SerializeField] private Transform mapRoot;
     [SerializeField] private Transform corridorRoot;
+    [SerializeField] private RectTransform playerIcon;
     private RectTransform thisTransform;
 
     private void Awake()
@@ -44,6 +46,7 @@ public class MiniMap : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
+        playerIcon.anchoredPosition -= direction;
         thisTransform.anchoredPosition += direction;
     }
 }
