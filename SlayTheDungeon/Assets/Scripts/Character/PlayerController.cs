@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (!gameManager.InBattle)
+        if (!gameManager.InBattle && gameManager.CurrentRoom is Corridor)
         {
             moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
             transform.position = transform.position + new Vector3(moveX, 0, 0);
