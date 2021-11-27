@@ -73,6 +73,7 @@ public class DungeonGeneration : MonoBehaviour
 			RoomType type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
 			if (i == numberOfRooms - 2)
 				type = RoomType.Boss;
+			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupRoom(type);
 			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
 			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupIcone(mapIcons[(int)type]);
 			Debug.Log(type);
