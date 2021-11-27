@@ -52,9 +52,9 @@ public class GameUI : Singleton<GameUI>
 
     public void StopFight()
     {
-        exploreMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f).OnComplete(() => {
+        fightMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f).OnComplete(() => {
             DisableFight();
-            fightMaterial.transform.DOLocalMoveY(positionFightUI.y, 0.5f);
+            exploreMaterial.transform.DOLocalMoveY(positionFightUI.x, 0.5f);
         });
     }
 

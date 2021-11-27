@@ -100,7 +100,6 @@ public class GameManager : Singleton<GameManager>
         room.gameObject.SetActive(true);
         currentRoom = room;
         player.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, 0);
-        Debug.Log("Player is in " + room.GridPos.x + " " + room.GridPos.y);
     }
 
     public void MoveToCorridor(Vector2 gridPos)

@@ -13,6 +13,7 @@ public class DungeonGeneration : MonoBehaviour
 	[SerializeField] private float randomCompareStart = 0.2f;
 	[SerializeField] private float randomCompareEnd = 0.01f;
 	// Map Fields
+	[SerializeField] private List<Sprite> mapIcons;
 	[SerializeField] private MiniMap miniMap;
 	MapRoomBtn[,] mapRooms;
 	// WorldField
@@ -46,6 +47,7 @@ public class DungeonGeneration : MonoBehaviour
 		takenPositions.Insert(0, Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
 		mapRooms[gridSizeX, gridSizeY] = miniMap.AddRoom(Vector2.zero);
+		mapRooms[gridSizeX, gridSizeY].SetupIcone(mapIcons[0]);
 		//add rooms
 		for (int i = 0; i < numberOfRooms - 1; i++)
 		{
@@ -68,7 +70,12 @@ public class DungeonGeneration : MonoBehaviour
 			//finalize position
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
+			RoomType type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
+			if (i == numberOfRooms - 2)
+				type = RoomType.Boss;
 			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
+			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupIcone(mapIcons[(int)type]);
+			Debug.Log(type);
 			takenPositions.Insert(0, checkPos);
 		}
 	}

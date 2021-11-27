@@ -5,8 +5,8 @@ using UnityEngine;
 public enum RoomType
 {
     None,
-    Monster,
     Boss,
+    Monster,
     Firecamp,
     Chest
 }

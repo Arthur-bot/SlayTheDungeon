@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapRoomBtn : MonoBehaviour
 {
+    [SerializeField] private Image icon;
     private GameManager gameManager;
 	private Vector2 gridPos;
     private List<MapCorridor> corridors = new List<MapCorridor>();
@@ -20,7 +22,6 @@ public class MapRoomBtn : MonoBehaviour
         {
             return;
         }
-        Debug.Log("player currently in " + gameManager.CurrentRoom.GridPos.x + " " + gameManager.CurrentRoom.GridPos.y + "wants to move in " + gridPos.x + " " + gridPos.y);
         float dist = Mathf.Abs(gameManager.CurrentRoom.GridPos.x - gridPos.x) + Mathf.Abs(gameManager.CurrentRoom.GridPos.y - gridPos.y);
         if (dist <= 1 && dist != 0)
         {
@@ -36,6 +37,13 @@ public class MapRoomBtn : MonoBehaviour
             corridor.MapRoom1.SetActive(true);
             corridor.MapRoom2.SetActive(true);
         }
+    }
+    public void SetupIcone(Sprite sprite)
+    {
+        if (sprite != null)
+            icon.sprite = sprite;
+        else
+            icon.gameObject.SetActive(false);
     }
 
 }
