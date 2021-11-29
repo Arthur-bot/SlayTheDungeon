@@ -78,19 +78,19 @@ public class GameManager : Singleton<GameManager>
             currentRoom.gameObject.SetActive(false);
             if (room.GridPos.x > currentRoom.GridPos.x)
             {
-                miniMap.Move(new Vector2(-50f, 0));
+                miniMap.MovePlayer(new Vector2(-50f, 0));
             }
             else if (room.GridPos.x < currentRoom.GridPos.x)
             {
-                miniMap.Move(new Vector2(50f, 0));
+                miniMap.MovePlayer(new Vector2(50f, 0));
             }
             else if (room.GridPos.y > currentRoom.GridPos.y)
             {
-                miniMap.Move(new Vector2(0f, -50));
+                miniMap.MovePlayer(new Vector2(0f, -50));
             }
             else if (room.GridPos.y < currentRoom.GridPos.y)
             {
-                miniMap.Move(new Vector2(0, 50));
+                miniMap.MovePlayer(new Vector2(0, 50));
             }
         }
         if (room is Room)

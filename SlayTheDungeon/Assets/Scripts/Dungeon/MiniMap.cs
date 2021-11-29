@@ -13,6 +13,7 @@ public class MiniMap : MonoBehaviour
     [SerializeField] private Transform corridorRoot;
     [SerializeField] private RectTransform playerIcon;
     private RectTransform thisTransform;
+    private int zoomLevel = 3;
 
     private void Awake()
     {
@@ -44,9 +45,29 @@ public class MiniMap : MonoBehaviour
         gridSizeY = y;
     }
 
-    public void Move(Vector2 direction)
+    public void MovePlayer(Vector2 direction)
     {
         playerIcon.anchoredPosition -= direction;
         thisTransform.anchoredPosition += direction;
+    }
+    public void Recenter()
+    {
+        thisTransform.anchoredPosition = playerIcon.anchoredPosition * -1;
+    }
+    public void ZoomIn()
+    {
+        if (zoomLevel > 0)
+        {
+            thisTransform.localScale = new Vector3(transform.localScale.x + 0.2f, transform.localScale.y + 0.2f, 1f);
+            zoomLevel--;
+        }
+    }
+    public void ZoomOut()
+    {
+        if (zoomLevel < 6)
+        {
+            thisTransform.localScale = new Vector3(transform.localScale.x - 0.2f, transform.localScale.y - 0.2f, 1f);
+            zoomLevel++;
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MapScroller : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class MapScroller : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     [SerializeField] private RectTransform mapTransform;
     [SerializeField] private int sensitivity = 200;
@@ -11,7 +11,6 @@ public class MapScroller : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Vector3 previousMousePos;
     public void OnBeginDrag(PointerEventData eventData)
     {
-        previousPos = mapTransform.anchoredPosition;
         previousMousePos = Input.mousePosition;
     }
 
@@ -20,10 +19,5 @@ public class MapScroller : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         Vector2 mouseMove = Input.mousePosition - previousMousePos;
         previousMousePos = Input.mousePosition;
         mapTransform.anchoredPosition += mouseMove * sensitivity * Time.deltaTime;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        mapTransform.anchoredPosition = previousPos;
     }
 }
