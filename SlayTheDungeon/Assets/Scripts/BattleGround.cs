@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public enum TurnType
 {
@@ -26,8 +27,8 @@ public class BattleGround : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private RectTransform playerPosition;
-    [SerializeField] private RectTransform enemyPosition;
+    private Vector3 playerPosition;
+    private List<Vector3> enemyPosition;
     [SerializeField] private RectTransform cameraFocus;
 
     private PlayerData player;
@@ -36,7 +37,7 @@ public class BattleGround : MonoBehaviour
 
     #region Properties
 
-    public List<Enemy> Enemies { get; private set; }
+    public List<Enemy> Enemies { get; private set; } 
 
     public TurnType TurnType { get; set; }
 
@@ -53,6 +54,17 @@ public class BattleGround : MonoBehaviour
         GameManager.Instance.OnCharacterDeath += DeleteCharacter;
         player = GameManager.Instance.Player;
 
+        enemyPosition = new List<Vector3>();
+        playerPosition = GameUI.Instance.PlayerPosition.transform.position;
+        for (int i = 0; i < GameUI.Instance.EnemyPosition.Count; i++)
+        {
+            enemyPosition.Add(GameUI.Instance.EnemyPosition[i].position);
+        }
+    }
+
+    protected void Start()
+    {
+
     }
 
     #endregion
@@ -64,17 +76,17 @@ public class BattleGround : MonoBehaviour
         Enemies = enemies;
         BattleStatus = BattleStatus.Fighting;
 
-        foreach (var enemy in enemies)
-        {
-            enemy.gameObject.SetActive(true);
-
-            //Position enemies
-        }
+        player.transform.position = new Vector3(playerPosition.x, playerPosition.y, 0);
     }
 
     public void SpawnEnemies()
     {
-
+        for (int i = 0; i < Enemies.Count; i++)
+        {
+            var enemyPosition = this.enemyPosition[i];
+            Enemies[i].transform.position = new Vector3(enemyPosition.x, enemyPosition.y, 0) ;
+            Enemies[i].gameObject.SetActive(true);
+        }
     }
 
     public void FinishBattle()
@@ -90,6 +102,7 @@ public class BattleGround : MonoBehaviour
         }
 
         GameManager.Instance.TurnEnded = true;
+        Enemies.Clear();
         BattleStatus = BattleStatus.Finished;
     }
 

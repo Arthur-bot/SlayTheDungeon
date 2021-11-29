@@ -14,6 +14,9 @@ public class GameUI : Singleton<GameUI>
     [SerializeField] private DeckPile playerDeck;
     [SerializeField] private DiscardPile discardPile;
     [SerializeField] private Button endTurnButton;
+    [SerializeField] private MiniMap miniMap;
+    [SerializeField] private Transform playerPosition;
+    [SerializeField] private List<Transform> enemyPosition;
 
     [SerializeField] private GameObject fightMaterial;
     [SerializeField] private GameObject exploreMaterial;
@@ -35,6 +38,12 @@ public class GameUI : Singleton<GameUI>
     public DiscardPile DiscardPile => discardPile;
 
     public Button EndTurnButton => endTurnButton;
+
+    public MiniMap MiniMap => miniMap;
+
+    public Transform PlayerPosition => playerPosition;
+
+    public List<Transform> EnemyPosition => enemyPosition;
 
     #endregion
 

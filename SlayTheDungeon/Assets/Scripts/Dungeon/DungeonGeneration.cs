@@ -14,7 +14,7 @@ public class DungeonGeneration : MonoBehaviour
 	[SerializeField] private float randomCompareEnd = 0.01f;
 	// Map Fields
 	[SerializeField] private List<Sprite> mapIcons;
-	[SerializeField] private MiniMap miniMap;
+	private MiniMap miniMap;
 	MapRoomBtn[,] mapRooms;
 	// WorldField
 	private GameManager gameManager;
@@ -22,9 +22,15 @@ public class DungeonGeneration : MonoBehaviour
 	[SerializeField] private Corridor CorridorPrefab;
 	[SerializeField] private Room RoomPrefab; 
 	[SerializeField] private Transform worldRoot;
-	void Start()
+
+    protected void Awake()
+    {
+        gameManager = GameManager.Instance;
+        miniMap = GameUI.Instance.MiniMap;
+    }
+
+    void Start()
 	{
-		gameManager = GameManager.Instance;
 
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
 		{ // make sure we dont try to make more rooms than can fit in our grid

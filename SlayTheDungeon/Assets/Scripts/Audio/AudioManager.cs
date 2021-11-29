@@ -5,10 +5,14 @@ using UnityEngine;
 public class AudioManager : Singleton<AudioManager>
 {
     private AudioSource sfxSource;
-    private void Awake()
+
+    protected override void OnAwake()
     {
+        base.OnAwake();
+
         sfxSource = GetComponent<AudioSource>();
     }
+
     public void PlaySFX(AudioClip clip)
     {
         if (clip != null)

@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
     private bool cameraShaking;
 
     private DungeonElement currentRoom;
-    [SerializeField] private MiniMap miniMap;
+    private MiniMap miniMap;
 
 
     #endregion
@@ -63,6 +63,7 @@ public class GameManager : Singleton<GameManager>
             playerDeck = gameUI.PlayerDeck;
             gameUI.EndTurnButton.onClick.AddListener(EndPlayerTurn);
             gameUI.EndTurnButton.interactable = false;
+            miniMap = gameUI.MiniMap;
         }
         gameUI.StopFight();
     }
