@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class HandAnimation : Singleton<HandAnimation>
+public class CardAnimation : Singleton<CardAnimation>
 {
     #region Fields
 
+    [SerializeField] private Transform deckUI;
     [SerializeField] private Transform deckPile;
     [SerializeField] private Transform discardPile;
     [SerializeField] private AnimationCurve animationCurve;
@@ -70,6 +71,12 @@ public class HandAnimation : Singleton<HandAnimation>
     public void RemoveCard()
     {
         howManyCard--;
+    }
+    public void GetLootAnimation(RectTransform card)
+    {
+        card.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
+        card.DORotate(new Vector3(0, 0, 95), 0.4f);
+        StartCoroutine(CardMove(card, deckUI.transform));
     }
 
     // Setter

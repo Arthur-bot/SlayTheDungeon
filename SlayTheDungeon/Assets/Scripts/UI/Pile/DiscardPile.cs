@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DiscardPile : Pile
 {
-    private HandAnimation handAnimation;
+    private CardAnimation handAnimation;
 
     private void Start()
     {
-        handAnimation = HandAnimation.Instance;
+        handAnimation = CardAnimation.Instance;
     }
 
     public void ResetDiscardPile()

@@ -7,7 +7,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     #region Fields
 
-    private HandAnimation handAnimation;
+    private CardAnimation handAnimation;
     private RectTransform thisTransform;
     private Hand hand;
     private TargetingSystem targetingSystem;

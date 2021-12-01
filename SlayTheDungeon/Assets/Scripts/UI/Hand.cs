@@ -7,7 +7,7 @@ public class Hand : MonoBehaviour
     #region Fields
 
     [SerializeField] private Pile discardPile;
-    private HandAnimation handAnimation;
+    private CardAnimation handAnimation;
     private RectTransform thisTransform;
     private List<CardUI> cards;
 
@@ -17,7 +17,7 @@ public class Hand : MonoBehaviour
 
     protected void Awake()
     {
-        handAnimation = GetComponent<HandAnimation>();
+        handAnimation = CardAnimation.Instance;
         cards = new List<CardUI>();
         thisTransform = GetComponent<RectTransform>();
         handAnimation.SetCards(cards);

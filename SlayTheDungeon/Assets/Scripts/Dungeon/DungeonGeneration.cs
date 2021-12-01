@@ -77,12 +77,11 @@ public class DungeonGeneration : MonoBehaviour
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
 			RoomType type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
-			if (i == numberOfRooms - 2)
+			if (i == numberOfRooms - 2) // Last Room
 				type = RoomType.Boss;
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupRoom(type);
 			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
 			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupIcone(mapIcons[(int)type]);
-			Debug.Log(type);
 			takenPositions.Insert(0, checkPos);
 		}
 	}

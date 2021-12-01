@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class MiniMap : MonoBehaviour
 {
@@ -52,7 +53,11 @@ public class MiniMap : MonoBehaviour
     }
     public void Recenter()
     {
-        thisTransform.anchoredPosition = playerIcon.anchoredPosition * -1;
+        thisTransform.DOAnchorPos(playerIcon.anchoredPosition * -1, 1.0f);
+        thisTransform.DOScale(Vector3.one, 1.0f).OnComplete(() => {
+            zoomLevel = 3;
+        });
+
     }
     public void ZoomIn()
     {

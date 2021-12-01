@@ -55,7 +55,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 665dc7f8c64576b45bf05670f7479252, type: 3}
   - {fileID: 21300000, guid: 4a0afa6e1ef12d4418f5fa49b5d929c7, type: 3}
   - {fileID: 21300000, guid: 78ab876f621862c419deb404d942c5c7, type: 3}
-  miniMap: {fileID: 0}
   CorridorPrefab: {fileID: 8785308528362098858, guid: c2106dc2355422f479045743d1aa4294, type: 3}
   RoomPrefab: {fileID: 343877859318550192, guid: 09bd192b023aa1d46b288a2c0c7d7c5a, type: 3}
   worldRoot: {fileID: 1038660990714895517}
@@ -124,7 +123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
       propertyPath: deck.Array.size
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
       propertyPath: deck.Array.data[1]
@@ -133,11 +132,19 @@ PrefabInstance:
     - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
       propertyPath: deck.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
+      objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
     - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
       propertyPath: deck.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
+      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+    - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
+      propertyPath: deck.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+    - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
+      propertyPath: deck.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
     - target: {fileID: 5882267922247194253, guid: 13ecaca543e28cf48a02fb2a49b7a32a, type: 3}
       propertyPath: deck.Array.data[6]
       value: 

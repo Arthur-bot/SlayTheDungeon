@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184861031, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 1424040655}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 
@@ -178,6 +182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4755857869740088049, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: handAnimation
+      value: 
+      objectReference: {fileID: 4755857868734692431, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
     - target: {fileID: 4755857869740088051, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Name
       value: '[GAME-UI]'
@@ -195,10 +203,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1424040655}
-    - target: {fileID: 556130968872285821, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
-      propertyPath: miniMap
-      value: 
-      objectReference: {fileID: 991870821}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -254,17 +258,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1038660992119351943, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
   m_PrefabInstance: {fileID: 1038660991846510821}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &991870821 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3654199941927011122, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-  m_PrefabInstance: {fileID: 590595640}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b23a95d8e7c30444ba9f087f509e22a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1424040655 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6901787497269205038, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
@@ -283,10 +276,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1038660990714895506, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
-      propertyPath: miniMap
-      value: 
-      objectReference: {fileID: 991870821}
     - target: {fileID: 1038660990714895507, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: m_Name
       value: World

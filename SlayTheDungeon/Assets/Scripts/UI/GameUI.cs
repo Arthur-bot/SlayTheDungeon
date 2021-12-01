@@ -9,7 +9,7 @@ public class GameUI : Singleton<GameUI>
     #region Fields
 
     [SerializeField] private Hand playerHand;
-    [SerializeField] private HandAnimation handAnimation;
+    [SerializeField] private CardAnimation handAnimation;
     [SerializeField] private DamageUI damageUI;
     [SerializeField] private DeckPile playerDeck;
     [SerializeField] private DiscardPile discardPile;
@@ -29,7 +29,7 @@ public class GameUI : Singleton<GameUI>
 
     public Hand PlayerHand => playerHand;
 
-    public HandAnimation HandAnimation => handAnimation;
+    public CardAnimation HandAnimation => handAnimation;
 
     public DamageUI DamageUI => damageUI;
 

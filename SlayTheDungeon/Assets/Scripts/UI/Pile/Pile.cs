@@ -11,7 +11,9 @@ public class Pile : MonoBehaviour
     [SerializeField] private ScrollCardView scrollCards;
     [SerializeField] private GameObject scrollPanel;
 
-    protected List<CardData> cards = new List<CardData>();
+    [SerializeField] protected List<CardData> cards = new List<CardData>();
+
+    public List<CardData> Cards { get => cards; set => cards = value; }
 
     // Public Functions
     public void AddCard(CardData cardData)

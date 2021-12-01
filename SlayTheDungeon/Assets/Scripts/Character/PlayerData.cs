@@ -27,6 +27,10 @@ public class PlayerData : CharacterData
     {
         CurrentEnergy -= card.Cost;
     }
+    public void AddCard(CardData card)
+    {
+        deck.Add(card);
+    }
 
     public void ResetEnergy()
     {

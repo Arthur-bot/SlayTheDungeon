@@ -19,6 +19,8 @@ public class GameManager : Singleton<GameManager>
     private DungeonElement currentRoom;
     private MiniMap miniMap;
 
+    private LootManager lootManager;
+
 
     #endregion
 
@@ -65,6 +67,7 @@ public class GameManager : Singleton<GameManager>
             gameUI.EndTurnButton.interactable = false;
             miniMap = gameUI.MiniMap;
         }
+        lootManager = LootManager.Instance;
         gameUI.StopFight();
     }
 
@@ -195,7 +198,6 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator FinishEncounter()
     {
-        InBattle = false;
         gameUI.EndTurnButton.interactable = false;
         hand.DiscardHand();
 
@@ -208,11 +210,12 @@ public class GameManager : Singleton<GameManager>
 
         yield return new WaitForSeconds(1.0f);
 
+        InBattle = false;
         BattleGround.FinishBattle();
         // Reset player Status & modifiers
         // Provide Loot & exp pts
         // Remove combat state & restrictions (movements, inventory, ...)
-
+        lootManager.SetupLoop();
         BattleGround.LeaveBattleGround();
     }
 
