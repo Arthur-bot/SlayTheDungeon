@@ -34,7 +34,7 @@ public class PlayerData : CharacterData
 
     #region Public Methods
 
-    public bool CanPlayCard(CardData card) => CurrentEnergy >= card.Cost;
+    public bool CanPlayCard(CardData card) => CurrentEnergy - card.Cost >= 0;
 
     public void PlayCard(CardData card)
     {
