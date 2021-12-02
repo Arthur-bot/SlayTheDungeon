@@ -756,7 +756,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be733771c245481409a7e020f9c11b48, type: 2}
   - {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
   - {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
-  energy: 8
+  energy: 3
 --- !u!114 &5573367925789236230
 MonoBehaviour:
   m_ObjectHideFlags: 0
