@@ -10,6 +10,7 @@ public class CardUI : MonoBehaviour
     [SerializeField] private Image cardArtwork;
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
+    [SerializeField] private TextMeshProUGUI energyCostText;
     [SerializeField] private Image cardHighlight;
 
     [Header("Zoom Parameters")] 
@@ -76,6 +77,7 @@ public class CardUI : MonoBehaviour
         cardData = data;
         setSprite(data.Sprite);
         setText(data.CardName, data.Description);
+        energyCostText.text = data.Cost.ToString();
     }
 
     public void Highlight (Color color)

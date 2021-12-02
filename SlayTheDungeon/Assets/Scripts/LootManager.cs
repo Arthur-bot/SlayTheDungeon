@@ -7,7 +7,7 @@ public class LootManager : Singleton<LootManager>
     [SerializeField] private CardLoot lootCardPrefab;
     [SerializeField] private Pile playerDeck;
     [SerializeField] private GameObject lootPanel;
-    [SerializeField] private PlayerData playerData;
+    private PlayerData playerData;
     private CardDataBase dataBase;
     private int nbOfChoices = 3;
     private List<CardLoot> loots = new List<CardLoot>();
@@ -18,6 +18,7 @@ public class LootManager : Singleton<LootManager>
     private void Start()
     {
         dataBase = CardDataBase.Instance;
+        playerData = GameManager.Instance.Player;
     }
 
     public void SetupLoop()

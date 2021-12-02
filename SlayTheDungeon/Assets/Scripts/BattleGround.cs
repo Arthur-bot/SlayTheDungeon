@@ -28,7 +28,8 @@ public class BattleGround : MonoBehaviour
     #region Fields
 
     private Vector3 playerPosition;
-    private List<Vector3> enemyPosition;
+    private List<Transform> enemyLeftPosition;
+    private List<Transform> enemyRightPosition;
     [SerializeField] private RectTransform cameraFocus;
 
     private PlayerData player;
@@ -54,17 +55,21 @@ public class BattleGround : MonoBehaviour
         GameManager.Instance.OnCharacterDeath += DeleteCharacter;
         player = GameManager.Instance.Player;
 
-        enemyPosition = new List<Vector3>();
-        playerPosition = GameUI.Instance.PlayerPosition.transform.position;
-        for (int i = 0; i < GameUI.Instance.EnemyPosition.Count; i++)
-        {
-            enemyPosition.Add(GameUI.Instance.EnemyPosition[i].position);
-        }
+        enemyLeftPosition = new List<Transform>();
+        enemyRightPosition = new List<Transform>();
     }
 
     protected void Start()
     {
+        foreach (var position in GameUI.Instance.LeftPositions)
+        {
+            enemyLeftPosition.Add(position);
+        }
 
+        foreach (var position in GameUI.Instance.RightPositions)
+        {
+            enemyRightPosition.Add(position);
+        }
     }
 
     #endregion
@@ -75,17 +80,27 @@ public class BattleGround : MonoBehaviour
     {
         Enemies = enemies;
         BattleStatus = BattleStatus.Fighting;
-
-        player.transform.position = new Vector3(playerPosition.x, playerPosition.y, 0);
     }
 
-    public void SpawnEnemies()
+    public void SpawnEnemies(bool facingRight)
     {
-        for (int i = 0; i < Enemies.Count; i++)
+        if (facingRight)
         {
-            var enemyPosition = this.enemyPosition[i];
-            Enemies[i].transform.position = new Vector3(enemyPosition.x, enemyPosition.y, 0) ;
-            Enemies[i].gameObject.SetActive(true);
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                var enemyPosition = enemyRightPosition[i];
+                Enemies[i].transform.position = new Vector3(enemyPosition.position.x, enemyPosition.position.y, 0);
+                Enemies[i].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                var enemyPosition = enemyLeftPosition[i];
+                Enemies[i].transform.position = new Vector3(enemyPosition.position.x, enemyPosition.position.y, 0);
+                Enemies[i].gameObject.SetActive(true);
+            }
         }
     }
 

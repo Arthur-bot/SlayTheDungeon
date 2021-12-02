@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class DungeonElement : MonoBehaviour
 {
     [SerializeField] private Transform startPoint;
+    [SerializeField] private CinemachineVirtualCamera cvcam;
+
     protected GameManager gameManager;
     protected Vector2 gridPos;
     public Vector2 GridPos { get => gridPos; set => gridPos = value; }
     public Transform StartPoint { get => startPoint; set => startPoint = value; }
+    public CinemachineVirtualCamera CVCam => cvcam;
+
     void Awake()
     {
         gameManager = GameManager.Instance;

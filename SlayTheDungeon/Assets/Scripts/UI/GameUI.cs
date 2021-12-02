@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class GameUI : Singleton<GameUI>
 {
@@ -16,7 +17,9 @@ public class GameUI : Singleton<GameUI>
     [SerializeField] private Button endTurnButton;
     [SerializeField] private MiniMap miniMap;
     [SerializeField] private Transform playerPosition;
-    [SerializeField] private List<Transform> enemyPosition;
+    [SerializeField] private List<Transform> rightPositions;
+    [SerializeField] private List<Transform> leftPositions;
+    [SerializeField] private TextMeshProUGUI energyText;
 
     [SerializeField] private GameObject fightMaterial;
     [SerializeField] private GameObject exploreMaterial;
@@ -43,7 +46,11 @@ public class GameUI : Singleton<GameUI>
 
     public Transform PlayerPosition => playerPosition;
 
-    public List<Transform> EnemyPosition => enemyPosition;
+    public List<Transform> RightPositions => rightPositions;
+
+    public List<Transform> LeftPositions => leftPositions;
+
+    public TextMeshProUGUI EnergyText => energyText;
 
     #endregion
 

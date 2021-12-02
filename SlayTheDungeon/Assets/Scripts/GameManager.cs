@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,10 +14,11 @@ public class GameManager : Singleton<GameManager>
     private Hand hand;
 
     private GameUI gameUI;
-    private Camera currentCamera;
     private bool cameraShaking;
 
     private DungeonElement currentRoom;
+    private CinemachineVirtualCamera currentCamera;
+    private float orthographicSizeZoom;
     private MiniMap miniMap;
 
     private LootManager lootManager;
@@ -36,6 +38,10 @@ public class GameManager : Singleton<GameManager>
 
     public bool TurnEnded { get; set; }
 
+    public CinemachineVirtualCamera CurrentCamera => currentCamera;
+
+    public bool PlayerFacingRight { get; set; }
+
     #endregion
 
     #region Delegates
@@ -51,7 +57,6 @@ public class GameManager : Singleton<GameManager>
     {
         base.OnAwake();
 
-        currentCamera = Camera.main;
         BattleGround = GetComponent<BattleGround>();
     }
 
@@ -80,6 +85,9 @@ public class GameManager : Singleton<GameManager>
         if (currentRoom != null)
         {
             currentRoom.gameObject.SetActive(false);
+            currentCamera = room.CVCam;
+            orthographicSizeZoom = currentCamera.m_Lens.OrthographicSize;
+            currentCamera.Follow = Player.transform;
             if (room.GridPos.x > currentRoom.GridPos.x)
             {
                 miniMap.MovePlayer(new Vector2(-50f, 0));
@@ -133,21 +141,18 @@ public class GameManager : Singleton<GameManager>
 
         cameraShaking = true;
         var elapsedTime = 0.0f;
-        var initialPosition = currentCamera.gameObject.transform.position;
-        var zoom = currentCamera.orthographicSize;
 
         while (elapsedTime < duration)
         {
-            var x = zoom - Random.Range(0, 2f) * magnitude;
+            var x = orthographicSizeZoom - Random.Range(0, 2f) * magnitude;
 
-            currentCamera.orthographicSize = x;
+            currentCamera.m_Lens.OrthographicSize = x;
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        currentCamera.orthographicSize = zoom;
-        currentCamera.gameObject.transform.position = initialPosition;
+        currentCamera.m_Lens.OrthographicSize = orthographicSizeZoom;
         cameraShaking = false;
     }
 
@@ -175,7 +180,7 @@ public class GameManager : Singleton<GameManager>
 
         BattleGround.InitBattle(enemies);
         yield return new WaitForSeconds(1.0f);
-        BattleGround.SpawnEnemies();
+        BattleGround.SpawnEnemies(PlayerFacingRight);
         yield return new WaitForSeconds(0.5f);
 
         FirstDraw();

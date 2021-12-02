@@ -26,6 +26,7 @@ public class PlayerData : CharacterData
     public void PlayCard(CardData card)
     {
         CurrentEnergy -= card.Cost;
+        GameUI.Instance.EnergyText.text = CurrentEnergy + "/" + energy;
     }
     public void AddCard(CardData card)
     {
@@ -35,6 +36,7 @@ public class PlayerData : CharacterData
     public void ResetEnergy()
     {
         CurrentEnergy = energy;
+        GameUI.Instance.EnergyText.text = CurrentEnergy + "/" + energy;
     }
 
     #endregion
