@@ -7,14 +7,19 @@ public class Enemy : CharacterData
 {
     [SerializeField] private int damageValue;
 
+    private float initialX;
+
     public void Attack()
     {
-        transform.DOLocalMoveX(transform.localPosition.x -1f, 0.15f).OnComplete(ResetPosition);
+        initialX = transform.localPosition.x;
+        var destination = transform.localPosition.x + (GameManager.Instance.PlayerFacingRight? -1 : 1);
+
+        transform.DOLocalMoveX(destination, 0.15f).OnComplete(ResetPosition);
         GameManager.Instance.Player.TakeDamage(damageValue);
     }
 
     public void ResetPosition()
     {
-        transform.DOLocalMoveX(transform.localPosition.x + 1f, 0.3f);
+        transform.DOLocalMoveX(initialX, 0.3f);
     }
 }
