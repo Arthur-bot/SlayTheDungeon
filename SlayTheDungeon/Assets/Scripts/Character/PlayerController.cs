@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour
 
     private bool facingRight { get; set; } = true;
 
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+        gameManager = GameManager.Instance;
+    }
     private void Start()
     {
-        gameManager = GameManager.Instance;
         lootManager = LootManager.Instance;
-
-        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
