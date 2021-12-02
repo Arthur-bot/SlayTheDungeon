@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Name: FrostBook
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 44b8280af94d38747819c75a62abe581, type: 3}
-  cost: 0
+  cost: 1
   cardName: Frost Book
   description: Gain 5 armors
   cardSoundEffect: {fileID: 0}

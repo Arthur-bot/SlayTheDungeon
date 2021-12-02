@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoisonVIal
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 806c900a58b98b245baa232ff854afae, type: 3}
-  cost: 0
+  cost: 1
   cardName: Poison Vial
   description: Deals 5 Poisons to an ennemy for 3 turns
   cardSoundEffect: {fileID: 0}

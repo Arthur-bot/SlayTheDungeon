@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Name: LavaBook
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d57927c58ec8f3a4bbbe87265013bfae, type: 3}
-  cost: 0
+  cost: 1
   cardName: Fire Book
   description: Deals 3 damages and gain 3 armors
   cardSoundEffect: {fileID: 0}

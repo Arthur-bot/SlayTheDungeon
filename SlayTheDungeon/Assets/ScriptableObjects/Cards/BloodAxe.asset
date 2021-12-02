@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodAxe
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 983c2fa7056ca7b4385892cde9965161, type: 3}
-  cost: 0
+  cost: 2
   cardName: Blood Axe
   description: Deals 10 Damages
   cardSoundEffect: {fileID: 0}
