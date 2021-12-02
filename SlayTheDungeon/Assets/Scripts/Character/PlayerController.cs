@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private LootManager lootManager;
     private SpriteRenderer sprite;
 
-    public bool facingRight;
+    private bool facingRight { get; set; } = true;
 
     private void Start()
     {
@@ -31,24 +31,44 @@ public class PlayerController : MonoBehaviour
 
             if (moveX > 0f && !facingRight)
             {
-                Flip();
+                Flip(true);
                 facingRight = true;
             }
             else if (moveX < 0 && facingRight)
             {
-                Flip();
+                Flip(false);
                 facingRight = false;
             }
         }
     }
 
-    void Flip()
+    public void Flip(bool isFacingRight)
     {
-        facingRight = !facingRight;
-        sprite.flipX = !facingRight;
+        if(isFacingRight)
+        {
+            facingRight = true;
+            sprite.flipX = false;
 
-        gameManager.PlayerFacingRight = facingRight;
+            gameManager.PlayerFacingRight = true;
 
-        gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = facingRight? 0.2f : 0.8f;
+            gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.2f;
+        }
+        else
+        {
+            facingRight = false;
+            sprite.flipX = true;
+
+            gameManager.PlayerFacingRight = false;
+
+            gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.8f;
+        }
+
+
+        //facingRight = !facingRight;
+        //sprite.flipX = !facingRight;
+
+        //gameManager.PlayerFacingRight = facingRight;
+
+        //gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = facingRight? 0.2f : 0.8f;
     }
 }

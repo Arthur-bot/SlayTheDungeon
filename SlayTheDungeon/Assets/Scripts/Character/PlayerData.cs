@@ -17,6 +17,19 @@ public class PlayerData : CharacterData
 
     public int CurrentEnergy { get; private set; }
 
+    public PlayerController Controller { get; private set; }
+
+    #endregion
+
+    #region Protected Methods
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Controller = GetComponent<PlayerController>();
+    }
+
     #endregion
 
     #region Public Methods

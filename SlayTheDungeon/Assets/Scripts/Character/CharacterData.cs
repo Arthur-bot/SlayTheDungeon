@@ -28,7 +28,7 @@ public class CharacterData : MonoBehaviour
 
     #region Protected Methods
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         Stats.Init(this);
         UpdateHUD(this);
@@ -59,7 +59,7 @@ public class CharacterData : MonoBehaviour
     {
         stats.Damage(amount);
 
-        StartCoroutine(GameManager.Instance.ShakeCamera(0.1f, 0.1f));
+        GameManager.Instance.Shake(0.1f, 0.1f);
     }
 
     public void UpdateHUD(CharacterData data)

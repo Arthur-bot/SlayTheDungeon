@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -85,9 +86,6 @@ public class GameManager : Singleton<GameManager>
         if (currentRoom != null)
         {
             currentRoom.gameObject.SetActive(false);
-            currentCamera = room.CVCam;
-            orthographicSizeZoom = currentCamera.m_Lens.OrthographicSize;
-            currentCamera.Follow = Player.transform;
             if (room.GridPos.x > currentRoom.GridPos.x)
             {
                 miniMap.MovePlayer(new Vector2(-50f, 0));
@@ -111,7 +109,11 @@ public class GameManager : Singleton<GameManager>
         }
         room.gameObject.SetActive(true);
         currentRoom = room;
+        currentCamera = room.CVCam;
+        orthographicSizeZoom = currentCamera.m_Lens.OrthographicSize;
+        currentCamera.Follow = Player.transform;
         player.transform.position = new Vector3(startPosition.position.x, startPosition.position.y, 0);
+        player.Controller.Flip(true);
     }
 
     public void MoveToCorridor(Vector2 gridPos)
@@ -120,41 +122,30 @@ public class GameManager : Singleton<GameManager>
         if (currentRoom.GridPos.x - gridPos.x == 1)
         {
             EnterRoom(thisRoom.C_Left, thisRoom.C_Left.EndPoint);
+            player.Controller.Flip(false);
         }
         else if (currentRoom.GridPos.x - gridPos.x == -1)
         {
             EnterRoom(thisRoom.C_Right, thisRoom.C_Right.StartPoint);
+            player.Controller.Flip(true);
         }
         else if (currentRoom.GridPos.y - gridPos.y == 1)
         {
             EnterRoom(thisRoom.C_Down, thisRoom.C_Down.EndPoint);
+            player.Controller.Flip(false);
         }
         else if (currentRoom.GridPos.y - gridPos.y == -1)
         {
             EnterRoom(thisRoom.C_Up, thisRoom.C_Up.StartPoint);
+            player.Controller.Flip(true);
         }
     }
 
-    public IEnumerator ShakeCamera(float duration, float magnitude)
+    public void Shake(float duration, float magnitude)
     {
-        if (cameraShaking) yield break;
-
-        cameraShaking = true;
-        var elapsedTime = 0.0f;
-
-        while (elapsedTime < duration)
-        {
-            var x = orthographicSizeZoom - Random.Range(0, 2f) * magnitude;
-
-            currentCamera.m_Lens.OrthographicSize = x;
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        currentCamera.m_Lens.OrthographicSize = orthographicSizeZoom;
-        cameraShaking = false;
+        StartCoroutine(ShakeCamera(duration, magnitude));
     }
+
 
     public void StartEncounter(List<Enemy> enemies) => StartCoroutine(EncounterEvent(enemies));
 
@@ -273,6 +264,26 @@ public class GameManager : Singleton<GameManager>
         gameUI.EndTurnButton.interactable = false;
         hand.DiscardHand();
         BattleGround.TurnType = TurnType.EnemyTurn;
+    }
+
+    private IEnumerator ShakeCamera(float duration, float magnitude)
+    {
+        if (cameraShaking) yield break;
+        cameraShaking = true;
+        var elapsedTime = 0.0f;
+
+        while (elapsedTime < duration)
+        {
+            var x = orthographicSizeZoom - Random.Range(0, 2f) * magnitude;
+
+            currentCamera.m_Lens.OrthographicSize = x;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        currentCamera.m_Lens.OrthographicSize = orthographicSizeZoom;
+        cameraShaking = false;
     }
 
     #endregion
