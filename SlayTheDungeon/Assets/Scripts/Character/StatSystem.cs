@@ -146,7 +146,6 @@ public class StatSystem
     {
         StatsCopy.Copy(BaseStats);
         CurrentHealth = StatsCopy.Health;
-        CurrentArmor = StatsCopy.Armor;
         this.owner = owner;
     }
 
@@ -192,18 +191,18 @@ public class StatSystem
     {
         effect.Applied(owner);
 
-        bool replaced = false;
+        var effectExist = false;
         for (int i = 0; i < elementalEffects.Count; ++i)
         {
             if (effect.Equals(elementalEffects[i]))
             {
-                replaced = true;
+                effectExist = true;
                 elementalEffects[i].Removed();
                 elementalEffects[i] = effect;
             }
         }
 
-        if (!replaced)
+        if (!effectExist)
             elementalEffects.Add(effect);
     }
 
@@ -220,7 +219,7 @@ public class StatSystem
 
     public void Tick()
     {
-        bool needUpdate = false;
+        var needUpdate = false;
 
         for (int i = 0; i < timedModifierStack.Count; ++i)
         {
@@ -259,7 +258,7 @@ public class StatSystem
         if(amount < 0)
         {
             //Takes damage
-            int lifeDamage = amount + CurrentArmor;
+            var lifeDamage = amount + CurrentArmor;
             ChangeArmor(amount);
             if (lifeDamage < 0)
             {
@@ -296,8 +295,8 @@ public class StatSystem
 
     private void UpdateFinalStats()
     {
-        bool maxHealthChange = false;
-        int previousHealth = StatsCopy.Health;
+        var maxHealthChange = false;
+        var previousHealth = StatsCopy.Health;
 
         StatsCopy.Copy(BaseStats);
 
@@ -320,7 +319,7 @@ public class StatSystem
         //if we change the max Health we update the current Health to it's new value
         if (maxHealthChange)
         {
-            float percentage = CurrentHealth / (float)previousHealth;
+            var percentage = CurrentHealth / (float)previousHealth;
             CurrentHealth = Mathf.RoundToInt(percentage * StatsCopy.Health);
         }
     }

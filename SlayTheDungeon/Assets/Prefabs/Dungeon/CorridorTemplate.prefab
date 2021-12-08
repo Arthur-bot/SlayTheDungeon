@@ -399,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7856534888655860075}
   - component: {fileID: 8785308528362098858}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CorridorTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,6 +650,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7856534888655860075}
     m_Modifications:
+    - target: {fileID: 2923541361073987281, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923541361073987281, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6780572108112432387, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
       propertyPath: m_Name
       value: EnnemyTrigger
@@ -664,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7033395824619506179, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7033395824619506179, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -696,6 +704,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7033395824619506179, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373215928867567247, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373215928867567247, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

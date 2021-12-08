@@ -36,7 +36,7 @@ public class CharacterData : MonoBehaviour
         stats.OnHit += UpdateHUD;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (IsAlive && stats.CurrentHealth <= 0)
         {
@@ -72,6 +72,9 @@ public class CharacterData : MonoBehaviour
 
     public void UpdateDurations()
     {
+        // Reset Armor
+        Stats.ChangeArmor(-1000);
+        // Apply all effect
         Stats.Tick();
     }
 

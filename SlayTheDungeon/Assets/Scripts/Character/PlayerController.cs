@@ -6,17 +6,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private RectTransform sprite;
     float moveX;
 
     private GameManager gameManager;
     private LootManager lootManager;
-    private SpriteRenderer sprite;
+
 
     private bool facingRight { get; set; } = true;
 
     private void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
         gameManager = GameManager.Instance;
     }
     private void Start()
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         if(isFacingRight)
         {
             facingRight = true;
-            sprite.flipX = false;
+            sprite.localScale = Vector3.one;
 
             gameManager.PlayerFacingRight = true;
 
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             facingRight = false;
-            sprite.flipX = true;
+            sprite.localScale = new Vector3(-1, 1, 1);
 
             gameManager.PlayerFacingRight = false;
 

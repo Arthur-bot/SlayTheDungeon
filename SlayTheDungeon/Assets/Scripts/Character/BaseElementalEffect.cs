@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// The base class to derive from to write you own custom Elemental effect that can be added to a StatsSystem. There
 /// is a default implementation called ElementalEffect that can be used to make Physical/Fire/Electrical/Cold damage
-/// across time.
+/// across duration.
 ///
 /// A derived class *must* implement the Equals function so we can check if 2 effects are the same (e.g. the default
 /// implementation ElementalEffect will consider 2 effect equal if they do the same DamageType).
@@ -14,18 +14,18 @@ using UnityEngine;
 public abstract class BaseElementalEffect : IEquatable<BaseElementalEffect>
 {
     public bool Done => timer <= 0.0f;
-    public float CurrentTime => timer;
-    public float Duration => duration;
+    public int CurrentTime => timer;
+    public int Duration => duration;
 
     #region Fields
 
-    protected float duration;
-    protected float timer;
+    protected int duration;
+    protected int timer;
     protected CharacterData target;
 
     #endregion
 
-    protected BaseElementalEffect(float duration)
+    protected BaseElementalEffect(int duration)
     {
         this.duration = duration;
     }
@@ -43,19 +43,24 @@ public abstract class BaseElementalEffect : IEquatable<BaseElementalEffect>
         timer--;
     }
 
+    public virtual void AddDuration(int duration)
+    {
+        timer += duration;
+    }
+
     public abstract bool Equals(BaseElementalEffect other);
 }
 
 /// <summary>
 /// Default implementation of the BaseElementalEffect. The constructor allows the caller to specify what type of
-/// damage is done, how much is done and the speed (time) between each instance of damage (default 1 = every second).
+/// damage is done, how much is done and the speed (duration) between each instance of damage (default 1 = every second).
 /// </summary>
 public class ElementalEffect : BaseElementalEffect
 {
     private int damage;
     private StatSystem.DamageType damageType;
 
-    public ElementalEffect(float duration, StatSystem.DamageType damageType, int damage) :
+    public ElementalEffect(int duration, StatSystem.DamageType damageType, int damage) :
         base(duration)
     {
         this.damage = damage;
