@@ -5,6 +5,7 @@ using UnityEngine;
 public class DataBase : Singleton<DataBase>
 {
     [SerializeField] private List<CardData> allCards;
+    [SerializeField] private List<EnnemyData> allEnnemies;
 
     private void Start()
     {
@@ -24,5 +25,11 @@ public class DataBase : Singleton<DataBase>
             picks.Add(newPick);
         }
         return picks;
+    }
+
+    public EnnemyData PickRandomEnnemy()
+    {
+        EnnemyData newPick = allEnnemies[Random.Range(0, allEnnemies.Count)];
+        return newPick;
     }
 }

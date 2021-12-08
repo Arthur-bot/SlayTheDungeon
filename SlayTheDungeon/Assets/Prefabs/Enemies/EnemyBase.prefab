@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8310607019946862543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267714768658536578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44cb4b0b1a7d7e64386031d616fa29a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    baseStats:
-      Health: 15
-      Armor: 0
-      Strength: 0
-      Agility: 0
-      elementalProtection: 000000000000000000000000
-      elementalBoosts: 000000000000000000000000
-  healthText: {fileID: 1018273426817313357}
-  armorText: {fileID: 7286168265136770434}
-  healthSlider: {fileID: 8439871493887878682}
-  damageValue: 3
 --- !u!1001 &8668972767097452160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,47 +51,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2211579483226114838, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211579483226114838, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6131406294064590338, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
       propertyPath: m_Name
       value: EnemyBase
       objectReference: {fileID: 0}
+    - target: {fileID: 6131406294064590338, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112652547718888814, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112652547718888814, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
---- !u!1 &3267714768658536578 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6131406294064590338, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
-  m_PrefabInstance: {fileID: 8668972767097452160}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8439871493887878682 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 967731471576010906, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
-  m_PrefabInstance: {fileID: 8668972767097452160}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1018273426817313357 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8534253692420529357, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
-  m_PrefabInstance: {fileID: 8668972767097452160}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7286168265136770434 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2113256554853792514, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
-  m_PrefabInstance: {fileID: 8668972767097452160}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

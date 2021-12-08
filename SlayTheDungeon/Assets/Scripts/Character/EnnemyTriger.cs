@@ -6,8 +6,8 @@ public class EnnemyTriger : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private List<Enemy> enemies;
-
+    [SerializeField] private Enemy enemyPrefab;
+    private List<Enemy> enemies = new List<Enemy>();
     private GameManager gameManager;
 
     #endregion
@@ -22,6 +22,10 @@ public class EnnemyTriger : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>())
         {
+            Enemy newEnemy = Instantiate(enemyPrefab, transform);
+            newEnemy.EnnemyData = DataBase.Instance.PickRandomEnnemy();
+            newEnemy.SetupEnemy();
+            enemies.Add(newEnemy);
             gameManager.StartEncounter(enemies);
             Destroy(this);
         }

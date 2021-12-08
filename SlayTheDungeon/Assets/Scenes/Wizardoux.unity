@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1834468847061475105, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: outsideZoneMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 
@@ -445,7 +449,8 @@ PrefabInstance:
       propertyPath: deck.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3600123250855938367, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &1700616446 stripped
 MonoBehaviour:
@@ -473,6 +478,18 @@ PrefabInstance:
       propertyPath: miniMap
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allEnnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allEnnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allEnnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -24,7 +24,6 @@ public class TargetingSystem : Singleton<TargetingSystem>
         switch (targetMode)
         {
             case TargetMode.None:
-                target = null;
                 break;
             case TargetMode.SingleTarget:
                 Debug.Log("SingleTarget");
@@ -57,10 +56,7 @@ public class TargetingSystem : Singleton<TargetingSystem>
     // Public Methods
     public void SetTarget(CharacterData newTarget)
     {
-        if (targetMode == TargetMode.SingleTarget)
-        {
-            target = newTarget;
-        }
+        target = newTarget;
     }
     public void StartTargeting(float x, float y)
     {
@@ -73,6 +69,7 @@ public class TargetingSystem : Singleton<TargetingSystem>
     {
         targetingArrow.SetActive(false);
         SetTargetMode(TargetMode.None);
+        target = null;
     }
     // Getter
     public CharacterData getTarget() { return target; }

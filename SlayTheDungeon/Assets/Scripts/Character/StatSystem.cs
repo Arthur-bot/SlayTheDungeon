@@ -276,6 +276,7 @@ public class StatSystem
 
     public void ChangeArmor(int amount)
     {
+        Debug.Log(CurrentArmor + amount);
         CurrentArmor = Mathf.Clamp(CurrentArmor + amount, 0, StatsCopy.Armor);
 
         RaiseOnHit();
