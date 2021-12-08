@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDataBase : Singleton<CardDataBase>
+public class DataBase : Singleton<DataBase>
 {
     [SerializeField] private List<CardData> allCards;
 

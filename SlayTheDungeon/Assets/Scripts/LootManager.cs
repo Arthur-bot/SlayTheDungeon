@@ -8,8 +8,7 @@ public class LootManager : Singleton<LootManager>
     [SerializeField] private Pile playerDeck;
     [SerializeField] private GameObject lootPanel;
     private PlayerData playerData;
-    private CardDataBase dataBase;
-    private int nbOfChoices = 3;
+    private DataBase dataBase;
     private List<CardLoot> loots = new List<CardLoot>();
     private bool isLooting = false;
 
@@ -17,11 +16,11 @@ public class LootManager : Singleton<LootManager>
 
     private void Start()
     {
-        dataBase = CardDataBase.Instance;
+        dataBase = DataBase.Instance;
         playerData = GameManager.Instance.Player;
     }
 
-    public void SetupLoop()
+    public void SetupLoop(int nbOfChoices)
     {
         isLooting = true;
         lootPanel.SetActive(true);

@@ -27,6 +27,7 @@ public class TargetingSystem : Singleton<TargetingSystem>
                 target = null;
                 break;
             case TargetMode.SingleTarget:
+                Debug.Log("SingleTarget");
                 hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, targetMask);
                 if (hit.collider != null)
                 {
@@ -38,6 +39,7 @@ public class TargetingSystem : Singleton<TargetingSystem>
                 }
                 break;
             case TargetMode.WithoutTarget:
+                Debug.Log("WithoutTarget");
                 hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, outsideZoneMask);
                 if (hit.collider != null)
                 {

@@ -211,7 +211,7 @@ public class GameManager : Singleton<GameManager>
         // Reset player Status & modifiers
         // Provide Loot & exp pts
         // Remove combat state & restrictions (movements, inventory, ...)
-        lootManager.SetupLoop();
+        lootManager.SetupLoop(3);
         BattleGround.LeaveBattleGround();
     }
 
