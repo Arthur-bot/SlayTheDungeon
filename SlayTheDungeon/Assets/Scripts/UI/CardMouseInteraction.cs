@@ -15,6 +15,8 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     private CardData cardData;
     private CardUI cardUI;
 
+    private CharacterData _lastTarget;
+
     #endregion
 
     #region Protected Methods
@@ -67,10 +69,22 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 if (targetingSystem.getTarget() != null)
                 {
                     cardUI.Highlight(Color.yellow);
+
+                    if (_lastTarget == null)
+                    {
+                        _lastTarget = targetingSystem.getTarget();
+                        _lastTarget.IsTargeted = true;
+                    }
                 }
                 else
                 {
                     cardUI.Highlight(Color.white);
+
+                    if (_lastTarget != null)
+                    {
+                        _lastTarget.IsTargeted = false;
+                        _lastTarget = null;
+                    }
                 }
                 targetingSystem.StartTargeting(transform.position.x, transform.position.y);
             }

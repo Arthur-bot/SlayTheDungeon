@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +13,14 @@ public class CharacterData : MonoBehaviour
     [SerializeField] protected StatSystem stats;
 
     [Header("UI")]
+    [SerializeField] protected Image image;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private Slider healthSlider;
+
+    [Header("Materials")]
+    [SerializeField] private Material baseMaterial;
+    [SerializeField] private Material outlineMaterial;
 
     #endregion
 
@@ -23,6 +29,17 @@ public class CharacterData : MonoBehaviour
     public StatSystem Stats => stats;
 
     public bool IsAlive { get; private set; } = true;
+
+    public bool IsTargeted
+    {
+        get => image.material == outlineMaterial;
+        set
+        {
+            if (value == IsTargeted) return;
+
+            image.material = value ? outlineMaterial : baseMaterial;
+        }
+    }
 
     #endregion
 

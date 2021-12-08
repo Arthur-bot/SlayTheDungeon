@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -523,7 +523,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1829325607755408596}
   - component: {fileID: 2955273573693064088}
-  - component: {fileID: 8310607019946862543}
   m_Layer: 6
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -572,31 +571,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 4}
   m_EdgeRadius: 0
---- !u!114 &8310607019946862543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131406294064590338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44cb4b0b1a7d7e64386031d616fa29a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    baseStats:
-      Health: 15
-      Armor: 0
-      Strength: 0
-      Agility: 0
-      elementalProtection: 000000000000000000000000
-      elementalBoosts: 000000000000000000000000
-  healthText: {fileID: 8534253692420529357}
-  armorText: {fileID: 2113256554853792514}
-  healthSlider: {fileID: 967731471576010906}
-  ennemyData: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
-  image: {fileID: 1867355993604416241}
 --- !u!1 &6990285385644323525
 GameObject:
   m_ObjectHideFlags: 0

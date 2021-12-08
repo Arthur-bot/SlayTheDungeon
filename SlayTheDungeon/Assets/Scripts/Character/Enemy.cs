@@ -6,16 +6,14 @@ using UnityEngine.UI;
 
 public class Enemy : CharacterData
 {
-    private EnnemyData ennemyData;
-    [SerializeField] private Image image;
-
     private float initialX;
-    public EnnemyData EnnemyData { get => ennemyData; set => ennemyData = value; }
+
+    public EnnemyData EnnemyData { get; set; }
 
     public void SetupEnemy()
     {
-        stats.BaseStats.Copy(ennemyData.Stats.BaseStats);
-        image.sprite = ennemyData.Sprite;
+        stats.BaseStats.Copy(EnnemyData.Stats.BaseStats);
+        image.sprite = EnnemyData.Sprite;
     }
 
     public void Attack()
@@ -25,7 +23,7 @@ public class Enemy : CharacterData
         var destination = transform.localPosition.x + (GameManager.Instance.PlayerFacingRight? -1 : 1);
 
         transform.DOLocalMoveX(destination, 0.15f).OnComplete(ResetPosition);
-        ennemyData.Attack();
+        EnnemyData.Attack();
     }
 
     public void ResetPosition()
