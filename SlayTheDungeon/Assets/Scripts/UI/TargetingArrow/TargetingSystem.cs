@@ -70,7 +70,12 @@ public class TargetingSystem : Singleton<TargetingSystem>
     {
         targetingArrow.SetActive(false);
         SetTargetMode(TargetMode.None);
-        target = null;
+
+        if (target != null)
+        {
+            target.IsTargeted = false;
+            target = null;
+        }
     }
     // Getter
     public CharacterData getTarget() { return target; }

@@ -12,11 +12,8 @@ public class CharacterData : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected StatSystem stats;
 
-    [Header("UI")]
-    [SerializeField] protected Image image;
-    [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI armorText;
-    [SerializeField] private Slider healthSlider;
+    [Header("UI")] 
+    [SerializeField] protected HUD hud;
 
     [Header("Materials")]
     [SerializeField] private Material baseMaterial;
@@ -32,12 +29,12 @@ public class CharacterData : MonoBehaviour
 
     public bool IsTargeted
     {
-        get => image.material == outlineMaterial;
+        get => hud.CharacterSprite.material == outlineMaterial;
         set
         {
             if (value == IsTargeted) return;
 
-            image.material = value ? outlineMaterial : baseMaterial;
+            hud.CharacterSprite.material = value ? outlineMaterial : baseMaterial;
         }
     }
 
@@ -48,9 +45,9 @@ public class CharacterData : MonoBehaviour
     protected virtual void Awake()
     {
         Stats.Init(this);
-        UpdateHUD(this);
+        hud.UpdateHUD(this);
 
-        stats.OnHit += UpdateHUD;
+        stats.OnHit += hud.UpdateHUD;
     }
 
     protected virtual void Update()
@@ -77,14 +74,6 @@ public class CharacterData : MonoBehaviour
         stats.Damage(amount);
 
         GameManager.Instance.Shake(0.1f, 0.1f);
-    }
-
-    public void UpdateHUD(CharacterData data)
-    {
-        healthText.text = stats.CurrentHealth + "/" + stats.StatsCopy.Health;
-        armorText.text = stats.CurrentArmor.ToString();
-        armorText.gameObject.SetActive(stats.CurrentArmor > 0);
-        healthSlider.value = stats.CurrentHealth / (float)stats.StatsCopy.Health;
     }
 
     public void UpdateDurations()

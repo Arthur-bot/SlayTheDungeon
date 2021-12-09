@@ -185,6 +185,7 @@ public class StatSystem
         timedModifierStack[index].Reset();
 
         UpdateFinalStats();
+        RaiseOnHit();
     }
 
     public void AddElementalEffect(BaseElementalEffect effect)
@@ -204,6 +205,8 @@ public class StatSystem
 
         if (!effectExist)
             elementalEffects.Add(effect);
+
+        RaiseOnHit();
     }
 
     public void OnDeath()
@@ -251,6 +254,8 @@ public class StatSystem
                 i--;
             }
         }
+
+        RaiseOnHit();
     }
 
     public void ChangeHealth(int amount)

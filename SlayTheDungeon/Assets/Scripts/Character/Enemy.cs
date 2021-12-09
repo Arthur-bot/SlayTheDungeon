@@ -13,7 +13,7 @@ public class Enemy : CharacterData
     public void SetupEnemy()
     {
         stats.BaseStats.Copy(EnnemyData.Stats.BaseStats);
-        image.sprite = EnnemyData.Sprite;
+        hud.CharacterSprite.sprite = EnnemyData.Sprite;
     }
 
     public void Attack()

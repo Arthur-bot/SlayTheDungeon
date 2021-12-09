@@ -16,6 +16,7 @@ MonoBehaviour:
   targetType: 2
   damage: 2
   numberOfTurn: 3
+  effectSprite: {fileID: -5759857619446460927, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,5 +33,6 @@ MonoBehaviour:
   cost: 2
   cardName: Poison Fog
   description: Poison all enemies during 3 turn
+  cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: -8193976556445938808}
