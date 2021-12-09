@@ -19,6 +19,11 @@ public class Pile : MonoBehaviour
     public void AddCard(CardData cardData)
     {
         cards.Add(cardData);
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
         countText.text = cards.Count.ToString();
     }
 

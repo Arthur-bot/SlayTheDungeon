@@ -34,3 +34,5 @@ MonoBehaviour:
   cardSoundEffect: {fileID: 8300000, guid: 44a1bd7f3ba2240adb720e6a670513b2, type: 3}
   cardEffects:
   - {fileID: -623105241831542108}
+  limitedUse: 0
+  nbUse: 2

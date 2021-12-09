@@ -40,8 +40,8 @@ public class LootManager : Singleton<LootManager>
         loot.transform.SetParent(transform, true);
         CardAnimation.Instance.GetLootAnimation(loot.ThisTransform);
         loots.Remove(loot);
-        playerDeck.AddCard(loot.GetComponent<CardUI>().Data);
         playerData.AddCard(loot.GetComponent<CardUI>().Data);
+        playerDeck.UpdateUI();
         lootPanel.SetActive(false);
         isLooting = false;
     }

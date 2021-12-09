@@ -100,9 +100,11 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             if (cardData.NeedTarget() && targetingSystem.getTarget() != null || !cardData.NeedTarget() && targetingSystem.MouseIsOutsideHand)
             {
                 cardUI.CanZoom = false;
-                hand.RemoveCard(cardUI);
                 cardData.Use();
                 gameManager.Player.ChangeEnergy(-cardData.Cost);
+                if (cardData.LimitedUse)
+                    cardUI.UpdateUI();
+                hand.RemoveCard(cardUI);
             }
             targetingSystem.StopTargeting();
         }

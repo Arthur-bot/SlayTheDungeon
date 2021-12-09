@@ -50,3 +50,5 @@ MonoBehaviour:
   cardEffects:
   - {fileID: -7763735533026279151}
   - {fileID: -6041371506181741167}
+  limitedUse: 1
+  nbUse: 3

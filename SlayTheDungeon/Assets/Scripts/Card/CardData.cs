@@ -18,6 +18,8 @@ public class CardData : ScriptableObject
     [SerializeField] private string description;
     [SerializeField] private AudioClip cardSoundEffect;
     [SerializeField] private List<CardEffect> cardEffects;
+    [SerializeField] private bool limitedUse;
+    [SerializeField] private int nbUse;
 
     #endregion
 
@@ -33,6 +35,9 @@ public class CardData : ScriptableObject
 
     public List<CardEffect> CardEffects => cardEffects;
 
+    public bool LimitedUse { get => limitedUse; set => limitedUse = value; }
+    public int NbUse { get => nbUse; set => nbUse = value; }
+
     #endregion
 
     #region Public Methods
@@ -46,6 +51,7 @@ public class CardData : ScriptableObject
 
     public void Use()
     {
+        nbUse--;
         foreach (var ce in cardEffects)
         {
             switch (ce.TargetTyPe)
@@ -91,6 +97,8 @@ public class CardEditor : Editor
     SerializedProperty _descriptionProperty;
     SerializedProperty _costProperty;
     SerializedProperty _cardSoundEffectProperty;
+    SerializedProperty _limitedUseProperty;
+    SerializedProperty _nbUseProperty;
 
     List<string> _availableEffectType;
     SerializedProperty _equippedEffectListProperty;
@@ -99,12 +107,12 @@ public class CardEditor : Editor
     {
         _target = target as CardData;
         _equippedEffectListProperty = serializedObject.FindProperty("cardEffects");
-
         _nameProperty = serializedObject.FindProperty("cardName");
         _spriteProperty = serializedObject.FindProperty("sprite");
         _descriptionProperty = serializedObject.FindProperty("description");
         _costProperty = serializedObject.FindProperty("cost");
         _cardSoundEffectProperty = serializedObject.FindProperty("cardSoundEffect");
+        _nbUseProperty = serializedObject.FindProperty("nbUse");
 
         var lookup = typeof(CardEffect);
         _availableEffectType = System.AppDomain.CurrentDomain.GetAssemblies()
@@ -121,6 +129,12 @@ public class CardEditor : Editor
         EditorGUILayout.PropertyField(_costProperty);
         EditorGUILayout.PropertyField(_cardSoundEffectProperty);
         EditorGUILayout.PropertyField(_descriptionProperty, GUILayout.MinHeight(128));
+        _target.LimitedUse = GUILayout.Toggle(_target.LimitedUse, "Limited Use");
+
+        if (_target.LimitedUse)
+        {
+            _target.NbUse = EditorGUILayout.IntField("Number of uses:", _target.NbUse);
+        }
 
         int choice = EditorGUILayout.Popup("Add new CardData Effect", -1, _availableEffectType.ToArray());
 

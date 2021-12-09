@@ -1327,7 +1327,7 @@ GameObject:
   - component: {fileID: 1496263867}
   - component: {fileID: 1496263866}
   - component: {fileID: 1496263865}
-  - component: {fileID: 1496263864}
+  - component: {fileID: 672415493}
   m_Layer: 5
   m_Name: PlayerDeck
   m_TagString: Untagged
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1496263864}
+      - m_Target: {fileID: 672415493}
         m_TargetAssemblyTypeName: Pile, Assembly-CSharp
         m_MethodName: ShowCards
         m_Mode: 1
@@ -1449,7 +1449,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1496263864
+--- !u!114 &672415493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1458,20 +1458,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1496263862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06702ce294c877542a7b0f7d3c1fca01, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f4a3438bd8e2f642952d8a3d8d74a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardTemplate: {fileID: 4796387833899899547, guid: 06687a1ff06d68d4ab40e04b3a6a8a6a, type: 3}
   countText: {fileID: 1078458379}
   scrollCards: {fileID: 2051400787}
   scrollPanel: {fileID: 1892177404}
-  cards:
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+  cards: []
 --- !u!1 &1550192696
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,7 +3121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootCardPrefab: {fileID: 3723713681589142181, guid: 47fc257c9808900458d29a308fcd8364, type: 3}
-  playerDeck: {fileID: 1496263864}
+  playerDeck: {fileID: 672415493}
   lootPanel: {fileID: 1103823368}
 --- !u!1 &3190966427293072647
 GameObject:

@@ -19,6 +19,8 @@ MonoBehaviour:
   cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: 2923589612379073143}
+  limitedUse: 1
+  nbUse: 2
 --- !u!114 &2923589612379073143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,5 +34,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: 
-  targetType: 1
+  targetType: 0
   value: 3

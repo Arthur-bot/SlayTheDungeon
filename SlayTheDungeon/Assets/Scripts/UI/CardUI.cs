@@ -11,6 +11,7 @@ public class CardUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
     [SerializeField] private TextMeshProUGUI energyCostText;
+    [SerializeField] private TextMeshProUGUI nbUseText;
     [SerializeField] private Image cardHighlight;
 
     [Header("Zoom Parameters")] 
@@ -78,6 +79,10 @@ public class CardUI : MonoBehaviour
         setSprite(data.Sprite);
         setText(data.CardName, data.Description);
         energyCostText.text = data.Cost.ToString();
+        if (!data.LimitedUse)
+            nbUseText.text = "";
+        else
+            nbUseText.text = data.NbUse.ToString();
     }
 
     public void Highlight (Color color)
@@ -126,6 +131,14 @@ public class CardUI : MonoBehaviour
     public void ShowCard()
     {
         thisTransform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+    }
+
+    public void UpdateUI()
+    {
+        if (!cardData.LimitedUse)
+            nbUseText.text = "";
+        else
+            nbUseText.text = cardData.NbUse.ToString();
     }
 
     #endregion

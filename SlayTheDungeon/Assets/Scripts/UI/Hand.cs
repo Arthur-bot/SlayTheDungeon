@@ -10,6 +10,7 @@ public class Hand : MonoBehaviour
     private CardAnimation handAnimation;
     private RectTransform thisTransform;
     private List<CardUI> cards;
+    private GameManager gameManager;
 
     #endregion
 
@@ -21,6 +22,7 @@ public class Hand : MonoBehaviour
         cards = new List<CardUI>();
         thisTransform = GetComponent<RectTransform>();
         handAnimation.SetCards(cards);
+        gameManager = GameManager.Instance;
     }
 
     #endregion
@@ -45,10 +47,22 @@ public class Hand : MonoBehaviour
     }
     public void RemoveCard(CardUI card)
     {
-        discardPile.AddCard(card.Data);
-        handAnimation.DiscardAnimation(card.ThisTransform);
-        cards.Remove(card);
-        handAnimation.FitCards();
+        if (card.Data.NbUse > 0 || !card.Data.LimitedUse)
+        {
+            discardPile.AddCard(card.Data);
+            handAnimation.DiscardAnimation(card.ThisTransform);
+            cards.Remove(card);
+            handAnimation.FitCards();
+        }
+        else
+        {
+            handAnimation.RemoveCard();
+            cards.Remove(card);
+            handAnimation.FitCards();
+            gameManager.Player.RemoveCard(card.Data);
+            Destroy(card.gameObject);
+        }
+
     }
 
     #endregion

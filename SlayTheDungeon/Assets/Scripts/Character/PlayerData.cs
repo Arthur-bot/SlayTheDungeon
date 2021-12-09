@@ -6,7 +6,8 @@ public class PlayerData : CharacterData
 {
     #region Fields
 
-    [SerializeField] private List<CardData> deck;
+    private List<CardData> deck = new List<CardData>();
+    [SerializeField] private List<CardData> startingDeck;
     [SerializeField] private int energy;
 
     #endregion
@@ -26,7 +27,10 @@ public class PlayerData : CharacterData
     protected override void Awake()
     {
         base.Awake();
-
+        foreach (CardData card in startingDeck)
+        {
+            deck.Add(Instantiate(card));
+        }
         Controller = GetComponent<PlayerController>();
     }
 
@@ -43,7 +47,12 @@ public class PlayerData : CharacterData
     }
     public void AddCard(CardData card)
     {
-        deck.Add(card);
+        deck.Add(Instantiate(card));
+    }
+
+    public void RemoveCard(CardData card)
+    {
+        deck.Remove(card);
     }
 
     public void ResetEnergy()

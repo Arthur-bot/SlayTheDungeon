@@ -222,6 +222,34 @@ PrefabInstance:
       propertyPath: deck.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &301368019 stripped
@@ -551,18 +579,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1496263864, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: cards.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
-    - target: {fileID: 1496263864, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: cards.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
-    - target: {fileID: 1496263864, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: cards.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 
