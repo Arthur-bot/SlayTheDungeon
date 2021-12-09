@@ -79,10 +79,7 @@ public class CardUI : MonoBehaviour
         setSprite(data.Sprite);
         setText(data.CardName, data.Description);
         energyCostText.text = data.Cost.ToString();
-        if (!data.LimitedUse)
-            nbUseText.text = "";
-        else
-            nbUseText.text = data.NbUse.ToString();
+        UpdateUI();
     }
 
     public void Highlight (Color color)
@@ -136,7 +133,7 @@ public class CardUI : MonoBehaviour
     public void UpdateUI()
     {
         if (!cardData.LimitedUse)
-            nbUseText.text = "";
+            nbUseText.text = "\u221E";
         else
             nbUseText.text = cardData.NbUse.ToString();
     }
