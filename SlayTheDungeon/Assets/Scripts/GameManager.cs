@@ -150,6 +150,10 @@ public class GameManager : Singleton<GameManager>
     public void StartEncounter(List<Enemy> enemies) => StartCoroutine(EncounterEvent(enemies));
 
     public void RaiseOnEnemyDeathEvent(CharacterData character) => OnCharacterDeath?.Invoke(character);
+    public void DrawCards(int amount)
+    {
+        StartCoroutine(Draw(amount));
+    }
 
     #endregion
 
@@ -284,6 +288,14 @@ public class GameManager : Singleton<GameManager>
 
         currentCamera.m_Lens.OrthographicSize = orthographicSizeZoom;
         cameraShaking = false;
+    }
+    private IEnumerator Draw(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            playerDeck.DrawCard();
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
     #endregion

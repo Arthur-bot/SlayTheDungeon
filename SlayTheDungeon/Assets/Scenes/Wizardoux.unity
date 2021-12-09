@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1496263864, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: cards.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 1496263864, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: cards.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 1496263864, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: cards.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
     - target: {fileID: 1834468847061475105, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: outsideZoneMask.m_Bits
       value: 128
@@ -440,15 +452,19 @@ PrefabInstance:
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: deck.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: deck.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: deck.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: stats.baseStats.Armor
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3600123250855938367, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
@@ -478,6 +494,14 @@ PrefabInstance:
       propertyPath: miniMap
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allEnnemies.Array.size
       value: 2
