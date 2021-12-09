@@ -271,7 +271,7 @@ MonoBehaviour:
   nbUseText: {fileID: 1836880907363875497}
   cardHighlight: {fileID: 152760492235323432}
   zoomMultiplier: 1.3
-  zoomVector2: {x: 0, y: 150}
+  zoomVector2: {x: 0, y: 170}
   isZoomed: 0
 --- !u!114 &8263397553430690584
 MonoBehaviour:
