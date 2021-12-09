@@ -26,28 +26,29 @@ public class TargetingSystem : Singleton<TargetingSystem>
             case TargetMode.None:
                 break;
             case TargetMode.SingleTarget:
-                Debug.Log("SingleTarget");
-                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, targetMask);
-                if (hit.collider != null)
+                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, targetMask);
+
+                if (hit.collider != null && hit.collider.TryGetComponent(out CharacterData data))
                 {
-                    SetTarget(hit.collider.GetComponent<CharacterData>());
+                    SetTarget(data);
+
+                    if (!target.IsTargeted)
+                        target.IsTargeted = true;
                 }
                 else
                 {
+                    if (target == null) break;
+
+                    if (target.IsTargeted)
+                        target.IsTargeted = false;
+
                     target = null;
                 }
                 break;
             case TargetMode.WithoutTarget:
-                Debug.Log("WithoutTarget");
-                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, outsideZoneMask);
-                if (hit.collider != null)
-                {
-                    mouseOutsideHand = true;
-                }
-                else
-                {
-                    mouseOutsideHand = false;
-                }
+                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, outsideZoneMask);
+                
+                mouseOutsideHand = hit.collider != null;
                 break;
 
         }

@@ -2706,7 +2706,7 @@ MonoBehaviour:
     m_Bits: 64
   outsideZoneMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   targetingArrow: {fileID: 2496496479433092576}
 --- !u!1 &2736479570173887135
 GameObject:
