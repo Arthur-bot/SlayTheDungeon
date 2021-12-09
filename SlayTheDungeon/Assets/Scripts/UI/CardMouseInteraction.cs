@@ -102,7 +102,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 cardUI.CanZoom = false;
                 hand.RemoveCard(cardUI);
                 cardData.Use();
-                gameManager.Player.PlayCard(cardData);
+                gameManager.Player.ChangeEnergy(-cardData.Cost);
             }
             targetingSystem.StopTargeting();
         }

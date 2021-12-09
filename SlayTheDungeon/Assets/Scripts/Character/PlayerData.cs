@@ -36,9 +36,9 @@ public class PlayerData : CharacterData
 
     public bool CanPlayCard(CardData card) => CurrentEnergy - card.Cost >= 0;
 
-    public void PlayCard(CardData card)
+    public void ChangeEnergy(int amount)
     {
-        CurrentEnergy -= card.Cost;
+        CurrentEnergy += amount;
         GameUI.Instance.EnergyText.text = CurrentEnergy + "/" + energy;
     }
     public void AddCard(CardData card)
