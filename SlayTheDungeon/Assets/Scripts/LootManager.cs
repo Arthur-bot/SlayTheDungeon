@@ -7,6 +7,7 @@ public class LootManager : Singleton<LootManager>
     [SerializeField] private CardLoot lootCardPrefab;
     [SerializeField] private Pile playerDeck;
     [SerializeField] private GameObject lootPanel;
+    [SerializeField] private Transform lootCardContainers;
     private PlayerData playerData;
     private DataBase dataBase;
     private List<CardLoot> loots = new List<CardLoot>();
@@ -26,7 +27,7 @@ public class LootManager : Singleton<LootManager>
         lootPanel.SetActive(true);
         while (loots.Count < nbOfChoices)
         {
-            loots.Add(Instantiate(lootCardPrefab, lootPanel.transform));
+            loots.Add(Instantiate(lootCardPrefab, lootCardContainers));
         }
         List<CardData> newLoots = dataBase.PickRandomCards(nbOfChoices);
         for (int i = 0; i < nbOfChoices; i++)
@@ -42,6 +43,11 @@ public class LootManager : Singleton<LootManager>
         loots.Remove(loot);
         playerData.AddCard(loot.GetComponent<CardUI>().Data);
         playerDeck.UpdateUI();
+        lootPanel.SetActive(false);
+        isLooting = false;
+    }
+    public void Skip()
+    {
         lootPanel.SetActive(false);
         isLooting = false;
     }
