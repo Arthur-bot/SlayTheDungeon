@@ -35,6 +35,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 1
-  damage: 5
-  numberOfTurn: 3
+  numberOfStack: 3
   effectSprite: {fileID: -5759857619446460927, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}

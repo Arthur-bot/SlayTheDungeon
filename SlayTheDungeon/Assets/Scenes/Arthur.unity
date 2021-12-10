@@ -567,6 +567,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &2005254561 stripped

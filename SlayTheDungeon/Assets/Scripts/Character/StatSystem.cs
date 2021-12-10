@@ -9,7 +9,7 @@ using UnityEditor;
 [System.Serializable]
 public class StatSystem
 {
-    public enum DamageType
+    public enum EffectType
     {
         NORMAL,
         POISON,
@@ -24,9 +24,9 @@ public class StatSystem
         public int Strength;
         public int Agility;
 
-        //use an array indexed by the DamageType enum for easy extensibility
-        public int[] elementalProtection = new int[Enum.GetValues(typeof(DamageType)).Length];
-        public int[] elementalBoosts = new int[Enum.GetValues(typeof(DamageType)).Length];
+        //use an array indexed by the EffectType enum for easy extensibility
+        public int[] elementalProtection = new int[Enum.GetValues(typeof(EffectType)).Length];
+        public int[] elementalBoosts = new int[Enum.GetValues(typeof(EffectType)).Length];
 
         public void Copy(Stats other)
         {
@@ -198,8 +198,7 @@ public class StatSystem
             if (effect.Equals(elementalEffects[i]))
             {
                 effectExist = true;
-                elementalEffects[i].Removed();
-                elementalEffects[i] = effect;
+                elementalEffects[i].OnEqual(effect);
             }
         }
 

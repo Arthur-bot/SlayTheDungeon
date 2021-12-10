@@ -1,22 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 public abstract class BaseElementalEffect : IEquatable<BaseElementalEffect>
 {
     public bool Done => timer <= 0;
+
     public int Timer => timer;
+
     public int Duration => duration;
 
-    public Sprite EffectSprite;
+    public Sprite EffectSprite => effectSprite;
 
     #region Fields
 
     protected int duration;
     protected int timer;
     protected CharacterData target;
+    protected Sprite effectSprite;
 
     #endregion
 
@@ -32,6 +36,7 @@ public abstract class BaseElementalEffect : IEquatable<BaseElementalEffect>
     }
 
     public virtual void Removed() { }
+    public virtual void OnEqual(BaseElementalEffect other) { }
 
     public virtual void Update(StatSystem statSystem)
     {
@@ -49,14 +54,14 @@ public abstract class BaseElementalEffect : IEquatable<BaseElementalEffect>
 public class ElementalEffect : BaseElementalEffect
 {
     private int damage;
-    private StatSystem.DamageType damageType;
+    private StatSystem.EffectType effectType;
 
-    public ElementalEffect(int duration, StatSystem.DamageType damageType, int damage, Sprite EffectSprite) :
+    public ElementalEffect(int duration, StatSystem.EffectType effectType, int damage, Sprite effectSprite) :
         base(duration)
     {
         this.damage = damage;
-        this.damageType = damageType;
-        this.EffectSprite = EffectSprite;
+        this.effectType = effectType;
+        this.effectSprite = effectSprite;
     }
 
     public override void Update(StatSystem statSystem)
@@ -73,20 +78,37 @@ public class ElementalEffect : BaseElementalEffect
         if (other == null)
             return false;
 
-        return eff.damageType == damageType;
+        return eff.effectType == effectType;
+    }
+}
+
+public class PoisonEffect : BaseElementalEffect
+{
+
+    public PoisonEffect(int stack, Sprite EffectSprite) :
+        base(stack)
+    {
+        this.effectSprite = EffectSprite;
     }
 
-    public override void Applied(CharacterData target)
+    public override void Update(StatSystem statSystem)
     {
-        base.Applied(target);
-
-        // Update FX, UI ...
+        statSystem.Damage(timer);
+        base.Update(statSystem);
     }
 
-    public override void Removed()
+    public override void OnEqual(BaseElementalEffect other)
     {
-        base.Removed();
+        timer += other.Duration;
+    }
 
-        // Update FX, UI ...
+    public override bool Equals(BaseElementalEffect other)
+    {
+        PoisonEffect eff = other as PoisonEffect;
+
+        if (other == null)
+            return false;
+
+        return true;
     }
 }
