@@ -60,6 +60,20 @@ public class PlayerData : CharacterData
         CurrentEnergy = energy;
         GameUI.Instance.EnergyText.text = CurrentEnergy + "/" + energy;
     }
+    public void Rest()
+    {
+        Debug.Log("Rest");
+        TakeDamage(-stats.BaseStats.Health / 2);
+    }
+    public void Forge()
+    {
+        Debug.Log("Forge");
+        foreach (CardData card in deck)
+        {
+            if (card.LimitedUse)
+                card.NbUse++;
+        }
+    }
 
     #endregion
 }

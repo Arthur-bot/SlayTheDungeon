@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 0
-  value: 20
+  value: 5
