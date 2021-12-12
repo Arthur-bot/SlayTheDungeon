@@ -50,6 +50,7 @@ public class DungeonGeneration : MonoBehaviour
 		mapRooms = new MapRoomBtn[gridSizeX * 2, gridSizeY * 2];
 		// FirstRoom
 		rooms[gridSizeX, gridSizeY] = Instantiate(RoomPrefab, worldRoot);
+		rooms[gridSizeX, gridSizeY].Level = 1;
 		takenPositions.Insert(0, Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
 		mapRooms[gridSizeX, gridSizeY] = miniMap.AddRoom(Vector2.zero);
@@ -76,6 +77,7 @@ public class DungeonGeneration : MonoBehaviour
 			//finalize position
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
+			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = Mathf.Abs((int)checkPos.x + (int)checkPos.y);
 			RoomType type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
 			if (i == numberOfRooms - 2) // Last Room
 				type = RoomType.Boss;
@@ -210,6 +212,7 @@ public class DungeonGeneration : MonoBehaviour
 					// Create corridor
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 					newCorridor.GridPos = new Vector2(x, y - 0.5f);
+					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY), 1);
 					newCorridor.SetRooms(rooms[x, y - 1], rooms[x, y]);
 					rooms[x, y].C_Down = newCorridor;
 					rooms[x, y - 1].C_Up = newCorridor;
@@ -220,6 +223,7 @@ public class DungeonGeneration : MonoBehaviour
 				{
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 					newCorridor.GridPos = new Vector2(x, y + 0.5f);
+					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY), 1);
 					newCorridor.SetRooms(rooms[x, y], rooms[x, y + 1]);
 					rooms[x, y + 1].C_Down = newCorridor;
 					rooms[x, y ].C_Up = newCorridor;
@@ -230,6 +234,7 @@ public class DungeonGeneration : MonoBehaviour
 				{
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 					newCorridor.GridPos = new Vector2(x - 0.5f, y);
+					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY), 1);
 					newCorridor.SetRooms(rooms[x - 1, y], rooms[x, y]);
 					rooms[x - 1, y].C_Right = newCorridor;
 					rooms[x, y].C_Left = newCorridor;
@@ -240,6 +245,7 @@ public class DungeonGeneration : MonoBehaviour
 				{
 					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 					newCorridor.GridPos = new Vector2(x + 0.5f, y);
+					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY),1);
 					newCorridor.SetRooms(rooms[x, y], rooms[x + 1, y]);
 					rooms[x, y].C_Right = newCorridor;
 					rooms[x + 1, y].C_Left = newCorridor;

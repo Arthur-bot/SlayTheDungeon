@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
+public struct Combinations
+{
+    public List<EnnemyData> ennemies;
+    public int level;
+}
+ 
 public class DataBase : Singleton<DataBase>
 {
+
     [SerializeField] private List<CardData> allCards;
-    [SerializeField] private List<EnnemyData> allEnnemies;
+    [SerializeField] private List<Combinations> ennemyCombos;
 
     private void Start()
     {
-        PickRandomCards(5);
     }
 
     public List<CardData> PickRandomCards(int number)
@@ -27,9 +35,10 @@ public class DataBase : Singleton<DataBase>
         return picks;
     }
 
-    public EnnemyData PickRandomEnnemy()
+    public List<EnnemyData> PickRandomEnnemyCombination(int level)
     {
-        EnnemyData newPick = allEnnemies[Random.Range(0, allEnnemies.Count)];
+        List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level).ToList();
+        List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count)].ennemies;
         return newPick;
     }
 }

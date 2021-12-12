@@ -276,12 +276,36 @@ PrefabInstance:
       objectReference: {fileID: 301368019}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allCards.Array.size
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: be733771c245481409a7e020f9c11b48, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 333f6c113e94af642817f00cf0bc0151, type: 2}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allCards.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+      objectReference: {fileID: 11400000, guid: 333f6c113e94af642817f00cf0bc0151, type: 2}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allCards.Array.data[8]
       value: 
@@ -291,11 +315,123 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allEnnemies.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allEnnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[0].level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[1].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[2].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[3].level
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[4].level
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[5].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[0].ennemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[1].ennemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[2].ennemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[3].ennemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[4].ennemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[5].ennemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[0].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[0].ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[1].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[1].ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[2].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[2].ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[3].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[3].ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[3].ennemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[4].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[4].ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[4].ennemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[5].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[5].ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[5].ennemies.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
@@ -493,7 +629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903168981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0010576248, y: -0.36202383, z: 0}
+  m_LocalPosition: {x: -0.0010652542, y: -0.36454678, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1057858634}
@@ -587,6 +723,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 301368019}
+    - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 

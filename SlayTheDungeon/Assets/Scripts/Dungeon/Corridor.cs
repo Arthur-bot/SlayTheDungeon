@@ -11,7 +11,7 @@ public class Corridor : DungeonElement
     [SerializeField] private Door door1;
     [SerializeField] private Door door2;
     // Generation
-    [SerializeField] private GameObject ennemyTriggerPrefab;
+    [SerializeField] private EnnemyTriger ennemyTriggerPrefab;
     [SerializeField] private GameObject boxPrefab;
     private Room room1;
     private Room room2;
@@ -39,12 +39,14 @@ public class Corridor : DungeonElement
 
     private void GenerateCorridor()
     {
-        Instantiate(ennemyTriggerPrefab, new Vector3(newPosition(), 0, 0), Quaternion.identity, transform);
+        EnnemyTriger newEnnemy =  Instantiate(ennemyTriggerPrefab, new Vector3(newPosition(), 0, 0), Quaternion.identity, transform);
+        newEnnemy.Level = level;
         Instantiate(boxPrefab, new Vector3(newPosition(), -3.5f, 0), Quaternion.identity, transform);
         float randomAddEnnemy = Random.Range(0, 100);
         if (randomAddEnnemy > 60)
         {
-            Instantiate(ennemyTriggerPrefab, new Vector3(newPosition(), 0, 0), Quaternion.identity, transform);
+            newEnnemy = Instantiate(ennemyTriggerPrefab, new Vector3(newPosition(), 0, 0), Quaternion.identity, transform);
+            newEnnemy.Level = level;
         }
         float randomAddBox = Random.Range(0, 100);
         if (randomAddEnnemy > 80)

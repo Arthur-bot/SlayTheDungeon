@@ -19,6 +19,7 @@ public class Room : DungeonElement
     private Corridor c_Down;
     private MapRoomBtn btn;
 
+
     public Corridor C_Left { get => c_Left; set => c_Left = value; }
     public Corridor C_Right { get => c_Right; set => c_Right = value; }
     public Corridor C_Up { get => c_Up; set => c_Up = value; }
@@ -33,7 +34,10 @@ public class Room : DungeonElement
 
     public void SetupRoom(RoomType type)
     {
+        roomComponents[(int)RoomType.Monster - 1].GetComponent<EnnemyTriger>().Level = level;
         if (type != RoomType.None)
-            roomComponents[(int)type -1].SetActive(true);
+        {
+            roomComponents[(int)type - 1].SetActive(true);
+        }
     }
 }

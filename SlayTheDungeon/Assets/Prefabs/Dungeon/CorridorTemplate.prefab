@@ -443,7 +443,7 @@ MonoBehaviour:
   endPoint: {fileID: 5823216347843404903}
   door1: {fileID: 3566890387273211378}
   door2: {fileID: 4250911224413998466}
-  ennemyTriggerPrefab: {fileID: 6780572108112432387, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
+  ennemyTriggerPrefab: {fileID: 3630475192821432766, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
   boxPrefab: {fileID: 2509063600549575490, guid: e1900543b0849244d84442defbb88bab, type: 3}
 --- !u!1 &7856534890422233680
 GameObject:

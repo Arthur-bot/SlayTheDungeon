@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 2
-  numberOfStack: 2
+  numberOfStack: 3
   effectSprite: {fileID: -5759857619446460927, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -31,7 +31,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 61e6c76df9c7e384eac7f8b6a32f56e9, type: 3}
   cost: 2
   cardName: Poison Fog
-  description: Poison all enemies during 3 turn
+  description: Deals 3 Poisons to all enemies
   cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: -8193976556445938808}
