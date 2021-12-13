@@ -38,7 +38,7 @@ public class DataBase : Singleton<DataBase>
     public List<EnnemyData> PickRandomEnnemyCombination(int level)
     {
         List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level).ToList();
-        List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count)].ennemies;
+        List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count - 1)].ennemies;
         return newPick;
     }
 }

@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: miniMap
       value: 
       objectReference: {fileID: 1173152191}
+    - target: {fileID: 1038660990714895506, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: numberOfRooms
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1038660990714895507, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: m_Name
       value: World

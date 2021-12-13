@@ -34,6 +34,10 @@ public class Room : DungeonElement
 
     public void SetupRoom(RoomType type)
     {
+        foreach(GameObject component in roomComponents)
+        {
+            component.SetActive(false);
+        }
         roomComponents[(int)RoomType.Monster - 1].GetComponent<EnnemyTriger>().Level = level;
         if (type != RoomType.None)
         {

@@ -40,6 +40,7 @@ public class DungeonGeneration : MonoBehaviour
 		gridSizeY = Mathf.RoundToInt(worldSize.y);
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
+		FindBossRoom();
 		gameManager.EnterRoom(rooms[gridSizeX, gridSizeY], rooms[gridSizeX, gridSizeY].StartPoint);
 	}
 	void CreateRooms()
@@ -49,12 +50,8 @@ public class DungeonGeneration : MonoBehaviour
 		rooms = new Room[gridSizeX * 2, gridSizeY * 2];
 		mapRooms = new MapRoomBtn[gridSizeX * 2, gridSizeY * 2];
 		// FirstRoom
-		rooms[gridSizeX, gridSizeY] = Instantiate(RoomPrefab, worldRoot);
-		rooms[gridSizeX, gridSizeY].Level = 1;
-		takenPositions.Insert(0, Vector2.zero);
-		Vector2 checkPos = Vector2.zero;
-		mapRooms[gridSizeX, gridSizeY] = miniMap.AddRoom(Vector2.zero);
-		mapRooms[gridSizeX, gridSizeY].SetupIcone(mapIcons[0]);
+		CreateOneRoom(Vector2.zero, true);
+		Vector2 checkPos;
 		//add rooms
 		for (int i = 0; i < numberOfRooms - 1; i++)
 		{
@@ -74,17 +71,7 @@ public class DungeonGeneration : MonoBehaviour
 				if (iterations >= 50)
 					print("error: could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
 			}
-			//finalize position
-			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
-			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
-			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = Mathf.Abs((int)checkPos.x + (int)checkPos.y);
-			RoomType type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
-			if (i == numberOfRooms - 2) // Last Room
-				type = RoomType.Boss;
-			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupRoom(type);
-			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
-			mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupIcone(mapIcons[(int)type]);
-			takenPositions.Insert(0, checkPos);
+			CreateOneRoom(checkPos);
 		}
 	}
 	Vector2 NewPosition()
@@ -204,55 +191,108 @@ public class DungeonGeneration : MonoBehaviour
 				{
 					continue;
 				}
-				rooms[x, y].Btn = mapRooms[x, y];
 				Vector2 gridPosition = new Vector2(x, y);
+				rooms[x, y].Btn = mapRooms[x, y];
 				rooms[x, y].GridPos = gridPosition;
 				if (y - 1 >= 0 && rooms[x, y - 1] != null)
 				{
-					// Create corridor
-					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
-					newCorridor.GridPos = new Vector2(x, y - 0.5f);
-					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY), 1);
-					newCorridor.SetRooms(rooms[x, y - 1], rooms[x, y]);
-					rooms[x, y].C_Down = newCorridor;
-					rooms[x, y - 1].C_Up = newCorridor;
-					newCorridor.gameObject.SetActive(false);
-					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(0f ,- 0.5f), 90, mapRooms[x, y], mapRooms[x, y - 1]));
-				}
-				if (y + 1 < gridSizeY * 2 && rooms[x, y + 1] != null)
-				{
-					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
-					newCorridor.GridPos = new Vector2(x, y + 0.5f);
-					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY), 1);
-					newCorridor.SetRooms(rooms[x, y], rooms[x, y + 1]);
-					rooms[x, y + 1].C_Down = newCorridor;
-					rooms[x, y ].C_Up = newCorridor;
-					newCorridor.gameObject.SetActive(false);
-					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(0f, 0.5f), 90, mapRooms[x, y], mapRooms[x, y + 1]));
+					CreateCorridor(new Vector2Int(x,y), new Vector2Int(x, y - 1));
 				}
 				if (x - 1 >= 0 && rooms[x - 1, y] != null)
 				{
-					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
-					newCorridor.GridPos = new Vector2(x - 0.5f, y);
-					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY), 1);
-					newCorridor.SetRooms(rooms[x - 1, y], rooms[x, y]);
-					rooms[x - 1, y].C_Right = newCorridor;
-					rooms[x, y].C_Left = newCorridor;
-					newCorridor.gameObject.SetActive(false);
-					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(-0.5f, 0f), 0, mapRooms[x, y], mapRooms[x - 1, y]));
-				}
-				if (x + 1 < gridSizeX * 2 && rooms[x + 1, y] != null)
-				{
-					Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
-					newCorridor.GridPos = new Vector2(x + 0.5f, y);
-					newCorridor.Level = Mathf.Max(Mathf.Abs(x - gridSizeX) + Mathf.Abs(y - gridSizeY),1);
-					newCorridor.SetRooms(rooms[x, y], rooms[x + 1, y]);
-					rooms[x, y].C_Right = newCorridor;
-					rooms[x + 1, y].C_Left = newCorridor;
-					newCorridor.gameObject.SetActive(false);
-					mapRooms[x, y].Corridors.Add(miniMap.AddCorridor(gridPosition + new Vector2(0.5f, 0f), 0, mapRooms[x, y], mapRooms[x + 1, y]));
+					CreateCorridor(new Vector2Int(x, y), new Vector2Int(x - 1, y));
 				}
 			}
 		}
+	}
+
+	private void CreateCorridor(Vector2Int roomPos, Vector2Int neighborPos)
+    {
+		bool horizontal = roomPos.x != neighborPos.x;
+		Vector2Int smallVector = Vector2Int.Min(roomPos, neighborPos);
+		Vector2Int bigVector = Vector2Int.Max(roomPos, neighborPos);
+		Vector2 between = new Vector2(((float)roomPos.x + (float)neighborPos.x) / 2, ((float)roomPos.y + (float)neighborPos.y) / 2);
+		// Create corridor
+		Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
+		newCorridor.GridPos = between;
+		newCorridor.Level = Mathf.Max(Mathf.Abs(roomPos.x - gridSizeX) + Mathf.Abs(roomPos.y - gridSizeY), 1);
+		newCorridor.SetRooms(rooms[smallVector.x, smallVector.y], rooms[bigVector.x, bigVector.y]);
+		if (!horizontal)
+        {
+			rooms[bigVector.x, bigVector.y].C_Down = newCorridor;
+			rooms[smallVector.x, smallVector.y].C_Up = newCorridor;
+		}
+		else
+        {
+			rooms[bigVector.x, bigVector.y].C_Left = newCorridor;
+			rooms[smallVector.x, smallVector.y].C_Right = newCorridor;
+		}
+
+		newCorridor.gameObject.SetActive(false);
+		float angle = horizontal ? 0 : 90;
+		mapRooms[bigVector.x, bigVector.y].Corridors.Add(miniMap.AddCorridor(between, angle, mapRooms[bigVector.x, bigVector.y], mapRooms[smallVector.x, smallVector.y]));
+	}
+	private void CreateOneRoom(Vector2 checkPos, bool firstRoom = false)
+    {
+		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
+		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
+		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = Mathf.Max(Mathf.Abs((int)checkPos.x) + Mathf.Abs((int)checkPos.y), 1);
+		RoomType type;
+		if (firstRoom)
+        {
+			type = RoomType.None;
+		}
+		else
+        {
+			type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
+		}
+		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupRoom(type);
+		mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
+		mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupIcone(mapIcons[(int)type]);
+		takenPositions.Insert(0, checkPos);
+	}
+	private void FindBossRoom()
+    {
+		List<Room> minNeighborRooms = new List<Room>();
+		int minNeighborsNumber = 5;
+		for (int x = 0; x < ((gridSizeX * 2)); x++)
+		{
+			for (int y = 0; y < ((gridSizeY * 2)); y++)
+			{
+				if (rooms[x, y] == null)
+				{
+					continue;
+				}
+				Vector2 gridPosition = new Vector2(x, y);
+				if (NumberOfNeighbors(gridPosition - new Vector2(gridSizeX, gridSizeY), takenPositions) < minNeighborsNumber)
+                {
+					minNeighborRooms.Clear();
+					minNeighborRooms.Add(rooms[x, y]);
+					minNeighborsNumber = NumberOfNeighbors(gridPosition - new Vector2(gridSizeX, gridSizeY), takenPositions);
+				}
+				else if (NumberOfNeighbors(gridPosition - new Vector2(gridSizeX, gridSizeY), takenPositions) == minNeighborsNumber)
+                {
+					minNeighborRooms.Add(rooms[x, y]);
+				}
+			}
+		}
+		List<Room> potentialBossRooms = new List<Room>();
+		int maxDistance = 0;
+		foreach(Room minNeighborRoom in minNeighborRooms)
+        {
+			if (minNeighborRoom.Level > maxDistance)
+            {
+				potentialBossRooms.Clear();
+				potentialBossRooms.Add(minNeighborRoom);
+				maxDistance = minNeighborRoom.Level;
+            }
+			else if (minNeighborRoom.Level == maxDistance)
+            {
+				potentialBossRooms.Add(minNeighborRoom);
+            }
+        }
+		Room bossRoom = potentialBossRooms[Random.Range(0, potentialBossRooms.Count - 1)];
+		bossRoom.SetupRoom(RoomType.Boss);
+		bossRoom.Btn.SetupIcone(mapIcons[(int)RoomType.Boss]);
 	}
 }
