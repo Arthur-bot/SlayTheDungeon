@@ -215,7 +215,7 @@ public class DungeonGeneration : MonoBehaviour
 		// Create corridor
 		Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 		newCorridor.GridPos = between;
-		newCorridor.Level = rooms[roomPos.x, roomPos.y].Level;
+		newCorridor.Level = Mathf.Max(rooms[roomPos.x, roomPos.y].Level,1);
 		newCorridor.SetRooms(rooms[smallVector.x, smallVector.y], rooms[bigVector.x, bigVector.y]);
 		if (!horizontal)
         {
