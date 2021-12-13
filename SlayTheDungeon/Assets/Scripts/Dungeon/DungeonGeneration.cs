@@ -39,7 +39,7 @@ public class DungeonGeneration : MonoBehaviour
 		gridSizeX = Mathf.RoundToInt(worldSize.x); //note: these are half-extents
 		gridSizeY = Mathf.RoundToInt(worldSize.y);
 		CreateRooms(); //lays out the actual map
-		SetRoomDoors(); //assigns the doors where rooms would connect
+		SetRoomCorridors(); //assigns the doors where rooms would connect
 		FindBossRoom();
 		gameManager.EnterRoom(rooms[gridSizeX, gridSizeY], rooms[gridSizeX, gridSizeY].StartPoint);
 	}
@@ -181,7 +181,7 @@ public class DungeonGeneration : MonoBehaviour
 		}
 		return ret;
 	}
-	void SetRoomDoors()
+	void SetRoomCorridors()
 	{
 		for (int x = 0; x < ((gridSizeX * 2)); x++)
 		{
@@ -196,17 +196,17 @@ public class DungeonGeneration : MonoBehaviour
 				rooms[x, y].GridPos = gridPosition;
 				if (y - 1 >= 0 && rooms[x, y - 1] != null)
 				{
-					CreateCorridor(new Vector2Int(x,y), new Vector2Int(x, y - 1));
+					CreateOneCorridor(new Vector2Int(x,y), new Vector2Int(x, y - 1));
 				}
 				if (x - 1 >= 0 && rooms[x - 1, y] != null)
 				{
-					CreateCorridor(new Vector2Int(x, y), new Vector2Int(x - 1, y));
+					CreateOneCorridor(new Vector2Int(x, y), new Vector2Int(x - 1, y));
 				}
 			}
 		}
 	}
 
-	private void CreateCorridor(Vector2Int roomPos, Vector2Int neighborPos)
+	private void CreateOneCorridor(Vector2Int roomPos, Vector2Int neighborPos)
     {
 		bool horizontal = roomPos.x != neighborPos.x;
 		Vector2Int smallVector = Vector2Int.Min(roomPos, neighborPos);
@@ -215,7 +215,7 @@ public class DungeonGeneration : MonoBehaviour
 		// Create corridor
 		Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 		newCorridor.GridPos = between;
-		newCorridor.Level = Mathf.Max(Mathf.Abs(roomPos.x - gridSizeX) + Mathf.Abs(roomPos.y - gridSizeY), 1);
+		newCorridor.Level = rooms[roomPos.x, roomPos.y].Level;
 		newCorridor.SetRooms(rooms[smallVector.x, smallVector.y], rooms[bigVector.x, bigVector.y]);
 		if (!horizontal)
         {
@@ -230,21 +230,24 @@ public class DungeonGeneration : MonoBehaviour
 
 		newCorridor.gameObject.SetActive(false);
 		float angle = horizontal ? 0 : 90;
-		mapRooms[bigVector.x, bigVector.y].Corridors.Add(miniMap.AddCorridor(between, angle, mapRooms[bigVector.x, bigVector.y], mapRooms[smallVector.x, smallVector.y]));
+		MapCorridor newMapCorridor = miniMap.AddCorridor(between, angle, mapRooms[bigVector.x, bigVector.y], mapRooms[smallVector.x, smallVector.y]);
+		mapRooms[bigVector.x, bigVector.y].Corridors.Add(newMapCorridor);
+		mapRooms[smallVector.x, smallVector.y].Corridors.Add(newMapCorridor);
 	}
 	private void CreateOneRoom(Vector2 checkPos, bool firstRoom = false)
     {
 		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = Instantiate(RoomPrefab, worldRoot);
 		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].gameObject.SetActive(false);
-		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = Mathf.Max(Mathf.Abs((int)checkPos.x) + Mathf.Abs((int)checkPos.y), 1);
 		RoomType type;
 		if (firstRoom)
         {
+			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = 0;
 			type = RoomType.None;
 		}
 		else
         {
 			type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
+			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = FindLevelOfRoom(checkPos, takenPositions);
 		}
 		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupRoom(type);
 		mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
@@ -294,5 +297,26 @@ public class DungeonGeneration : MonoBehaviour
 		Room bossRoom = potentialBossRooms[Random.Range(0, potentialBossRooms.Count - 1)];
 		bossRoom.SetupRoom(RoomType.Boss);
 		bossRoom.Btn.SetupIcone(mapIcons[(int)RoomType.Boss]);
+	}
+	private int FindLevelOfRoom(Vector2 checkingPos, List<Vector2> usedPositions)
+    {
+		int level = gridSizeX + gridSizeY + 1;
+		if (usedPositions.Contains(checkingPos + Vector2.right))
+		{ //using Vector.[direction] as short hands, for simplicity
+			level = Mathf.Min(rooms[(int)checkingPos.x + 1 + gridSizeX, (int)checkingPos.y + gridSizeY].Level + 1, level);
+		}
+		if (usedPositions.Contains(checkingPos + Vector2.left))
+		{
+			level = Mathf.Min(rooms[(int)checkingPos.x - 1 + gridSizeX, (int)checkingPos.y + gridSizeY].Level + 1, level);
+		}
+		if (usedPositions.Contains(checkingPos + Vector2.up))
+		{
+			level = Mathf.Min(rooms[(int)checkingPos.x + gridSizeX, (int)checkingPos.y + 1 + gridSizeY].Level + 1, level);
+		}
+		if (usedPositions.Contains(checkingPos + Vector2.down))
+		{
+			level = Mathf.Min(rooms[(int)checkingPos.x + gridSizeX, (int)checkingPos.y - 1 + gridSizeY].Level + 1, level);
+		}
+		return level;
 	}
 }

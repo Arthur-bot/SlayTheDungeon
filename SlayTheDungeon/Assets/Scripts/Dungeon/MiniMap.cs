@@ -26,7 +26,7 @@ public class MiniMap : MonoBehaviour
         MapRoomBtn newBtn = Instantiate(roomMapPrefab, mapRoot);
         newBtn.GridPos = pos + new Vector2(gridSizeX, gridSizeY);
         newBtn.GetComponent<RectTransform>().anchoredPosition = pos * 100;
-        //newBtn.gameObject.SetActive(false);
+        newBtn.gameObject.SetActive(false);
         return newBtn;
     }
 
@@ -36,7 +36,7 @@ public class MiniMap : MonoBehaviour
         newMapCorridor.GetComponent<RectTransform>().anchoredPosition = (pos  - new Vector2(gridSizeX, gridSizeY)) * 100;
         newMapCorridor.MapRoom1 = room1.gameObject;
         newMapCorridor.MapRoom2 = room2.gameObject;
-        //newMapCorridor.gameObject.SetActive(false);
+        newMapCorridor.gameObject.SetActive(false);
         return newMapCorridor;
     }
 
