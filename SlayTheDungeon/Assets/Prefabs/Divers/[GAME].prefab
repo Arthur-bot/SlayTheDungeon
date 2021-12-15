@@ -189,3 +189,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be733771c245481409a7e020f9c11b48, type: 2}
   - {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
   - {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+  ennemyCombos: []
+  attackIcon: {fileID: 3132663690335534207, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
+  armorIcon: {fileID: 7636561763445232136, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
+  poisonIcon: {fileID: -2876628808043661572, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
+  furyIcon: {fileID: 0}
+  gelIcon: {fileID: 0}

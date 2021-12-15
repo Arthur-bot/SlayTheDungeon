@@ -383,6 +383,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1843520689}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: poisonIcon
+      value: 
+      objectReference: {fileID: -2876628808043661572, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: allCards.Array.size
       value: 7
       objectReference: {fileID: 0}

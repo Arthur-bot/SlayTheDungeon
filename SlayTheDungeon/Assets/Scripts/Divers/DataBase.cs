@@ -12,13 +12,33 @@ public struct Combinations
  
 public class DataBase : Singleton<DataBase>
 {
+    #region Fields
 
     [SerializeField] private List<CardData> allCards;
     [SerializeField] private List<Combinations> ennemyCombos;
 
-    private void Start()
-    {
-    }
+    [Header("Effect Icon")] 
+    [SerializeField] private Sprite attackIcon;
+    [SerializeField] private Sprite armorIcon;
+    [SerializeField] private Sprite poisonIcon;
+    [SerializeField] private Sprite furyIcon;
+    [SerializeField] private Sprite gelIcon;
+
+    #endregion
+
+    #region Properties
+
+    public Sprite AttackIcon => attackIcon;
+
+    public Sprite ArmorIcon => armorIcon;
+
+    public Sprite PoisonIcon => poisonIcon;
+
+    public Sprite FuryIcon => furyIcon;
+
+    public Sprite GelIcon => gelIcon;
+
+    #endregion
 
     public List<CardData> PickRandomCards(int number)
     {

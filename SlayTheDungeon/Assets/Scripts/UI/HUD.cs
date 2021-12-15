@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
@@ -13,6 +14,9 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private List<UIEffect> uiEffects;
+    [SerializeField] private UIEffect uiNextAction;
+
+    private CharacterData data;
 
     #endregion
 
@@ -23,6 +27,12 @@ public class HUD : MonoBehaviour
     #endregion
 
     #region Public Methods
+
+    public void Init(CharacterData data)
+    {
+        this.data = data;
+        UpdateHUD(data);
+    }
 
     public void UpdateHUD(CharacterData data)
     {
@@ -37,7 +47,7 @@ public class HUD : MonoBehaviour
             var effect = data.Stats.TimedModifierStack[i];
 
             uiEffects[i].EffectIcon.sprite = effect.EffectSprite;
-            uiEffects[i].TurnText.text = effect.Timer.ToString();
+            uiEffects[i].ValueText.text = effect.Timer.ToString();
             uiEffects[i].gameObject.SetActive(true);
         }
 
@@ -47,7 +57,7 @@ public class HUD : MonoBehaviour
             var effect = data.Stats.ElementalEffects[i];
 
             uiEffects[i].EffectIcon.sprite = effect.EffectSprite;
-            uiEffects[i].TurnText.text = effect.Timer.ToString();
+            uiEffects[i].ValueText.text = effect.Timer.ToString();
             uiEffects[i].gameObject.SetActive(true);
         }
 
@@ -55,6 +65,22 @@ public class HUD : MonoBehaviour
         {
             uiEffects[i].gameObject.SetActive(false);
         }
+    }
+
+    public void NextAction(CardEffect action)
+    {
+        if (!uiNextAction.gameObject.activeSelf)
+        {
+            uiNextAction.gameObject.SetActive(true);
+        }
+
+        uiNextAction.EffectIcon.sprite = action.GetIcon();
+        uiNextAction.ValueText.text = action.GetEffectValue().ToString();
+    }
+
+    public void HideAction()
+    {
+        uiNextAction.gameObject.SetActive(false);
     }
 
     #endregion

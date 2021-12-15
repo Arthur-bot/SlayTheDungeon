@@ -9,14 +9,14 @@ public class UIEffect : MonoBehaviour
     #region Fields
 
     [SerializeField] private Image effectIcon;
-    [SerializeField] private TextMeshProUGUI turnText;
+    [SerializeField] private TextMeshProUGUI valueText;
 
     #endregion
 
     #region public Methods
 
     public Image EffectIcon => effectIcon;
-    public TextMeshProUGUI TurnText => turnText;
+    public TextMeshProUGUI ValueText => valueText;
 
     #endregion
 }

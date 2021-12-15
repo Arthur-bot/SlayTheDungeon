@@ -26,6 +26,10 @@ public abstract class CardEffect : ScriptableObject
 
     public virtual void ApplyEffect(CharacterData target) { }
 
+    public virtual Sprite GetIcon() { return null; }
+
+    public virtual int GetEffectValue() { return 0; }
+
     #endregion
 
     #region Enum

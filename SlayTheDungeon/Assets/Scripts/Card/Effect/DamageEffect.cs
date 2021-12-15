@@ -18,4 +18,14 @@ public class DamageEffect : CardEffect
     {
         target.TakeDamage(value);
     }
+
+    public override int GetEffectValue()
+    {
+        return value;
+    }
+
+    public override Sprite GetIcon()
+    {
+        return DataBase.Instance.AttackIcon;
+    }
 }

@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class Enemy : CharacterData
 {
     private float initialX;
+    private int attackIndex;
 
     public EnnemyData EnnemyData { get; set; }
 
@@ -23,11 +22,38 @@ public class Enemy : CharacterData
         var destination = transform.localPosition.x + (GameManager.Instance.PlayerFacingRight? -1 : 1);
 
         transform.DOLocalMoveX(destination, 0.15f).OnComplete(ResetPosition);
-        EnnemyData.Attack();
+
+        var attack = EnnemyData.Attacks[attackIndex];
+        switch (attack.TargetTyPe)
+        {
+            case CardEffect.Target.Aoe:
+                attack.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
+                break;
+            case CardEffect.Target.Self:
+                attack.ApplyEffect(TargetingSystem.Instance.getTarget());
+                break;
+            case CardEffect.Target.SingleTarget:
+                attack.ApplyEffect(GameManager.Instance.Player);
+                break;
+        }
+
+        hud.HideAction();
     }
 
     public void ResetPosition()
     {
         transform.DOLocalMoveX(initialX, 0.3f);
+    }
+
+    public void ShowNextAction()
+    {
+        attackIndex += 1;
+        if (attackIndex >= EnnemyData.Attacks.Count)
+        {
+            attackIndex = 0;
+        }
+
+        var attack = EnnemyData.Attacks[attackIndex];
+        hud.NextAction(attack);
     }
 }

@@ -254,6 +254,14 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(0.2f);
         }
 
+        foreach (var monster in BattleGround.Enemies)
+        {
+            if (monster.IsAlive)
+            {
+                monster.ShowNextAction();
+            }
+        }
+
         gameUI.EndTurnButton.interactable = true;
 
         while (!TurnEnded)

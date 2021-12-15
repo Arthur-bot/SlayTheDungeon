@@ -10,4 +10,14 @@ public class ArmorEffect : CardEffect
     {
         target.Stats.ChangeArmor(value);
     }
+
+    public override int GetEffectValue()
+    {
+        return value;
+    }
+
+    public override Sprite GetIcon()
+    {
+        return DataBase.Instance.ArmorIcon;
+    }
 }
