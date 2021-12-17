@@ -49,7 +49,7 @@ public class CardData : ScriptableObject
         return false;
     }
 
-    public void Use()
+    public void Use(bool isPlayer = true)
     {
         nbUse--;
         foreach (var ce in cardEffects)
@@ -60,10 +60,10 @@ public class CardData : ScriptableObject
                     ce.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
                     break;
                 case CardEffect.Target.Self:
-                    ce.ApplyEffect(GameManager.Instance.Player);
+                    ce.ApplyEffect(isPlayer? GameManager.Instance.Player : TargetingSystem.Instance.getTarget());
                     break;
                 case CardEffect.Target.SingleTarget:
-                    ce.ApplyEffect(TargetingSystem.Instance.getTarget());
+                    ce.ApplyEffect(isPlayer? TargetingSystem.Instance.getTarget() : GameManager.Instance.Player);
                     break;
 
             }

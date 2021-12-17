@@ -38,9 +38,13 @@ public class Room : DungeonElement
         {
             component.SetActive(false);
         }
-        roomComponents[(int)RoomType.Monster - 1].GetComponent<EnnemyTriger>().Level = level;
         if (type != RoomType.None)
         {
+            roomComponents[(int)RoomType.Monster - 1].GetComponent<EnnemyTriger>().Level = level;
+            if (type == RoomType.Boss)
+            {
+                roomComponents[(int)RoomType.Monster - 1].GetComponent<EnnemyTriger>().BossTrigger = true;
+            }
             roomComponents[(int)type - 1].SetActive(true);
         }
     }

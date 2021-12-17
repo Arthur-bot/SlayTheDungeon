@@ -232,7 +232,7 @@ public class GameManager : Singleton<GameManager>
         {
             if (monster.IsAlive)
             {
-                monster.Attack();
+                monster.PlayTurn();
                 yield return new WaitForSeconds(1.0f);
             }
         }

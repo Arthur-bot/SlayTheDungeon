@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -8,8 +9,9 @@ public struct Combinations
 {
     public List<EnnemyData> ennemies;
     public int level;
+    public bool boss;
 }
- 
+
 public class DataBase : Singleton<DataBase>
 {
 
@@ -37,8 +39,14 @@ public class DataBase : Singleton<DataBase>
 
     public List<EnnemyData> PickRandomEnnemyCombination(int level)
     {
-        List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level).ToList();
+        List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level && x.boss == false).ToList();
         List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count - 1)].ennemies;
+        return newPick;
+    }
+    public List<EnnemyData> PickRandomBoss()
+    {
+        List<Combinations> combinationOfBoss = ennemyCombos.Where(x => x.boss == true).ToList();
+        List<EnnemyData> newPick = combinationOfBoss[Random.Range(0, combinationOfBoss.Count - 1)].ennemies;
         return newPick;
     }
 }

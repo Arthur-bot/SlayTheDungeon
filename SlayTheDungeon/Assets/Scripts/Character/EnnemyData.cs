@@ -14,6 +14,8 @@ public class EnnemyData : ScriptableObject
     [SerializeField] private Sprite sprite;
     [SerializeField] private List<CardEffect> attacks;
     [SerializeField] private StatSystem stats;
+    [SerializeField] private List<CardData> ennemyDeck;
+    [SerializeField] private bool boss;
 
     #endregion
 
@@ -22,6 +24,8 @@ public class EnnemyData : ScriptableObject
     public Sprite Sprite => sprite;
     public List<CardEffect> Attacks { get => attacks; set => attacks = value; }
     public StatSystem Stats { get => stats; set => stats = value; }
+    public bool Boss { get => boss; set => boss = value; }
+    public List<CardData> EnnemyDeck { get => ennemyDeck; set => ennemyDeck = value; }
 
     #endregion
 
@@ -58,6 +62,7 @@ public class EnnemyEditor : Editor
     List<string> _availableEffectType;
     SerializedProperty _equippedEffectListProperty;
     SerializedProperty _statsProperty;
+    SerializedProperty _deckProperty;
 
     void OnEnable()
     {
@@ -65,6 +70,7 @@ public class EnnemyEditor : Editor
         _equippedEffectListProperty = serializedObject.FindProperty("attacks");
         _statsProperty = serializedObject.FindProperty("stats");
         _spriteProperty = serializedObject.FindProperty("sprite");
+        _deckProperty = serializedObject.FindProperty("ennemyDeck");
 
         var lookup = typeof(CardEffect);
         _availableEffectType = System.AppDomain.CurrentDomain.GetAssemblies()
@@ -78,52 +84,59 @@ public class EnnemyEditor : Editor
     {
         EditorGUILayout.PropertyField(_spriteProperty);
         EditorGUILayout.PropertyField(_statsProperty);
-
-        int choice = EditorGUILayout.Popup("Add new Attack", -1, _availableEffectType.ToArray());
-
-        if (choice != -1)
+        _target.Boss = GUILayout.Toggle(_target.Boss, "Boss");
+        if (!_target.Boss)
         {
-            var newInstance = ScriptableObject.CreateInstance(_availableEffectType[choice]);
+            int choice = EditorGUILayout.Popup("Add new Attack", -1, _availableEffectType.ToArray());
 
-            AssetDatabase.AddObjectToAsset(newInstance, target);
-
-            _equippedEffectListProperty.InsertArrayElementAtIndex(_equippedEffectListProperty.arraySize);
-            _equippedEffectListProperty.GetArrayElementAtIndex(_equippedEffectListProperty.arraySize - 1).objectReferenceValue = newInstance;
-        }
-
-
-        Editor ed = null;
-        int toDelete = -1;
-        for (int i = 0; i < _equippedEffectListProperty.arraySize; ++i)
-        {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.BeginVertical();
-            var item = _equippedEffectListProperty.GetArrayElementAtIndex(i);
-            SerializedObject obj = new SerializedObject(item.objectReferenceValue);
-
-            Editor.CreateCachedEditor(item.objectReferenceValue, null, ref ed);
-
-            ed.OnInspectorGUI();
-            EditorGUILayout.EndVertical();
-
-            if (GUILayout.Button("-", GUILayout.Width(32)))
+            if (choice != -1)
             {
-                toDelete = i;
+                var newInstance = ScriptableObject.CreateInstance(_availableEffectType[choice]);
+
+                AssetDatabase.AddObjectToAsset(newInstance, target);
+                _equippedEffectListProperty.InsertArrayElementAtIndex(_equippedEffectListProperty.arraySize);
+                _equippedEffectListProperty.GetArrayElementAtIndex(_equippedEffectListProperty.arraySize - 1).objectReferenceValue = newInstance;
             }
-            EditorGUILayout.EndHorizontal();
-        }
 
-        if (toDelete != -1)
+
+            Editor ed = null;
+            int toDelete = -1;
+            for (int i = 0; i < _equippedEffectListProperty.arraySize; ++i)
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.BeginVertical();
+                var item = _equippedEffectListProperty.GetArrayElementAtIndex(i);
+                SerializedObject obj = new SerializedObject(item.objectReferenceValue);
+
+                Editor.CreateCachedEditor(item.objectReferenceValue, null, ref ed);
+
+                ed.OnInspectorGUI();
+                EditorGUILayout.EndVertical();
+
+                if (GUILayout.Button("-", GUILayout.Width(32)))
+                {
+                    toDelete = i;
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+
+            if (toDelete != -1)
+            {
+                var item = _equippedEffectListProperty.GetArrayElementAtIndex(toDelete).objectReferenceValue;
+                DestroyImmediate(item, true);
+
+                //need to do it twice, first time just nullify the entry, second actually remove it.
+                _equippedEffectListProperty.DeleteArrayElementAtIndex(toDelete);
+                _equippedEffectListProperty.DeleteArrayElementAtIndex(toDelete);
+            }
+            serializedObject.ApplyModifiedProperties();
+            _target.Boss = false;
+        }
+        else
         {
-            var item = _equippedEffectListProperty.GetArrayElementAtIndex(toDelete).objectReferenceValue;
-            DestroyImmediate(item, true);
-
-            //need to do it twice, first time just nullify the entry, second actually remove it.
-            _equippedEffectListProperty.DeleteArrayElementAtIndex(toDelete);
-            _equippedEffectListProperty.DeleteArrayElementAtIndex(toDelete);
+            EditorGUILayout.PropertyField(_deckProperty);
+            _target.Boss = true;
         }
-
-        serializedObject.ApplyModifiedProperties();
     }
 }
 #endif

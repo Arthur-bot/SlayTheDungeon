@@ -20,6 +20,7 @@ public class DiscardPile : Pile
     public void Shuffle(Pile deck)
     {
         int cardCounter = 0;
+        countText.text = "0";
         foreach (CardData card in cards)
         {
             if (cardCounter < 5)

@@ -38,6 +38,14 @@ public class PlayerData : CharacterData
 
     #region Public Methods
 
+    public override void DrawCards(int value)
+    {
+        GameManager.Instance.DrawCards(value);
+    }
+    public override void GetEnergy(int value)
+    {
+        ChangeEnergy(value);
+    }
     public bool CanPlayCard(CardData card) => CurrentEnergy - card.Cost >= 0;
 
     public void ChangeEnergy(int amount)
