@@ -78,6 +78,8 @@ public class CharacterData : MonoBehaviour
         // Apply all effect
         Stats.Tick();
     }
+    public virtual void DrawCards(int value) { }
+    public virtual void GetEnergy(int value) { }
 
     #endregion
 }

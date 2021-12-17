@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4461588433202779421, guid: 965958869f56f504684b673466f2d6cc, type: 3}
+  bossPrefab: {fileID: 2706161471558924042, guid: 0e5b28598c211d04ba82908a5efcda08, type: 3}
 --- !u!61 &5892156394809211262
 BoxCollider2D:
   m_ObjectHideFlags: 0

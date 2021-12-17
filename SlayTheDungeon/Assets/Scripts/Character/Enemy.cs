@@ -9,13 +9,13 @@ public class Enemy : CharacterData
 
     public EnnemyData EnnemyData { get; set; }
 
-    public void SetupEnemy()
+    public virtual void SetupEnemy()
     {
         stats.BaseStats.Copy(EnnemyData.Stats.BaseStats);
         hud.CharacterSprite.sprite = EnnemyData.Sprite;
     }
 
-    public void Attack()
+    public virtual void PlayTurn()
     {
         TargetingSystem.Instance.SetTarget(this);
         initialX = transform.localPosition.x;

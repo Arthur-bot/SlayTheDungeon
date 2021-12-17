@@ -6,7 +6,6 @@ public class EnergyEffect : CardEffect
 {
     public override void ApplyEffect(CharacterData target)
     {
-        if (target is PlayerData)
-            (target as PlayerData).ChangeEnergy(value);
+        target.GetEnergy(value);
     }
 }

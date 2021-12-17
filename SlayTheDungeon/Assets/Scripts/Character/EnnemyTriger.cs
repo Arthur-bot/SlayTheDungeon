@@ -7,11 +7,14 @@ public class EnnemyTriger : MonoBehaviour
     #region Fields
 
     [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Boss bossPrefab;
     private List<Enemy> enemies = new List<Enemy>();
     private GameManager gameManager;
     private int level;
+    private bool bossTrigger;
 
     public int Level { get => level; set => level = value; }
+    public bool BossTrigger { get => bossTrigger; set => bossTrigger = value; }
 
     #endregion
 
@@ -25,10 +28,22 @@ public class EnnemyTriger : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>())
         {
-            List<EnnemyData> combination = DataBase.Instance.PickRandomEnnemyCombination(level);
+            List<EnnemyData> combination;
+            if (bossTrigger)
+            {
+                combination = DataBase.Instance.PickRandomBoss();
+            }
+            else
+            {
+                combination = DataBase.Instance.PickRandomEnnemyCombination(level);
+            }
             foreach(EnnemyData enemy in combination)
             {
-                Enemy newEnemy = Instantiate(enemyPrefab, transform);
+                Enemy newEnemy;
+                if (enemy.Boss)
+                    newEnemy = Instantiate(bossPrefab, transform);
+                else
+                    newEnemy = Instantiate(enemyPrefab, transform);
                 newEnemy.EnnemyData = enemy;
                 newEnemy.SetupEnemy();
                 enemies.Add(newEnemy);
