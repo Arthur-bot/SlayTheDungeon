@@ -25,7 +25,7 @@ public class Boss : Enemy
     public override void PlayTurn()
     {
         //information collecting
-        damageDealt = 0;
+        //damageDealt = 0;
         damageTaken = this.stats.CurrentHealth - lastBossHP;
         
         //decision taking
@@ -34,7 +34,7 @@ public class Boss : Enemy
         TargetingSystem.Instance.SetTarget(this);
 
         //defend after taking heavy damage
-        while (damageTaken > this.stats.CurrentArmor)
+        while (damageTaken > this.stats.CurrentArmor && hand.Count != 0)
         {
             preferedCard = LookFor("Defend");
             if(preferedCard >= 0)
@@ -46,7 +46,7 @@ public class Boss : Enemy
                 damageTaken = 0; //since this is a decision variable, we reset it if the defend option is unavailable
             }
         }
-        while (energy > 0)
+        while (energy > 0 && hand.Count != 0)
         {
             for (int i = 0; i < hand.Count; i++) //the boss will try to play as many actions as possible after the defending phase
             {
