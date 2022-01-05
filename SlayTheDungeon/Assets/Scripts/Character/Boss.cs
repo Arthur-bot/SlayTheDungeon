@@ -43,12 +43,15 @@ public class Boss : Enemy
             }
             else
             {
-                damageTaken = 0; //comme cette variable n'est qu'une information, on la remet à 0 quand on ne peut plus se défendre
+                damageTaken = 0; //since this is a decision variable, we reset it if the defend option is unavailable
             }
         }
         while (energy > 0)
         {
-            PlayACard(hand[0]);
+            for (int i = 0; i < hand.Count; i++) //the boss will try to play as many actions as possible after the defending phase
+            {
+                PlayACard(hand[i]);
+            }
         }
         DiscardHand();
         DrawCards(5);
