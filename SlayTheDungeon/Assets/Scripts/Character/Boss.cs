@@ -11,6 +11,8 @@ public class Boss : Enemy
     private List<CardData> discard = new List<CardData>();
     private List<CardData> hand = new List<CardData>();
 
+    private int lastHeroHP, lastBossHP, damageTaken, damageDealt, preferedCard;
+
     public override void SetupEnemy()
     {
         base.SetupEnemy();
@@ -22,11 +24,35 @@ public class Boss : Enemy
     }
     public override void PlayTurn()
     {
+        //information collecting
+        damageDealt = 0;
+        damageTaken = this.stats.CurrentHealth - lastBossHP;
+        
+        //decision taking
         energy = 3;
+
         TargetingSystem.Instance.SetTarget(this);
-        PlayACard(hand[0]);
+
+        //defend after taking heavy damage
+        while (damageTaken > this.stats.CurrentArmor)
+        {
+            preferedCard = LookFor("Defend");
+            if(preferedCard >= 0)
+            {
+                PlayACard(hand[preferedCard]);
+            }
+            else
+            {
+                damageTaken = 0; //comme cette variable n'est qu'une information, on la remet à 0 quand on ne peut plus se défendre
+            }
+        }
+        while (energy > 0)
+        {
+            PlayACard(hand[0]);
+        }
         DiscardHand();
         DrawCards(5);
+        lastBossHP = this.stats.CurrentHealth;
     }
 
     private void DiscardHand()
@@ -80,5 +106,19 @@ public class Boss : Enemy
     public override void GetEnergy(int value)
     {
         energy += value;
+    }
+
+    public int LookFor(string specific)
+    {
+        for(int i = 0; i < hand.Count; i++)
+        {
+            foreach (CardEffect effect in hand[i].CardEffects)
+            {
+                if (effect.Description == specific && hand[i].Cost < energy){
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 }
