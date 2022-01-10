@@ -37,20 +37,13 @@ public class Boss : Enemy
         while (damageTaken > this.stats.CurrentArmor && hand.Count != 0)
         {
             preferedCard = LookFor("Defend");
-            if(preferedCard >= 0)
+            if (preferedCard >= 0)
             {
                 PlayACard(hand[preferedCard]);
             }
             else
             {
                 damageTaken = 0; //since this is a decision variable, we reset it if the defend option is unavailable
-            }
-        }
-        while (energy > 0 && hand.Count != 0)
-        {
-            for (int i = 0; i < hand.Count; i++) //the boss will try to play as many actions as possible after the defending phase
-            {
-                PlayACard(hand[i]);
             }
         }
         DiscardHand();
