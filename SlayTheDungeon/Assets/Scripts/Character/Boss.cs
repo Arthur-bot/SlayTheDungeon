@@ -9,7 +9,7 @@ public class Boss : Enemy
     private int energy = 3;
     private List<CardData> deck = new List<CardData>();
     private List<CardData> discard = new List<CardData>();
-    private List<CardData> hand = new List<CardData>();
+    public List<CardData> hand = new List<CardData>();
 
     private int lastHeroHP, lastBossHP, damageTaken, damageDealt, preferedCard;
 
