@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
+public enum KeyWord
+{
+    Attack,
+    Defend
+}
+
 public class Boss : Enemy
 {
     private int energy = 3;

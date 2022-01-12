@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseAI : MonoBehaviour
 {
-    protected List<int> preferedKeywords;
+    protected List<KeyWord> preferedKeywords;
     private Boss owner;
         
     // Start is called before the first frame update, during this, we define prefered keywords and the data we wish to use to make decisions
@@ -19,24 +19,28 @@ public class BaseAI : MonoBehaviour
     }
 
     // LookFor is the base function to use when looking for a specific card or effect
-    private List<int> LookFor(int preferedKeyword)
+    private CardData LookForCard()
     {
-        var corresponding = new List<int>();
-        if (preferedKeywords.Count > 0)
+        CardData perfectCard = null;
+        int nbMatchingKeywords;
+        int maxMatchingKeywords = 0;
+
+        foreach (CardData card in owner.hand)
         {
-            for (int i = 0; i < owner.hand.Count; i++)
+            nbMatchingKeywords = 0;
+            foreach (KeyWord keyword in preferedKeywords)
             {
-                if (owner.hand[i].keywords.Find(x => x == preferedKeyword) != 0 || owner.hand[i].keywords[0] == preferedKeyword)
+                if (card.Keywords.Contains(keyword))
                 {
-                    corresponding.Add(i);
+                    nbMatchingKeywords++;
+                    if (nbMatchingKeywords > maxMatchingKeywords)
+                    {
+                        perfectCard = card;
+                        maxMatchingKeywords = nbMatchingKeywords;
+                    }
                 }
             }
         }
-        else
-        {
-            corresponding.Add(0);
-        }
-
-        return corresponding;
+        return perfectCard;
     }
 }
