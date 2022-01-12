@@ -106,6 +106,7 @@ public class GameManager : Singleton<GameManager>
         if (room is Room)
         {
             (room as Room).EnterRoom();
+            player.Controller.IsMoving = false;
         }
         room.gameObject.SetActive(true);
         currentRoom = room;
@@ -139,6 +140,7 @@ public class GameManager : Singleton<GameManager>
             EnterRoom(thisRoom.C_Up, thisRoom.C_Up.StartPoint);
             player.Controller.Flip(true);
         }
+        player.Controller.IsMoving = true;
     }
 
     public void Shake(float duration, float magnitude)
@@ -171,6 +173,7 @@ public class GameManager : Singleton<GameManager>
         // Announce Fight
         // Change Sounds & Music
         // Change UI
+        player.Controller.IsMoving = false;
         gameUI.SetupFight(player.Deck);
 
         BattleGround.InitBattle(enemies);

@@ -8,6 +8,7 @@ public class MapRoomBtn : MonoBehaviour
     [SerializeField] private Image icon;
     private GameManager gameManager;
     private FirecampManager firecampManager;
+    private LootManager lootManager;
 	private Vector2 gridPos;
     private List<MapCorridor> corridors = new List<MapCorridor>();
     public Vector2 GridPos { get => gridPos; set => gridPos = value; }
@@ -17,10 +18,11 @@ public class MapRoomBtn : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         firecampManager = FirecampManager.Instance;
+        lootManager = LootManager.Instance;
     }
     public void TryEnterLinkedRoom()
     {
-        if (gameManager.CurrentRoom is Corridor ||firecampManager.IsOpen)
+        if (gameManager.CurrentRoom is Corridor || firecampManager.IsOpen || lootManager.IsLooting)
         {
             return;
         }

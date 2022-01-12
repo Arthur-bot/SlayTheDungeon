@@ -13,6 +13,8 @@ public class Corridor : DungeonElement
     // Generation
     [SerializeField] private EnnemyTriger ennemyTriggerPrefab;
     [SerializeField] private GameObject boxPrefab;
+    [SerializeField] private List<Transform> hotPoints;
+    [SerializeField] private List<GameObject> hotPointsPrefab;
     private Room room1;
     private Room room2;
 
@@ -39,40 +41,14 @@ public class Corridor : DungeonElement
 
     private void GenerateCorridor()
     {
-        EnnemyTriger newEnnemy =  Instantiate(ennemyTriggerPrefab, new Vector3(newPosition(), 0, 0), Quaternion.identity, transform);
-        newEnnemy.Level = level;
-        Instantiate(boxPrefab, new Vector3(newPosition(), -3.5f, 0), Quaternion.identity, transform);
-        float randomAddEnnemy = Random.Range(0, 100);
-        if (randomAddEnnemy > 60)
+        foreach(Transform hotPoint in hotPoints)
         {
-            newEnnemy = Instantiate(ennemyTriggerPrefab, new Vector3(newPosition(), 0, 0), Quaternion.identity, transform);
-            newEnnemy.Level = level;
-        }
-        float randomAddBox = Random.Range(0, 100);
-        if (randomAddEnnemy > 80)
-        {
-            Instantiate(boxPrefab, new Vector3(newPosition(), -3.5f, 0), Quaternion.identity, transform);
-        }
-    }
-
-    private float newPosition()
-    {
-        float newX = Random.Range(StartPoint.position.x, EndPoint.position.x);
-        while(!PositionIsFree(newX))
-        {
-            newX = Random.Range(StartPoint.position.x, EndPoint.position.x);
-        }
-        return newX;
-    }
-    private bool PositionIsFree(float x)
-    {
-        foreach(float position in positionTaken)
-        {
-            if (Mathf.Abs(x - position) < 4)
+            int randomIndex = Random.Range(0, hotPointsPrefab.Count);
+            GameObject newElement = Instantiate(hotPointsPrefab[randomIndex], hotPoint.position, Quaternion.identity, transform);
+            if (randomIndex == 0)
             {
-                return false;
+                newElement.GetComponent<EnnemyTriger>().Level = level;
             }
         }
-        return true;
     }
 }

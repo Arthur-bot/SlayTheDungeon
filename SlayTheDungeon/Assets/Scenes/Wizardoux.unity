@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: startingDeck.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
+    - target: {fileID: 6760233776612930586, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &301368019 stripped

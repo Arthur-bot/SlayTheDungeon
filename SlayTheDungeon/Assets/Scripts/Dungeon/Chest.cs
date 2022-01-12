@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardContainer : MonoBehaviour
+public class Chest : MonoBehaviour
 {
     [SerializeField] private int nbOfChoice;
     private bool isOpen;
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    private void OnMouseDown()
     {
-        if (collision.GetComponent<PlayerController>() && !isOpen)
+        if (!isOpen)
         {
-            Debug.Log("collision with box");
             isOpen = true;
             LootManager.Instance.SetupLoop(nbOfChoice);
-            GameManager.Instance.Player.Controller.IsMoving = false;
         }
     }
 }

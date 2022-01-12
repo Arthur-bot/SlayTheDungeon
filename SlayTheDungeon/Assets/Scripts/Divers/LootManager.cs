@@ -10,8 +10,8 @@ public class LootManager : Singleton<LootManager>
     [SerializeField] private Transform lootCardContainers;
     private PlayerData playerData;
     private DataBase dataBase;
+    private bool isLooting;
     private List<CardLoot> loots = new List<CardLoot>();
-    private bool isLooting = false;
 
     public bool IsLooting { get => isLooting; set => isLooting = value; }
 
@@ -44,11 +44,13 @@ public class LootManager : Singleton<LootManager>
         playerData.AddCard(loot.GetComponent<CardUI>().Data);
         playerDeck.UpdateUI();
         lootPanel.SetActive(false);
+        playerData.Controller.IsMoving = GameManager.Instance.CurrentRoom is Corridor;
         isLooting = false;
     }
     public void Skip()
     {
         lootPanel.SetActive(false);
+        playerData.Controller.IsMoving = GameManager.Instance.CurrentRoom is Corridor;
         isLooting = false;
     }
 }
