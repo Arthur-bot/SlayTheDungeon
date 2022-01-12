@@ -18,7 +18,7 @@ public class CardData : ScriptableObject
     [SerializeField] private string description;
     [SerializeField] private AudioClip cardSoundEffect;
     [SerializeField] private List<CardEffect> cardEffects;
-    [SerializeField] public List<int> keywords;
+    [SerializeField] private List<KeyWord> keywords;
     [SerializeField] private bool limitedUse;
     [SerializeField] private int nbUse;
 
@@ -38,6 +38,7 @@ public class CardData : ScriptableObject
 
     public bool LimitedUse { get => limitedUse; set => limitedUse = value; }
     public int NbUse { get => nbUse; set => nbUse = value; }
+    public List<KeyWord> Keywords { get => keywords; set => keywords = value; }
 
     #endregion
 
@@ -100,6 +101,7 @@ public class CardEditor : Editor
     SerializedProperty _cardSoundEffectProperty;
     SerializedProperty _limitedUseProperty;
     SerializedProperty _nbUseProperty;
+    SerializedProperty _keywordsProperty;
 
     List<string> _availableEffectType;
     SerializedProperty _equippedEffectListProperty;
@@ -114,6 +116,7 @@ public class CardEditor : Editor
         _costProperty = serializedObject.FindProperty("cost");
         _cardSoundEffectProperty = serializedObject.FindProperty("cardSoundEffect");
         _nbUseProperty = serializedObject.FindProperty("nbUse");
+        _keywordsProperty = serializedObject.FindProperty("keywords");
 
         var lookup = typeof(CardEffect);
         _availableEffectType = System.AppDomain.CurrentDomain.GetAssemblies()
@@ -129,6 +132,7 @@ public class CardEditor : Editor
         EditorGUILayout.PropertyField(_spriteProperty);
         EditorGUILayout.PropertyField(_costProperty);
         EditorGUILayout.PropertyField(_cardSoundEffectProperty);
+        EditorGUILayout.PropertyField(_keywordsProperty);
         EditorGUILayout.PropertyField(_descriptionProperty, GUILayout.MinHeight(128));
         _target.LimitedUse = GUILayout.Toggle(_target.LimitedUse, "Limited Use");
 

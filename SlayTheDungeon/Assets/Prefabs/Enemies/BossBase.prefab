@@ -23,6 +23,8 @@ MonoBehaviour:
   hud: {fileID: 1725660802132548088}
   baseMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   outlineMaterial: {fileID: 2100000, guid: 021eb5eded8ece24c89366e4ca6e64b7, type: 2}
+  hand: []
+  keywords: 00000000
 --- !u!1001 &8668972767097452160
 PrefabInstance:
   m_ObjectHideFlags: 0
