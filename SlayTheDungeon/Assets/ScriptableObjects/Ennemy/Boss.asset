@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2196678c3374b74887b59475d5aa8a5, type: 3}
-  m_Name: Boss
+  m_Name: RealBoss
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 50de7c68c22d495468192aefa743a2d8, type: 3}
-  attacks:
-  - {fileID: 8004639300093018560}
+  attacks: []
   stats:
     baseStats:
       Health: 50
-      Armor: 100
+      Armor: 50
       Strength: 0
       Agility: 0
       elementalProtection: 000000000000000000000000
       elementalBoosts: 000000000000000000000000
   ennemyDeck:
+  - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
   - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
   - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
-  - {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
-  - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+  - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
   - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
+  - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+  - {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
   boss: 1
---- !u!114 &8004639300093018560
+  ai: {fileID: 7962364599147247737}
+--- !u!114 &7962364599147247737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7139c490b08f844fa55f295b57861b4, type: 3}
+  m_Script: {fileID: 11500000, guid: b92e58f515129204289b43c683d7b92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
-  targetType: 0
-  value: 0

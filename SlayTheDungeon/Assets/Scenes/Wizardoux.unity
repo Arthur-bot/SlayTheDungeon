@@ -339,6 +339,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[7].boss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: ennemyCombos.Array.data[0].level
       value: 1
       objectReference: {fileID: 0}
@@ -367,6 +371,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[7].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: ennemyCombos.Array.data[0].ennemies.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -392,6 +400,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: ennemyCombos.Array.data[6].ennemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[7].ennemies.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
@@ -457,7 +469,7 @@ PrefabInstance:
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: ennemyCombos.Array.data[6].ennemies.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 588439b6cde68b940ad986b872470aee, type: 2}
+      objectReference: {fileID: 11400000, guid: 33aa71c2a5b3e9b41accbd03f891d61e, type: 2}
     - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: ennemyCombos.Array.data[6].ennemies.Array.data[1]
       value: 
@@ -466,6 +478,10 @@ PrefabInstance:
       propertyPath: ennemyCombos.Array.data[6].ennemies.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: ennemyCombos.Array.data[7].ennemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e57a042e3e2e51d44b1432e40c6ebca9, type: 2}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: m_RootOrder
       value: 1

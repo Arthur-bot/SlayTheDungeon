@@ -14,11 +14,12 @@ public enum KeyWord
 public class Boss : Enemy
 {
     private int energy = 3;
+    private BaseAI ai;
     private List<CardData> deck = new List<CardData>();
     private List<CardData> discard = new List<CardData>();
-    public List<CardData> hand = new List<CardData>();
+    private List<CardData> hand = new List<CardData>();
 
-    private int lastHeroHP, lastBossHP, damageTaken, damageDealt, preferedCard;
+    public List<CardData> Hand { get => hand; set => hand = value; }
 
     public override void SetupEnemy()
     {
@@ -27,35 +28,30 @@ public class Boss : Enemy
         {
             deck.Add(Instantiate(card));
         }
+        ai = Instantiate(EnnemyData.Ai);
+        ai.Owner = this;
+        Debug.Log(ai.Owner);
+        ai.Init();
         DrawCards(5);
     }
     public override void PlayTurn()
     {
         //information collecting
-        //damageDealt = 0;
-        damageTaken = this.stats.CurrentHealth - lastBossHP;
         
         //decision taking
         energy = 3;
 
+        //setup target to use cards properly
         TargetingSystem.Instance.SetTarget(this);
 
-        //defend after taking heavy damage
-        while (damageTaken > this.stats.CurrentArmor && hand.Count != 0)
-        {
-            preferedCard = LookFor("Defend");
-            if (preferedCard >= 0)
-            {
-                PlayACard(hand[preferedCard]);
-            }
-            else
-            {
-                damageTaken = 0; //since this is a decision variable, we reset it if the defend option is unavailable
-            }
-        }
+        CardData toPlay = ai.LookForCard();
+        if (toPlay != null)
+            PlayACard(toPlay);
+
+        // end the turn
+        ai.UpdateBehaviour();
         DiscardHand();
         DrawCards(5);
-        lastBossHP = this.stats.CurrentHealth;
     }
 
     private void DiscardHand()
@@ -109,19 +105,5 @@ public class Boss : Enemy
     public override void GetEnergy(int value)
     {
         energy += value;
-    }
-
-    public int LookFor(string specific)
-    {
-        for(int i = 0; i < hand.Count; i++)
-        {
-            foreach (CardEffect effect in hand[i].CardEffects)
-            {
-                if (effect.Description == specific && hand[i].Cost < energy){
-                    return i;
-                }
-            }
-        }
-        return -1;
     }
 }
