@@ -8,7 +8,8 @@ using UnityEngine;
 public enum KeyWord
 {
     Attack,
-    Defend
+    Defend,
+    Poison
 }
 
 public class Boss : Enemy
