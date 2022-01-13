@@ -16,6 +16,7 @@ public class EnnemyData : ScriptableObject
     [SerializeField] private StatSystem stats;
     [SerializeField] private List<CardData> ennemyDeck;
     [SerializeField] private bool boss;
+    [SerializeField] private BaseAI ai;
 
     #endregion
 
@@ -26,6 +27,7 @@ public class EnnemyData : ScriptableObject
     public StatSystem Stats { get => stats; set => stats = value; }
     public bool Boss { get => boss; set => boss = value; }
     public List<CardData> EnnemyDeck { get => ennemyDeck; set => ennemyDeck = value; }
+    public BaseAI Ai { get => ai; set => ai = value; }
 
     #endregion
 
@@ -60,9 +62,11 @@ public class EnnemyEditor : Editor
 
     SerializedProperty _spriteProperty;
     List<string> _availableEffectType;
+    List<string> _availableAIType;
     SerializedProperty _equippedEffectListProperty;
     SerializedProperty _statsProperty;
     SerializedProperty _deckProperty;
+    SerializedProperty _aiProperty;
 
     void OnEnable()
     {
@@ -71,11 +75,19 @@ public class EnnemyEditor : Editor
         _statsProperty = serializedObject.FindProperty("stats");
         _spriteProperty = serializedObject.FindProperty("sprite");
         _deckProperty = serializedObject.FindProperty("ennemyDeck");
+        _aiProperty = serializedObject.FindProperty("ai");
 
         var lookup = typeof(CardEffect);
         _availableEffectType = System.AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(lookup))
+            .Select(type => type.Name)
+            .ToList();
+
+        var lookup1 = typeof(BaseAI);
+        _availableAIType = System.AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(lookup1))
             .Select(type => type.Name)
             .ToList();
     }
@@ -135,6 +147,21 @@ public class EnnemyEditor : Editor
         else
         {
             EditorGUILayout.PropertyField(_deckProperty);
+            GUI.enabled = false;
+            var iaProp = EditorGUILayout.PropertyField(_aiProperty);
+            GUI.enabled = true;
+            int choice = EditorGUILayout.Popup("Select Ai type", -1, _availableAIType.ToArray());
+
+            if (choice != -1)
+            {
+                var item = _aiProperty.objectReferenceValue;
+                if (item != null)
+                    DestroyImmediate(item, true);
+                var newInstance = ScriptableObject.CreateInstance(_availableAIType[choice]);
+                AssetDatabase.AddObjectToAsset(newInstance, target);
+                _aiProperty.objectReferenceValue = newInstance;
+            }
+            serializedObject.ApplyModifiedProperties();
             _target.Boss = true;
         }
     }

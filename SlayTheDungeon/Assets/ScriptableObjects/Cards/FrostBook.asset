@@ -35,6 +35,7 @@ MonoBehaviour:
   cardEffects:
   - {fileID: -2087893312856474465}
   - {fileID: 5344360262950392546}
+  keywords: 01000000
   limitedUse: 1
   nbUse: 3
 --- !u!114 &5344360262950392546

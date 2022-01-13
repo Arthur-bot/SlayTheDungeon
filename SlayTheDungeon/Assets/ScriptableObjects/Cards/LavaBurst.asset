@@ -19,6 +19,9 @@ MonoBehaviour:
   cardSoundEffect: {fileID: 8300000, guid: 5622e53e90c3d4259ba374df91f6a052, type: 3}
   cardEffects:
   - {fileID: 8533547459064131965}
+  keywords: 00000000
+  limitedUse: 0
+  nbUse: 0
 --- !u!114 &8533547459064131965
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,30 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseAI : MonoBehaviour
+public abstract class BaseBehaviour
 {
     protected List<KeyWord> preferedKeywords;
     protected Boss owner;
-        
-    // Start is called before the first frame update, during this, we define prefered keywords and the data we wish to use to make decisions
-    virtual protected void Start()
-    {
-        owner = this.GetComponent<Boss>();
-    }
 
-    protected void TakeDecision()
-    {
-
-    }
+    public Boss Owner { get => owner; set => owner = value; }
 
     // LookFor is the base function to use when looking for a specific card or effect
-    private CardData LookForCard()
+    public virtual CardData LookForCard()
     {
         CardData perfectCard = null;
         int nbMatchingKeywords;
         int maxMatchingKeywords = 0;
-
-        foreach (CardData card in owner.hand)
+        foreach (CardData card in owner.Hand)
         {
             nbMatchingKeywords = 0;
             foreach (KeyWord keyword in preferedKeywords)
@@ -41,6 +31,8 @@ public class BaseAI : MonoBehaviour
                 }
             }
         }
+        if (perfectCard != null)
+            Debug.Log(perfectCard.CardName);
         return perfectCard;
     }
 }

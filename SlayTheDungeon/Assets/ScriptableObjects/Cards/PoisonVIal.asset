@@ -19,6 +19,7 @@ MonoBehaviour:
   cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: 9148272503166909337}
+  keywords: 00000000
   limitedUse: 1
   nbUse: 1
 --- !u!114 &9148272503166909337
