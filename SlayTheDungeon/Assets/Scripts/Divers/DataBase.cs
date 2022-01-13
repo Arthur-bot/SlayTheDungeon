@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -24,6 +24,10 @@ public class DataBase : Singleton<DataBase>
     [SerializeField] private Sprite furyIcon;
     [SerializeField] private Sprite gelIcon;
 
+    [Header("Mod")] 
+    [SerializeField] private string pathToMods;
+    private string[] ListOfJSON;
+
     #endregion
 
     #region Properties
@@ -39,6 +43,62 @@ public class DataBase : Singleton<DataBase>
     public Sprite GelIcon => gelIcon;
 
     #endregion
+
+    #region Protected Methods
+
+    protected override void OnAwake()
+    {
+        base.OnAwake();
+
+        pathToMods = Application.dataPath + "/Mods";
+        if (!Directory.Exists(pathToMods))
+            Directory.CreateDirectory(pathToMods);
+    }
+
+    protected void Start()
+    {
+        ChargeSet("Test");
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void ChargeSet(string nameOfSet)
+    {
+        if (!Directory.Exists(pathToMods + "/" + nameOfSet))
+        {
+            return;
+        }
+        else
+        {
+            ListOfJSON = Directory.GetFiles(pathToMods + "/" + nameOfSet, "*.json");
+
+            for (int i = 0; i < ListOfJSON.Length; i++)
+            {
+                // Get data from JSON
+                StreamReader reader = new StreamReader(ListOfJSON[i]);
+                var jsonString = reader.ReadToEnd();
+                var cardData = new CardStructure();
+                JsonUtility.FromJsonOverwrite(jsonString, cardData);
+
+                // Copy data in a new scriptable object
+                var card = ScriptableObject.CreateInstance<CardData>();
+                card.name = cardData.cardName;
+                card.CardFromStructure(cardData);
+
+                allCards.Add(card);
+            }
+
+            return;
+
+        }
+
+    }
+
+    #endregion
+
+    #region Public Methods
 
     public List<CardData> PickRandomCards(int number)
     {
@@ -61,4 +121,6 @@ public class DataBase : Singleton<DataBase>
         List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count - 1)].ennemies;
         return newPick;
     }
+
+    #endregion
 }
