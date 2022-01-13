@@ -64,7 +64,7 @@ public class CharacterData : MonoBehaviour
 
     #region Public Methods
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         stats.Damage(amount);
 
