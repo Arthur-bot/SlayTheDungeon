@@ -18,8 +18,10 @@ public class Boss : Enemy
     private List<CardData> deck = new List<CardData>();
     private List<CardData> discard = new List<CardData>();
     private List<CardData> hand = new List<CardData>();
+    private int damageTaken = 0;
 
     public List<CardData> Hand { get => hand; set => hand = value; }
+    public int DamageTaken { get => damageTaken; }
 
     public override void SetupEnemy()
     {
@@ -49,6 +51,7 @@ public class Boss : Enemy
             PlayACard(toPlay);
 
         // end the turn
+        damageTaken = 0;
         ai.UpdateBehaviour();
         DiscardHand();
         DrawCards(5);
@@ -105,5 +108,13 @@ public class Boss : Enemy
     public override void GetEnergy(int value)
     {
         energy += value;
+    }
+
+    public override void TakeDamage(int amount)
+    {
+        stats.Damage(amount);
+        damageTaken += amount;
+
+        GameManager.Instance.Shake(0.1f, 0.1f);
     }
 }
