@@ -18,7 +18,7 @@ public class CardData : ScriptableObject
     [SerializeField] private string description;
     [SerializeField] private AudioClip cardSoundEffect;
     [SerializeField] private List<CardEffect> cardEffects = new List<CardEffect>();
-    [SerializeField] private List<int> keyWords;
+    [SerializeField] private List<KeyWord> keywords;
     [SerializeField] private bool limitedUse;
     [SerializeField] private int nbUse;
 
