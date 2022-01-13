@@ -17,7 +17,7 @@ public class CardData : ScriptableObject
     [SerializeField] private string cardName;
     [SerializeField] private string description;
     [SerializeField] private AudioClip cardSoundEffect;
-    [SerializeField] private List<CardEffect> cardEffects;
+    [SerializeField] private List<CardEffect> cardEffects = new List<CardEffect>();
     [SerializeField] private bool limitedUse;
     [SerializeField] private int nbUse;
 
@@ -36,6 +36,7 @@ public class CardData : ScriptableObject
     public List<CardEffect> CardEffects => cardEffects;
 
     public bool LimitedUse { get => limitedUse; set => limitedUse = value; }
+
     public int NbUse { get => nbUse; set => nbUse = value; }
 
     #endregion
@@ -54,15 +55,15 @@ public class CardData : ScriptableObject
         nbUse--;
         foreach (var ce in cardEffects)
         {
-            switch (ce.TargetTyPe)
+            switch (ce.TargetType)
             {
-                case CardEffect.Target.Aoe:
+                case Target.Aoe:
                     ce.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
                     break;
-                case CardEffect.Target.Self:
+                case Target.Self:
                     ce.ApplyEffect(GameManager.Instance.Player);
                     break;
-                case CardEffect.Target.SingleTarget:
+                case Target.SingleTarget:
                     ce.ApplyEffect(TargetingSystem.Instance.getTarget());
                     break;
 
@@ -75,12 +76,42 @@ public class CardData : ScriptableObject
     {
         foreach (var ce in cardEffects)
         {
-            if (ce.TargetTyPe == CardEffect.Target.SingleTarget)
+            if (ce.TargetType == Target.SingleTarget)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    public void CardFromStructure(CardStructure cardStructure)
+    {
+        cardName = cardStructure.cardName;
+        cost = cardStructure.cost;
+        description = cardStructure.description;
+        limitedUse = cardStructure.limitedUse;
+        nbUse = cardStructure.nbUse;
+
+        //Effects
+        foreach (var effectData in cardStructure.cardEffects)
+        {
+            var effect = CreateInstance(effectData.name) as CardEffect;
+
+            if (effect == null) continue;
+
+            effect.EffectFromJson(effectData);
+            cardEffects.Add(effect);
+        }
+
+        //Sprite
+        var loadedSprite = Resources.Load<Sprite>("Cards/" + cardStructure.spritePath);
+
+        Debug.Log(cardStructure.spritePath);
+
+        if (loadedSprite != null)
+        {
+            sprite = loadedSprite;
+        }
     }
 
     #endregion

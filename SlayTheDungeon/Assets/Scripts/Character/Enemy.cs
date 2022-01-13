@@ -24,15 +24,15 @@ public class Enemy : CharacterData
         transform.DOLocalMoveX(destination, 0.15f).OnComplete(ResetPosition);
 
         var attack = EnnemyData.Attacks[attackIndex];
-        switch (attack.TargetTyPe)
+        switch (attack.TargetType)
         {
-            case CardEffect.Target.Aoe:
+            case Target.Aoe:
                 attack.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
                 break;
-            case CardEffect.Target.Self:
+            case Target.Self:
                 attack.ApplyEffect(TargetingSystem.Instance.getTarget());
                 break;
-            case CardEffect.Target.SingleTarget:
+            case Target.SingleTarget:
                 attack.ApplyEffect(GameManager.Instance.Player);
                 break;
         }

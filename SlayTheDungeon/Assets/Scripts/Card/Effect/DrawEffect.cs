@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DrawEffect : CardEffect
 {
-    [SerializeField] private int value;
     public override void ApplyEffect(CharacterData target)
     {
         GameManager.Instance.DrawCards(value);
