@@ -5,10 +5,10 @@ using UnityEngine;
 public class BaseAI : MonoBehaviour
 {
     protected List<KeyWord> preferedKeywords;
-    private Boss owner;
+    protected Boss owner;
         
     // Start is called before the first frame update, during this, we define prefered keywords and the data we wish to use to make decisions
-    void Start()
+    virtual protected void Start()
     {
         owner = this.GetComponent<Boss>();
     }
