@@ -10,9 +10,9 @@ public abstract class BaseBehaviour
     public Boss Owner { get => owner; set => owner = value; }
 
     // LookFor is the base function to use when looking for a specific card or effect
-    public virtual CardData LookForCard()
+    public virtual List<CardData> LookForCards()
     {
-        CardData perfectCard = null;
+        List<CardData> perfectCards = new List<CardData>();
         int nbMatchingKeywords;
         int maxMatchingKeywords = 0;
         foreach (CardData card in owner.Hand)
@@ -23,16 +23,15 @@ public abstract class BaseBehaviour
                 if (card.Keywords.Contains(keyword))
                 {
                     nbMatchingKeywords++;
-                    if (nbMatchingKeywords > maxMatchingKeywords)
+                    if (nbMatchingKeywords >= maxMatchingKeywords)
                     {
-                        perfectCard = card;
+                        if (nbMatchingKeywords > maxMatchingKeywords) perfectCards.Clear();
+                        perfectCards.Add(card);
                         maxMatchingKeywords = nbMatchingKeywords;
                     }
                 }
             }
         }
-        if (perfectCard != null)
-            Debug.Log(perfectCard.CardName);
-        return perfectCard;
+        return perfectCards;
     }
 }
