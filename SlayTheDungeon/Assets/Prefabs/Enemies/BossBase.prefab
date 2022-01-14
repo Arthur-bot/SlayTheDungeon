@@ -23,8 +23,8 @@ MonoBehaviour:
   hud: {fileID: 1725660802132548088}
   baseMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   outlineMaterial: {fileID: 2100000, guid: 021eb5eded8ece24c89366e4ca6e64b7, type: 2}
-  hand: []
-  potentialsAI: []
+  cardPlayedPrefab: {fileID: 4796387833899899547, guid: 06687a1ff06d68d4ab40e04b3a6a8a6a, type: 3}
+  cardPlayedRoot: {fileID: 7785184336179224441}
 --- !u!1001 &8668972767097452160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,6 +105,11 @@ PrefabInstance:
 --- !u!1 &3267714768658536578 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6131406294064590338, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+  m_PrefabInstance: {fileID: 8668972767097452160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7785184336179224441 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1460546350415686137, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
   m_PrefabInstance: {fileID: 8668972767097452160}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1725660802132548088 stripped

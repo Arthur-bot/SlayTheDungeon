@@ -9,6 +9,11 @@ public class ComboAI : BaseAI
         throw new System.NotImplementedException();
     }
 
+    public override void TakeDecision()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void UpdateBehaviour()
     {
         throw new System.NotImplementedException();
