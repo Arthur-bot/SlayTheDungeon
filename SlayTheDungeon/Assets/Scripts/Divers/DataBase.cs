@@ -129,4 +129,6 @@ public class DataBase : Singleton<DataBase>
         List<EnnemyData> newPick = combinationOfBoss[Random.Range(0, combinationOfBoss.Count - 1)].ennemies;
         return newPick;
     }
+
+    #endregion
 }

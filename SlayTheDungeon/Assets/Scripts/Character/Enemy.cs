@@ -47,6 +47,8 @@ public class Enemy : CharacterData
 
     public void ShowNextAction()
     {
+        if(EnnemyData.Boss) return;
+
         attackIndex += 1;
         if (attackIndex >= EnnemyData.Attacks.Count)
         {
