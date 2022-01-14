@@ -6,6 +6,6 @@ public class AttackBehaviour : BaseBehaviour
 {
     public AttackBehaviour ()
     {
-        preferedKeywords = new List<KeyWord> { KeyWord.Attack };
+        preferedKeywords = new List<KeyWord> { KeyWord.Attack, KeyWord.Poison };
     }
 }

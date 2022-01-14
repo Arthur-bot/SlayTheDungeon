@@ -8,21 +8,21 @@ using UnityEngine;
 public enum KeyWord
 {
     Attack,
-    Defend
+    Defend,
+    Poison
 }
 
 public class Boss : Enemy
 {
-    [SerializeField] private CardUI cardPlayedPrefab;
-    [SerializeField] private Transform cardPlayedRoot;
     private int energy = 3;
     private BaseAI ai;
     private List<CardData> deck = new List<CardData>();
     private List<CardData> discard = new List<CardData>();
     private List<CardData> hand = new List<CardData>();
+    private int damageTaken = 0;
 
     public List<CardData> Hand { get => hand; set => hand = value; }
-    public int Energy { get => energy; set => energy = value; }
+    public int DamageTaken { get => damageTaken; }
 
     public override void SetupEnemy()
     {
@@ -41,15 +41,19 @@ public class Boss : Enemy
     {
         //information collecting
         
-        //reset energy
+        //decision taking
         energy = 3;
 
         //setup target to use cards properly
         TargetingSystem.Instance.SetTarget(this);
 
-        ai.TakeDecision();
+        CardData toPlay = ai.LookForCard();
+        if (toPlay != null)
+            PlayACard(toPlay);
 
-        //end turn
+        // end the turn
+        damageTaken = 0;
+        ai.UpdateBehaviour();
         DiscardHand();
         DrawCards(5);
     }
@@ -63,24 +67,16 @@ public class Boss : Enemy
         hand.Clear();
     }
 
-    public bool PlayACard(CardData card)
+    private void PlayACard(CardData card)
     {
-        if(energy >= card.Cost)
+        if(energy > card.Cost)
         {
-            CardUI playedCard = Instantiate(cardPlayedPrefab, Vector2.zero, Quaternion.identity, cardPlayedRoot);
-            playedCard.transform.localScale = Vector3.one / 2.0f;
-            playedCard.SetupCard(card);
-            playedCard.transform.DOLocalMoveY(playedCard.transform.localPosition.y + 30.0f, 0.5f).OnComplete
-                (() =>{ StartCoroutine(FadeCard(playedCard.GetComponent<CanvasGroup>(), 0.5f));});
             energy -= card.Cost;
             card.Use(false);
-            Debug.Log(card.CardName);
             hand.Remove(card);
             if (!card.LimitedUse || card.NbUse > 0)
                 discard.Add(card);
-            return true;
         }
-        return false;
     }
     private void DrawOneCard()
     {
@@ -115,13 +111,11 @@ public class Boss : Enemy
         energy += value;
     }
 
-    IEnumerator FadeCard(CanvasGroup card, float time)
+    public override void TakeDamage(int amount)
     {
-        for (float i = 0; i < time; i += Time.deltaTime)
-        {
-            card.alpha = 1 - i;
-            yield return null;
-        }
-        Destroy(card.gameObject);
+        stats.Damage(amount);
+        damageTaken += amount;
+
+        GameManager.Instance.Shake(0.1f, 0.1f);
     }
 }
