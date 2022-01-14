@@ -29,7 +29,7 @@ public class Boss : Enemy
     public override void SetupEnemy()
     {
         base.SetupEnemy();
-        foreach(CardData card in EnnemyData.EnnemyDeck)
+        foreach (CardData card in EnnemyData.EnnemyDeck)
         {
             deck.Add(Instantiate(card));
         }
@@ -41,8 +41,6 @@ public class Boss : Enemy
     }
     public override void PlayTurn()
     {
-        //information collecting
-        
         //reset energy
         energy = 3;
 
@@ -51,7 +49,6 @@ public class Boss : Enemy
 
         ai.TakeDecision();
 
-        //end turn
         DiscardHand();
         DrawCards(5);
     }
@@ -67,13 +64,13 @@ public class Boss : Enemy
 
     public bool PlayACard(CardData card)
     {
-        if(energy >= card.Cost)
+        if (energy >= card.Cost)
         {
             CardUI playedCard = Instantiate(cardPlayedPrefab, Vector2.zero, Quaternion.identity, cardPlayedRoot);
             playedCard.transform.localScale = Vector3.one / 2.0f;
             playedCard.SetupCard(card);
             playedCard.transform.DOLocalMoveY(playedCard.transform.localPosition.y + 30.0f, 0.5f).OnComplete
-                (() =>{ StartCoroutine(FadeCard(playedCard.GetComponent<CanvasGroup>(), 0.5f));});
+                (() => { StartCoroutine(FadeCard(playedCard.GetComponent<CanvasGroup>(), 0.5f)); });
             energy -= card.Cost;
             card.Use(false);
             Debug.Log(card.CardName);
@@ -98,7 +95,7 @@ public class Boss : Enemy
 
     private void Shuffle()
     {
-        foreach(CardData card in discard)
+        foreach (CardData card in discard)
         {
             deck.Add(card);
         }
