@@ -14,6 +14,47 @@ public class AttackDefendAI : BaseAI
         UpdateBehaviour();
     }
 
+    public override void TakeDecision()
+    {
+        Owner.StartCoroutine(TakeDecisionInTime());
+    }
+
+    IEnumerator TakeDecisionInTime()
+    {
+        bool playSpecificCard = true;
+        List<CardData> cardsToPay = LookForCards();
+        while (playSpecificCard)
+        {
+            bool hasPlayedCard = false;
+            foreach (CardData card in cardsToPay)
+            {
+                if (Owner.PlayACard(card))
+                {
+                    yield return new WaitForSeconds(1.5f);
+                    hasPlayedCard = true;
+                    cardsToPay.Remove(card);
+                    break;
+                }
+            }
+            playSpecificCard = hasPlayedCard;
+        }
+        while (!playSpecificCard)
+        {
+            bool hasPlayedCard = false;
+            foreach (CardData card in Owner.Hand)
+            {
+                if (Owner.PlayACard(card))
+                {
+                    yield return new WaitForSeconds(1.5f);
+                    hasPlayedCard = true;
+                    break;
+                }
+            }
+            playSpecificCard = !hasPlayedCard;
+        }
+        UpdateBehaviour();
+    }
+
     public override void UpdateBehaviour()
     {
         int randomNbr = Random.Range(0, 2);

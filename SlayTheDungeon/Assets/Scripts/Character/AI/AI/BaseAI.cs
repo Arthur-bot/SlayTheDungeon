@@ -11,8 +11,9 @@ public abstract class BaseAI : ScriptableObject
 
     public abstract void  Init();
     public abstract void UpdateBehaviour();
-    public CardData LookForCard()
+    public abstract void TakeDecision();
+    public List<CardData> LookForCards()
     {
-        return currentBehaviour.LookForCard();
+        return currentBehaviour.LookForCards();
     }
 }
