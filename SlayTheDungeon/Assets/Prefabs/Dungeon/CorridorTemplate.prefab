@@ -545,6 +545,8 @@ MonoBehaviour:
   hotPointsPrefab:
   - {fileID: 6780572108112432387, guid: 6cd3b645316761041b20c3fa1751c7c7, type: 3}
   - {fileID: 2509063600549575490, guid: e1900543b0849244d84442defbb88bab, type: 3}
+  - {fileID: 2509063600549575490, guid: 91f770f3ce7267d468f28309321cec25, type: 3}
+  - {fileID: 2509063600549575490, guid: 4fc71f33b3fdafb4aae087b4a7a2b1c4, type: 3}
 --- !u!1 &7856534890422233680
 GameObject:
   m_ObjectHideFlags: 0

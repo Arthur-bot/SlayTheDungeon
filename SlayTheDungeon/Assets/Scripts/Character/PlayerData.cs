@@ -70,12 +70,10 @@ public class PlayerData : CharacterData
     }
     public void Rest()
     {
-        Debug.Log("Rest");
         TakeDamage(-stats.BaseStats.Health / 2);
     }
     public void Forge()
     {
-        Debug.Log("Forge");
         foreach (CardData card in deck)
         {
             if (card.LimitedUse)

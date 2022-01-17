@@ -9,7 +9,8 @@ public enum KeyWord
 {
     Attack,
     Defend,
-    Poison
+    Poison,
+    Draw
 }
 
 public class Boss : Enemy

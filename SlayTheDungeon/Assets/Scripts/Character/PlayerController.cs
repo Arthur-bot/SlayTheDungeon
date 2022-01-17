@@ -49,4 +49,9 @@ public class PlayerController : MonoBehaviour
             gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.8f;
         }
     }
+
+    public void Reverse()
+    {
+        Flip(!gameManager.PlayerFacingRight);
+    }
 }
