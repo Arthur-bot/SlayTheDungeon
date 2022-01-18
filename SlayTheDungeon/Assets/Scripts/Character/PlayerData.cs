@@ -34,6 +34,13 @@ public class PlayerData : CharacterData
         Controller = GetComponent<PlayerController>();
     }
 
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+
+        GameManager.Instance.OnPlayerDeath();
+    }
+
     #endregion
 
     #region Public Methods
