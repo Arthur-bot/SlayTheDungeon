@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5170581498198059994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3c12c58550e314eb5cb79e42b5f7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 0
+  toAdd:
+  - {fileID: 11400000, guid: ce630ed10a0185a44957737af7f771ff, type: 2}
+  - {fileID: 11400000, guid: ce630ed10a0185a44957737af7f771ff, type: 2}
+  - {fileID: 11400000, guid: ce630ed10a0185a44957737af7f771ff, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
+  m_Name: ShinobiBag
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 183c3d89aba71d54eaf01188f9206d84, type: 3}
+  cost: 2
+  cardName: Shinobi Bag
+  description: Add 3 Kunais to your hand
+  cardSoundEffect: {fileID: 0}
+  cardEffects:
+  - {fileID: -5170581498198059994}
+  keywords: 04000000
+  limitedUse: 0
+  nbUse: 0

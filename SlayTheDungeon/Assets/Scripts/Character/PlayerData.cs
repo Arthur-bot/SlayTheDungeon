@@ -34,6 +34,13 @@ public class PlayerData : CharacterData
         Controller = GetComponent<PlayerController>();
     }
 
+    protected override void Update()
+    {
+        if (IsAlive && stats.CurrentHealth <= 0)
+        {
+            GameManager.Instance.EndGame();
+        }
+    }
     #endregion
 
     #region Public Methods
@@ -41,6 +48,11 @@ public class PlayerData : CharacterData
     public override void DrawCards(int value)
     {
         GameManager.Instance.DrawCards(value);
+    }
+
+    public override void AddCards(List<CardData> toAdd)
+    {
+        GameManager.Instance.AddCards(toAdd);
     }
     public override void GetEnergy(int value)
     {

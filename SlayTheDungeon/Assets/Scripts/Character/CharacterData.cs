@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,6 +15,7 @@ public class CharacterData : MonoBehaviour
 
     [Header("Materials")]
     [SerializeField] private Material baseMaterial;
+
     [SerializeField] private Material outlineMaterial;
 
     #endregion
@@ -79,6 +82,7 @@ public class CharacterData : MonoBehaviour
         Stats.Tick();
     }
     public virtual void DrawCards(int value) { }
+    public virtual void AddCards(List<CardData> toAdd) { }
     public virtual void GetEnergy(int value) { }
 
     #endregion

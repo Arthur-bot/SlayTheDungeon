@@ -6,7 +6,6 @@ public class ComboAI : BaseAI
 {
     public override void Init()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void TakeDecision()

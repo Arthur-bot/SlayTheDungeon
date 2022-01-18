@@ -67,6 +67,15 @@ public class DeckPile : Pile
             DrawCard();
         }
     }
+    public void DrawCard(CardData toDraw)
+    {
+        var newCard = Instantiate(cardTemplate, hand.transform);
+        // Initializes it whit the random card
+        newCard.SetupCard(Instantiate(toDraw));
+        // Adds the card to the hand
+        hand.DrawCard(newCard.GetComponent<CardUI>());
+        audioManager.PlaySFX(audioDraw);
+    }
 
     #endregion
 

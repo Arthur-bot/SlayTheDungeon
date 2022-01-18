@@ -10,7 +10,9 @@ public enum KeyWord
     Attack,
     Defend,
     Poison,
-    Draw
+    Draw,
+    Generation,
+    Combo
 }
 
 public class Boss : Enemy
@@ -112,6 +114,13 @@ public class Boss : Enemy
     public override void GetEnergy(int value)
     {
         energy += value;
+    }
+    public override void AddCards(List<CardData> toAdd)
+    {
+        foreach(CardData card in toAdd)
+        {
+            hand.Add(Instantiate(card));
+        }
     }
 
     IEnumerator FadeCard(CanvasGroup card, float time)

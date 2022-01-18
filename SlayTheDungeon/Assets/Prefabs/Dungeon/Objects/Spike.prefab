@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapSprite: {fileID: 21300000, guid: 4b257e6b832265c48ade6a611e0cf7f9, type: 3}
-  damage: 4
+  damage: 3

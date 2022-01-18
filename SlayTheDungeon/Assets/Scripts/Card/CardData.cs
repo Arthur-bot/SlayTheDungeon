@@ -54,6 +54,7 @@ public class CardData : ScriptableObject
 
     public void Use(bool isPlayer = true)
     {
+        BattleData.Instance.IncrementNbPlayedCard();
         nbUse--;
         foreach (var ce in cardEffects)
         {
@@ -107,8 +108,6 @@ public class CardData : ScriptableObject
 
         //Sprite
         var loadedSprite = Resources.Load<Sprite>("Cards/" + cardStructure.spritePath);
-
-        Debug.Log(cardStructure.spritePath);
 
         if (loadedSprite != null)
         {
