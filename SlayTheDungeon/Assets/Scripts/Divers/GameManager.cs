@@ -169,6 +169,25 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(scene.name);
     }
 
+    public void OnPlayerDeath()
+    {
+        gameUI.EndTurnButton.interactable = false;
+        hand.DiscardHand();
+
+        // Change Sounds & Music
+        // Check victory or GameOver & say it accordingly
+        // Change UI
+        gameUI.StopFight();
+
+        GameUI.Instance.GameOverPanel.SetActive(true);
+
+        InBattle = false;
+        BattleGround.FinishBattle();
+        // Reset player Status & modifiers
+        // Remove combat state & restrictions (movements, inventory, ...)
+        BattleGround.LeaveBattleGround();
+    }
+
     #endregion
 
     #region Private Methods

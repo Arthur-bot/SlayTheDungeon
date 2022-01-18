@@ -34,13 +34,13 @@ public class PlayerData : CharacterData
         Controller = GetComponent<PlayerController>();
     }
 
-    protected override void Update()
+    protected override void OnDeath()
     {
-        if (IsAlive && stats.CurrentHealth <= 0)
-        {
-            GameManager.Instance.EndGame();
-        }
+        base.OnDeath();
+
+        GameManager.Instance.OnPlayerDeath();
     }
+
     #endregion
 
     #region Public Methods
