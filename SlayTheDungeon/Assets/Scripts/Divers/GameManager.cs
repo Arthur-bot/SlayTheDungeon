@@ -163,11 +163,6 @@ public class GameManager : Singleton<GameManager>
     {
         StartCoroutine(AddCardsInHand(cards));
     }
-    public void EndGame()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
 
     public void OnPlayerDeath()
     {

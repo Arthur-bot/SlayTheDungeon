@@ -39,6 +39,7 @@ public class PlayerData : CharacterData
         base.OnDeath();
 
         GameManager.Instance.OnPlayerDeath();
+        Controller.IsMoving = false;
     }
 
     #endregion
