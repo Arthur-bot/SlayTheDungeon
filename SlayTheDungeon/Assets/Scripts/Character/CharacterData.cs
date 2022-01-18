@@ -1,9 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class CharacterData : MonoBehaviour
 {
@@ -17,6 +15,7 @@ public class CharacterData : MonoBehaviour
 
     [Header("Materials")]
     [SerializeField] private Material baseMaterial;
+
     [SerializeField] private Material outlineMaterial;
 
     #endregion
@@ -45,8 +44,7 @@ public class CharacterData : MonoBehaviour
     protected virtual void Awake()
     {
         Stats.Init(this);
-        hud.UpdateHUD(this);
-
+        hud.Init(this);
         stats.OnHit += hud.UpdateHUD;
     }
 
@@ -84,6 +82,7 @@ public class CharacterData : MonoBehaviour
         Stats.Tick();
     }
     public virtual void DrawCards(int value) { }
+    public virtual void AddCards(List<CardData> toAdd) { }
     public virtual void GetEnergy(int value) { }
 
     #endregion

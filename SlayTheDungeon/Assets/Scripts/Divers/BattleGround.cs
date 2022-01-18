@@ -128,6 +128,7 @@ public class BattleGround : MonoBehaviour
 
     public void DeleteCharacter(CharacterData enemy)
     {
+        if (Enemies == null) return;
         var a = enemy as Enemy;
 
         if (!Enemies.Contains(enemy))

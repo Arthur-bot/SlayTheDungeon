@@ -31,27 +31,6 @@ public class EnnemyData : ScriptableObject
 
     #endregion
 
-    #region Public Methods
-
-    public void Attack()
-    {
-        int indexAttack = Random.Range(0, attacks.Count);
-        var attack = attacks[indexAttack];
-        switch (attack.TargetTyPe)
-        {
-            case CardEffect.Target.Aoe:
-                attack.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
-                break;
-            case CardEffect.Target.Self:
-                attack.ApplyEffect(TargetingSystem.Instance.getTarget());
-                break;
-            case CardEffect.Target.SingleTarget:
-                attack.ApplyEffect(GameManager.Instance.Player);
-                break;
-
-        }
-    }
-    #endregion
 }
 
 #if UNITY_EDITOR

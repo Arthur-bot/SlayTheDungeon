@@ -7,40 +7,24 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private RectTransform sprite;
-    float moveX;
-
+    private bool isMoving;
     private GameManager gameManager;
-    private LootManager lootManager;
 
 
     private bool facingRight { get; set; } = true;
+    public bool IsMoving { get => isMoving; set => isMoving = value; }
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
     }
-    private void Start()
-    {
-        lootManager = LootManager.Instance;
-    }
 
     private void Update()
     {
-        if (!gameManager.InBattle && gameManager.CurrentRoom is Corridor && !lootManager.IsLooting)
+        if (isMoving)
         {
-            moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            float moveX = (facingRight? 1 : -1) * speed * Time.deltaTime;
             transform.position = transform.position + new Vector3(moveX, 0, 0);
-
-            if (moveX > 0f && !facingRight)
-            {
-                Flip(true);
-                facingRight = true;
-            }
-            else if (moveX < 0 && facingRight)
-            {
-                Flip(false);
-                facingRight = false;
-            }
         }
     }
 
@@ -64,13 +48,10 @@ public class PlayerController : MonoBehaviour
 
             gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.8f;
         }
+    }
 
-
-        //facingRight = !facingRight;
-        //sprite.flipX = !facingRight;
-
-        //gameManager.PlayerFacingRight = facingRight;
-
-        //gameManager.CurrentCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = facingRight? 0.2f : 0.8f;
+    public void Reverse()
+    {
+        Flip(!gameManager.PlayerFacingRight);
     }
 }

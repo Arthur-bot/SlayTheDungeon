@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65203c8bd490a6b438c7c2dfd4d0cb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   sprite: {fileID: 5922089502084791019}
 --- !u!1001 &5520963254356636157
 PrefabInstance:
@@ -127,7 +127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2113256554853792514, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 20.1
       objectReference: {fileID: 0}
     - target: {fileID: 2113256554853792514, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
       propertyPath: m_fontSizeMax

@@ -31,6 +31,7 @@ public class Hand : MonoBehaviour
 
     public void DiscardHand()
     {
+        if (cards == null) return;
         // Discards all cards
         foreach (CardUI card in cards)
         {

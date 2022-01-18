@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameUI : Singleton<GameUI>
@@ -20,6 +21,7 @@ public class GameUI : Singleton<GameUI>
     [SerializeField] private List<Transform> rightPositions;
     [SerializeField] private List<Transform> leftPositions;
     [SerializeField] private TextMeshProUGUI energyText;
+    [SerializeField] private GameObject gameOverPanel;
 
     [SerializeField] private GameObject fightMaterial;
     [SerializeField] private GameObject exploreMaterial;
@@ -51,6 +53,8 @@ public class GameUI : Singleton<GameUI>
     public List<Transform> LeftPositions => leftPositions;
 
     public TextMeshProUGUI EnergyText => energyText;
+
+    public GameObject GameOverPanel => gameOverPanel;
 
     #endregion
 
@@ -86,5 +90,21 @@ public class GameUI : Singleton<GameUI>
         exploreMaterial.SetActive(true);
     }
 
-    #endregion
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+
+        UnityEditor.EditorApplication.isPlaying = false;
+
+#endif
+
+        Application.Quit();
+    }
+
+#endregion
 }

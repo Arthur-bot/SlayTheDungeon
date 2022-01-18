@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: startingDeck.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
+    - target: {fileID: 6760233776612930586, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &301368019 stripped
@@ -673,7 +677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903168981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0010652542, y: -0.36454678, z: 0}
+  m_LocalPosition: {x: -0.000022888184, y: -0.2713337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1057858634}
@@ -767,18 +771,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 301368019}
-    - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 

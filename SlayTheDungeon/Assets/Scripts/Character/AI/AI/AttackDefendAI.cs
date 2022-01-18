@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackDefendAI", menuName = "AI")]
 public class AttackDefendAI : BaseAI
 {
     private AttackBehaviour attackBehaviour = new AttackBehaviour();

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
@@ -49,6 +51,7 @@ public class GameManager : Singleton<GameManager>
 
     public delegate void OnCharacterDeathEventHandler(CharacterData character);
     public event OnCharacterDeathEventHandler OnCharacterDeath;
+    public event EventHandler OnEndTurn;
 
     #endregion
 
@@ -106,6 +109,7 @@ public class GameManager : Singleton<GameManager>
         if (room is Room)
         {
             (room as Room).EnterRoom();
+            player.Controller.IsMoving = false;
         }
         room.gameObject.SetActive(true);
         currentRoom = room;
@@ -139,6 +143,7 @@ public class GameManager : Singleton<GameManager>
             EnterRoom(thisRoom.C_Up, thisRoom.C_Up.StartPoint);
             player.Controller.Flip(true);
         }
+        player.Controller.IsMoving = true;
     }
 
     public void Shake(float duration, float magnitude)
@@ -153,6 +158,29 @@ public class GameManager : Singleton<GameManager>
     public void DrawCards(int amount)
     {
         StartCoroutine(Draw(amount));
+    }
+    public void AddCards(List<CardData> cards)
+    {
+        StartCoroutine(AddCardsInHand(cards));
+    }
+
+    public void OnPlayerDeath()
+    {
+        gameUI.EndTurnButton.interactable = false;
+        hand.DiscardHand();
+
+        // Change Sounds & Music
+        // Check victory or GameOver & say it accordingly
+        // Change UI
+        gameUI.StopFight();
+
+        GameUI.Instance.GameOverPanel.SetActive(true);
+
+        InBattle = false;
+        BattleGround.FinishBattle();
+        // Reset player Status & modifiers
+        // Remove combat state & restrictions (movements, inventory, ...)
+        BattleGround.LeaveBattleGround();
     }
 
     #endregion
@@ -171,6 +199,7 @@ public class GameManager : Singleton<GameManager>
         // Announce Fight
         // Change Sounds & Music
         // Change UI
+        player.Controller.IsMoving = false;
         gameUI.SetupFight(player.Deck);
 
         BattleGround.InitBattle(enemies);
@@ -238,6 +267,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         BattleGround.TurnType = TurnType.PlayerTurn;
+        OnEndTurn.Invoke(this, EventArgs.Empty);
         yield return new WaitForEndOfFrame();
     }
 
@@ -254,6 +284,14 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(0.2f);
         }
 
+        foreach (var monster in BattleGround.Enemies)
+        {
+            if (monster.IsAlive)
+            {
+                monster.ShowNextAction();
+            }
+        }
+
         gameUI.EndTurnButton.interactable = true;
 
         while (!TurnEnded)
@@ -268,6 +306,7 @@ public class GameManager : Singleton<GameManager>
         gameUI.EndTurnButton.interactable = false;
         hand.DiscardHand();
         BattleGround.TurnType = TurnType.EnemyTurn;
+        OnEndTurn.Invoke(this, EventArgs.Empty);
     }
 
     private IEnumerator ShakeCamera(float duration, float magnitude)
@@ -294,6 +333,15 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < amount; i++)
         {
             playerDeck.DrawCard();
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private IEnumerator AddCardsInHand(List<CardData> toAdd)
+    {
+        foreach (CardData card in toAdd)
+        {
+            playerDeck.DrawCard(card);
             yield return new WaitForSeconds(0.2f);
         }
     }

@@ -183,9 +183,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allCards:
   - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
   - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
   - {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
   - {fileID: 11400000, guid: be733771c245481409a7e020f9c11b48, type: 2}
   - {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
   - {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+  - {fileID: 11400000, guid: 333f6c113e94af642817f00cf0bc0151, type: 2}
+  ennemyCombos:
+  - ennemies:
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    level: 1
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    level: 2
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    level: 2
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    level: 3
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    level: 4
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    level: 5
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 33aa71c2a5b3e9b41accbd03f891d61e, type: 2}
+    level: 5
+    boss: 1
+  attackIcon: {fileID: 3132663690335534207, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
+  armorIcon: {fileID: 7636561763445232136, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
+  poisonIcon: {fileID: -2876628808043661572, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
+  furyIcon: {fileID: 0}
+  gelIcon: {fileID: 0}
+  pathToMods: 

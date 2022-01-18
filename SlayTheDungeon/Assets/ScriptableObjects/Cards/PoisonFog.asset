@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 2
-  numberOfStack: 3
-  effectSprite: {fileID: -5759857619446460927, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
+  value: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,6 +34,6 @@ MonoBehaviour:
   cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: -8193976556445938808}
-  keywords: 0000000002000000
+  keywords: 00000000
   limitedUse: 0
   nbUse: 0

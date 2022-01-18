@@ -57,7 +57,8 @@ public class CardUI : MonoBehaviour
     }
     private void setSprite(Sprite sprite)
     {
-        cardArtwork.sprite = sprite;
+        if(sprite != null)
+            cardArtwork.sprite = sprite;
     }
 
     #endregion

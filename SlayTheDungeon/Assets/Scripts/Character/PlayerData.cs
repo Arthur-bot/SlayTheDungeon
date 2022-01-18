@@ -34,6 +34,14 @@ public class PlayerData : CharacterData
         Controller = GetComponent<PlayerController>();
     }
 
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+
+        GameManager.Instance.OnPlayerDeath();
+        Controller.IsMoving = false;
+    }
+
     #endregion
 
     #region Public Methods
@@ -41,6 +49,11 @@ public class PlayerData : CharacterData
     public override void DrawCards(int value)
     {
         GameManager.Instance.DrawCards(value);
+    }
+
+    public override void AddCards(List<CardData> toAdd)
+    {
+        GameManager.Instance.AddCards(toAdd);
     }
     public override void GetEnergy(int value)
     {
@@ -70,12 +83,10 @@ public class PlayerData : CharacterData
     }
     public void Rest()
     {
-        Debug.Log("Rest");
         TakeDamage(-stats.BaseStats.Health / 2);
     }
     public void Forge()
     {
-        Debug.Log("Forge");
         foreach (CardData card in deck)
         {
             if (card.LimitedUse)

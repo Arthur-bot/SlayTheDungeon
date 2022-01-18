@@ -9,7 +9,10 @@ public enum KeyWord
 {
     Attack,
     Defend,
-    Poison
+    Poison,
+    Draw,
+    Generation,
+    Combo
 }
 
 public class Boss : Enemy
@@ -21,7 +24,6 @@ public class Boss : Enemy
     private List<CardData> deck = new List<CardData>();
     private List<CardData> discard = new List<CardData>();
     private List<CardData> hand = new List<CardData>();
-    private int damageTaken = 0;
 
     public List<CardData> Hand { get => hand; set => hand = value; }
     public int Energy { get => energy; set => energy = value; }
@@ -112,6 +114,13 @@ public class Boss : Enemy
     public override void GetEnergy(int value)
     {
         energy += value;
+    }
+    public override void AddCards(List<CardData> toAdd)
+    {
+        foreach(CardData card in toAdd)
+        {
+            hand.Add(Instantiate(card));
+        }
     }
 
     IEnumerator FadeCard(CanvasGroup card, float time)

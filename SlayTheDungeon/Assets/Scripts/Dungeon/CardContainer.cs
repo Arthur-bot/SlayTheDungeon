@@ -8,12 +8,14 @@ public class CardContainer : MonoBehaviour
     [SerializeField] private int nbOfChoice;
     private bool isOpen;
 
-    private void OnMouseDown()
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isOpen && !GameManager.Instance.InBattle && !LootManager.Instance.IsLooting)
+        if (collision.GetComponent<PlayerController>() && !isOpen)
         {
+            Debug.Log("collision with box");
             isOpen = true;
             LootManager.Instance.SetupLoop(nbOfChoice);
+            GameManager.Instance.Player.Controller.IsMoving = false;
         }
     }
 }
