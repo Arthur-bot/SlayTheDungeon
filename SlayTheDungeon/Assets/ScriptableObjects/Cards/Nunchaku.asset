@@ -18,11 +18,11 @@ MonoBehaviour:
   description: Deals damages equal to the number of cards played this turn
   cardSoundEffect: {fileID: 0}
   cardEffects:
-  - {fileID: 4714355831054226543}
+  - {fileID: 8973196632474725920}
   keywords: 0000000005000000
-  limitedUse: 1
-  nbUse: 3
---- !u!114 &4714355831054226543
+  limitedUse: 0
+  nbUse: 0
+--- !u!114 &8973196632474725920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
