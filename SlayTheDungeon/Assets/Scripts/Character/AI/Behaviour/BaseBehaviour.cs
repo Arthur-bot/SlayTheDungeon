@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseBehaviour
+public class BaseBehaviour
 {
     protected List<KeyWord> preferedKeywords;
     protected Boss owner;
 
     public Boss Owner { get => owner; set => owner = value; }
+    public List<KeyWord> PreferedKeywords { get => preferedKeywords; set => preferedKeywords = value; }
 
     // LookFor is the base function to use when looking for a specific card or effect
     public virtual List<CardData> LookForCards()

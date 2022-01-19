@@ -12,11 +12,13 @@ public enum KeyWord
     Poison,
     Draw,
     Generation,
-    Combo
+    Combo,
+    Energy
 }
 
 public class Boss : Enemy
 {
+    private bool isPlaying;
     [SerializeField] private CardUI cardPlayedPrefab;
     [SerializeField] private Transform cardPlayedRoot;
     private int energy = 3;
@@ -27,6 +29,7 @@ public class Boss : Enemy
 
     public List<CardData> Hand { get => hand; set => hand = value; }
     public int Energy { get => energy; set => energy = value; }
+    public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
 
     public override void SetupEnemy()
     {
@@ -48,14 +51,11 @@ public class Boss : Enemy
 
         //setup target to use cards properly
         TargetingSystem.Instance.SetTarget(this);
-
+        isPlaying = true;
         ai.TakeDecision();
-
-        DiscardHand();
-        DrawCards(5);
     }
 
-    private void DiscardHand()
+    public void DiscardHand()
     {
         foreach (CardData card in hand)
         {

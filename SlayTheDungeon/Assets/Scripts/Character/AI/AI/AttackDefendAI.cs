@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AttackDefendAI : BaseAI
 {
-    private AttackBehaviour attackBehaviour = new AttackBehaviour();
-    private DefendBehaviour defendBehaviour = new DefendBehaviour();
+    private BaseBehaviour attackBehaviour = new BaseBehaviour();
+    private BaseBehaviour defendBehaviour = new BaseBehaviour();
     public override void Init()
     {
         attackBehaviour.Owner = Owner;
+        attackBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Attack, KeyWord.Poison };
         defendBehaviour.Owner = Owner;
+        defendBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Defend };
         UpdateBehaviour();
     }
 
@@ -52,9 +54,10 @@ public class AttackDefendAI : BaseAI
             playSpecificCard = !hasPlayedCard;
         }
         UpdateBehaviour();
+        Owner.IsPlaying = false;
     }
 
-    public override void UpdateBehaviour()
+    public void UpdateBehaviour()
     {
         int randomNbr = Random.Range(0, 2);
         if (randomNbr == 0)
