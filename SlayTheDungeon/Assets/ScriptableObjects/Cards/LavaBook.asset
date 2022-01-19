@@ -50,6 +50,6 @@ MonoBehaviour:
   cardEffects:
   - {fileID: -7763735533026279151}
   - {fileID: -6041371506181741167}
-  keywords: 00000000
+  keywords: 0000000003000000
   limitedUse: 1
   nbUse: 3

@@ -10,10 +10,20 @@ public abstract class BaseAI : ScriptableObject
     public Boss Owner { get => owner; set => owner = value; }
 
     public abstract void  Init();
-    public abstract void UpdateBehaviour();
     public abstract void TakeDecision();
     public List<CardData> LookForCards()
     {
         return currentBehaviour.LookForCards();
+    }
+    protected bool CheckCard(KeyWord keyword)
+    {
+        foreach (CardData card in Owner.Hand)
+        {
+            if (card.Keywords.Contains(keyword))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

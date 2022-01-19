@@ -23,16 +23,19 @@ MonoBehaviour:
       elementalProtection: 000000000000000000000000
       elementalBoosts: 000000000000000000000000
   ennemyDeck:
-  - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
+  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
   - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
-  - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
+  - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
+  - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
+  - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
+  - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
+  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
   - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
-  - {fileID: 11400000, guid: df1b525ec9b70e843b139d92c9f9a062, type: 2}
-  - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
-  - {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+  - {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
+  - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
   boss: 1
-  ai: {fileID: 7962364599147247737}
---- !u!114 &7962364599147247737
+  ai: {fileID: 8069420804026698023}
+--- !u!114 &8069420804026698023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +44,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92e58f515129204289b43c683d7b92a, type: 3}
+  m_Script: {fileID: 11500000, guid: 38d008f2438f92047ae1aa7dd9b988b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

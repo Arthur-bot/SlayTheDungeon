@@ -183,6 +183,13 @@ public class GameManager : Singleton<GameManager>
         BattleGround.LeaveBattleGround();
     }
 
+    public void EndEnnemyTurn()
+    {
+        if (!InBattle) return;
+        BattleGround.TurnType = TurnType.PlayerTurn;
+        OnEndTurn.Invoke(this, EventArgs.Empty);
+    }
+
     #endregion
 
     #region Private Methods
@@ -246,10 +253,12 @@ public class GameManager : Singleton<GameManager>
         // Remove combat state & restrictions (movements, inventory, ...)
         lootManager.SetupLoop(3);
         BattleGround.LeaveBattleGround();
+        BattleData.Instance.Reset();
     }
 
     private IEnumerator EnemyTurn()
     {
+        List<Boss> bosses = new List<Boss>();
         foreach (var monster in BattleGround.Enemies)
         {
             monster.UpdateDurations();
@@ -261,14 +270,26 @@ public class GameManager : Singleton<GameManager>
         {
             if (monster.IsAlive)
             {
+                if (monster is Boss) bosses.Add(monster as Boss);
                 monster.PlayTurn();
-                yield return new WaitForSeconds(monster is Boss ? 5.0f : 1.0f);
+                yield return new WaitForSeconds(1.0f);
             }
         }
-
-        BattleGround.TurnType = TurnType.PlayerTurn;
-        OnEndTurn.Invoke(this, EventArgs.Empty);
-        yield return new WaitForEndOfFrame();
+        while(bosses.Count > 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            foreach (Boss boss in bosses)
+            {
+                if (!boss.IsPlaying)
+                {
+                    boss.DiscardHand();
+                    boss.DrawCards(5);
+                    bosses.Remove(boss);
+                    break;
+                }
+            }
+        }
+        EndEnnemyTurn();
     }
 
     private IEnumerator PlayerTurn()

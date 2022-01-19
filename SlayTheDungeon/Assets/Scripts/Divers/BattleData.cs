@@ -16,6 +16,11 @@ public class BattleData : Singleton<BattleData>
         gameManager.OnEndTurn += ResetCounter;
     }
 
+    public void Reset()
+    {
+        ResetCounter(null, null);
+    }
+
     private void ResetCounter(object sender, EventArgs e)
     {
         nbPlayedCard = 0;
