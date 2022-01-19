@@ -214,7 +214,6 @@ public class CardEditor : Editor
             _equippedEffectListProperty.DeleteArrayElementAtIndex(toDelete);
             _equippedEffectListProperty.DeleteArrayElementAtIndex(toDelete);
         }
-
         serializedObject.ApplyModifiedProperties();
     }
 }

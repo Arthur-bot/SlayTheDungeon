@@ -7,13 +7,13 @@ public class ComboAI : BaseAI
     private List<CardData> combosCards = new List<CardData>();
     private DrawBehaviour drawBehaviour = new DrawBehaviour();
     private MinCostBehaviour costBehaviour = new MinCostBehaviour();
-    private BaseBehaviour tempoBehaviour = new BaseBehaviour();
+    private BaseBehaviour baseBehaviour = new BaseBehaviour();
     public override void Init()
     {
-        tempoBehaviour.Owner = Owner;
+        baseBehaviour.Owner = Owner;
         costBehaviour.Owner = Owner;
         drawBehaviour.Owner = Owner;
-        tempoBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Defend, KeyWord.Generation };
+
         currentBehaviour = drawBehaviour;
     }
 
@@ -46,6 +46,26 @@ public class ComboAI : BaseAI
         }
         if (CheckCard(KeyWord.Combo))
         {
+            // Play generation and energy card
+            baseBehaviour.PreferedKeywords = new List<KeyWord> {KeyWord.Generation, KeyWord.Energy };
+            currentBehaviour = baseBehaviour;
+            canPlay = true;
+            cardsToPay = LookForCards();
+            while (canPlay)
+            {
+                bool hasPlayedCard = false;
+                foreach (CardData card in cardsToPay)
+                {
+                    if (Owner.PlayACard(card))
+                    {
+                        yield return new WaitForSeconds(1.5f);
+                        hasPlayedCard = true;
+                        cardsToPay.Remove(card);
+                        break;
+                    }
+                }
+                canPlay = hasPlayedCard;
+            }
             //Play  a maximum amount of cards
             int toKeep = FindComboCost();
             costBehaviour.LimitCost = Owner.Energy - toKeep;
@@ -81,7 +101,8 @@ public class ComboAI : BaseAI
         else
         {
             //Tempo
-            currentBehaviour = tempoBehaviour;
+            baseBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Defend, KeyWord.Generation };
+            currentBehaviour = baseBehaviour;
             canPlay = true;
             cardsToPay = LookForCards();
             while (canPlay)
