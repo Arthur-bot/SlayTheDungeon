@@ -44,7 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bedb35fb91151d44c954873bde6f4d2b, type: 3}
   cost: 0
-  cardName: Forbidden Scrolls
+  cardName: Ninja Scrolls
   description: Pay 4 lifes, draw 1 card and get 1 energy
   cardSoundEffect: {fileID: 0}
   cardEffects:
