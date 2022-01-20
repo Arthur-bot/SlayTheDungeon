@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
+  m_Name: Permutation
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 09b38dc924ee81949b770827758798d7, type: 3}
+  cost: 1
+  cardName: Permutation
+  description: Gain 5 armors
+  cardSoundEffect: {fileID: 0}
+  cardEffects:
+  - {fileID: 9009573820906454727}
+  keywords: 01000000
+  limitedUse: 0
+  nbUse: 0
+--- !u!114 &9009573820906454727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7139c490b08f844fa55f295b57861b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 5

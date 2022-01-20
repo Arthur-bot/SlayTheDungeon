@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6563906396031790010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d13e80303dc0a14bbf74ab2480c7547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 1
+--- !u!114 &-5558010388897396059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83db2e46e220ff4eb5e6d2960296524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
+  m_Name: ForbiddenScroll
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: bedb35fb91151d44c954873bde6f4d2b, type: 3}
+  cost: 0
+  cardName: Forbidden Scrolls
+  description: Pay 4 lifes, draw 1 card and get 1 energy
+  cardSoundEffect: {fileID: 0}
+  cardEffects:
+  - {fileID: -6563906396031790010}
+  - {fileID: 3076189159543106765}
+  - {fileID: -5558010388897396059}
+  keywords: 0300000006000000
+  limitedUse: 1
+  nbUse: 1
+--- !u!114 &3076189159543106765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c7454be6a4e2248bc8018cbb4b9d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 4

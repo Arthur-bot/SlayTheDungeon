@@ -23,16 +23,16 @@ MonoBehaviour:
       elementalProtection: 000000000000000000000000
       elementalBoosts: 000000000000000000000000
   ennemyDeck:
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
+  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
   - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
   - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
   - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
   - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
-  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
-  - {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
-  - {fileID: 11400000, guid: accdbe3817d4b1643822718111491dfb, type: 2}
-  - {fileID: 11400000, guid: d399776d693b3b54b81989d2fc333588, type: 2}
+  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+  - {fileID: 11400000, guid: 68e3dbb59f018484295f27160bdb8e8b, type: 2}
+  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
   boss: 1
   ai: {fileID: 8069420804026698023}
 --- !u!114 &8069420804026698023

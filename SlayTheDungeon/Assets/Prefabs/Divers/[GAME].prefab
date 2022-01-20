@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5374961812854286262}
   - component: {fileID: 1833276910266025990}
   - component: {fileID: 3139266491860590680}
+  - component: {fileID: 1448122152}
   m_Layer: 0
   m_Name: '[GAME]'
   m_TagString: Untagged
@@ -189,6 +190,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6da7df5fd7b752f4aa1751553f2d053a, type: 2}
   - {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
   - {fileID: 11400000, guid: 333f6c113e94af642817f00cf0bc0151, type: 2}
+  - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
+  - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
   ennemyCombos:
   - ennemies:
     - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
@@ -231,3 +234,15 @@ MonoBehaviour:
   furyIcon: {fileID: 0}
   gelIcon: {fileID: 0}
   pathToMods: 
+--- !u!114 &1448122152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894707509535821543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e4831a30e4c4e489b7f20895a0a8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
