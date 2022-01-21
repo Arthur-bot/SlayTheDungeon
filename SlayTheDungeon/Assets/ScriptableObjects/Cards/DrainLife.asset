@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2750628a7310c9142a92b6b96cdf3327, type: 3}
   cost: 1
   cardName: Life Drain
-  description: Drain 2 lifes
+  description: Drain 3 lifes
   cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: 8447836662170796641}
@@ -36,5 +36,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 1
-  value: 2
+  value: 3
   drainLife: 1

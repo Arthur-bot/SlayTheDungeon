@@ -240,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[0]
@@ -273,7 +273,7 @@ PrefabInstance:
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: 3c29b9833be0ae842b4e3de30d77479f, type: 2}
+      objectReference: {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[8]
       value: 
