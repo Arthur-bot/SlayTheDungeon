@@ -80,6 +80,12 @@ public class CharacterData : MonoBehaviour
         // Apply all effect
         Stats.Tick();
     }
+
+    public void ResetEndCombat()
+    {
+        Stats.ChangeArmor(-1000);
+        Stats.ChangeFury(-1000);
+    }
     public virtual void DrawCards(int value) { }
     public virtual void AddCards(List<CardData> toAdd) { }
     public virtual void GetEnergy(int value) { }

@@ -7,19 +7,29 @@ public class DamageEffect : CardEffect
     [SerializeField] private bool drainLife;
     public override void ApplyEffect(CharacterData caster, List<Enemy> targets)
     {
+        int effectValue = value;
+        if (TargetType != Target.Self)
+        {
+            effectValue += caster.Stats.CurrentFury;
+            caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
+        }
         foreach (var target in targets)
         {
-            int damage = target.TakeDamage(value + caster.Stats.CurrentFury);
+            int damage = target.TakeDamage(effectValue);
             if (drainLife) caster.Stats.ChangeHealth(damage);
         }
-        caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
     }
 
     public override void ApplyEffect(CharacterData caster, CharacterData target)
     {
-        int damage = target.TakeDamage(value + caster.Stats.CurrentFury);
+        int effectValue = value;
+        if (TargetType != Target.Self)
+        {
+            effectValue += caster.Stats.CurrentFury;
+            caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
+        }
+        int damage = target.TakeDamage(effectValue);
         if (drainLife) caster.Stats.ChangeHealth(damage);
-        caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
     }
 
     public override int GetEffectValue()
