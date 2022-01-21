@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Trap : MonoBehaviour
 {
     private TrapManager trapManager;
-    protected bool alreadyTriggered;
+    public bool AlreadyTriggered;
     [SerializeField] private Sprite trapSprite;
 
     public Sprite TrapSprite { get => trapSprite; set => trapSprite = value; }
@@ -17,11 +17,9 @@ public abstract class Trap : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>() && !alreadyTriggered)
+        if (collision.GetComponent<PlayerController>() && !AlreadyTriggered)
         {
             trapManager.SetupTrapPanel(this);
         }
     }
-
-    public abstract void TriggerTrap(PlayerData target);
 }

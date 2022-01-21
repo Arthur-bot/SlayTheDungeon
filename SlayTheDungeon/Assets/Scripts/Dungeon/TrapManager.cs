@@ -9,7 +9,7 @@ public class TrapManager : Singleton<TrapManager>
     private PlayerData player;
     private Trap currentTrap;
     [SerializeField] private GameObject panel;
-    [SerializeField] private Image trapImage;
+    [SerializeField] private CanvasGroup trapButton;
 
     private void Start()
     {
@@ -22,13 +22,24 @@ public class TrapManager : Singleton<TrapManager>
     {
         playerController.IsMoving = false;
         panel.SetActive(true);
-        trapImage.sprite = toTrigger.TrapSprite;
+        trapButton.interactable = player.Deck.Count > 5;
+        trapButton.alpha = player.Deck.Count > 5 ? 1f : 0.75f;
         currentTrap = toTrigger;
     }
 
     public void TrapClick()
     {
-        currentTrap.TriggerTrap(player);
+        currentTrap.AlreadyTriggered = true;
+        var randomCard = player.Deck[Random.Range(0, player.Deck.Count)];
+        player.RemoveCard(randomCard);
+        panel.SetActive(false);
+        playerController.IsMoving = true;
+    }
+
+    public void DamageClick()
+    {
+        currentTrap.AlreadyTriggered = true;
+        player.TakeDamage(3);
         panel.SetActive(false);
         playerController.IsMoving = true;
     }
