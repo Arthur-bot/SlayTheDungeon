@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrawEffect : CardEffect
 {
-    public override void ApplyEffect(CharacterData target)
+    public override void ApplyEffect(CharacterData caster, CharacterData target)
     {
         target.DrawCards(value);
     }

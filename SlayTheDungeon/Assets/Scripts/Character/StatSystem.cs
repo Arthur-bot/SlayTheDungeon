@@ -23,6 +23,7 @@ public class StatSystem
         public int Armor;
         public int Strength;
         public int Agility;
+        public int Fury;
 
         //use an array indexed by the EffectType enum for easy extensibility
         public int[] elementalProtection = new int[Enum.GetValues(typeof(EffectType)).Length];
@@ -34,6 +35,7 @@ public class StatSystem
             Armor = other.Armor;
             Strength = other.Strength;
             Agility = other.Agility;
+            Fury = other.Fury;
 
             Array.Copy(other.elementalProtection, elementalProtection, other.elementalProtection.Length);
             Array.Copy(other.elementalBoosts, elementalBoosts, other.elementalBoosts.Length);
@@ -48,6 +50,7 @@ public class StatSystem
                 Armor += Mathf.FloorToInt(Armor * (modifier.Stats.Armor / 100.0f));
                 Strength += Mathf.FloorToInt(Strength * (modifier.Stats.Strength / 100.0f));
                 Agility += Mathf.FloorToInt(Agility * (modifier.Stats.Agility / 100.0f));
+                Fury += Mathf.FloorToInt(Fury * (modifier.Stats.Fury / 100.0f));
 
                 for (int i = 0; i < elementalProtection.Length; ++i)
                     elementalProtection[i] += Mathf.FloorToInt(elementalProtection[i] * (modifier.Stats.elementalProtection[i] / 100.0f));
@@ -61,6 +64,7 @@ public class StatSystem
                 Armor += modifier.Stats.Armor;
                 Strength += modifier.Stats.Strength;
                 Agility += modifier.Stats.Agility;
+                Fury += modifier.Stats.Fury;
 
                 for (int i = 0; i < elementalProtection.Length; ++i)
                     elementalProtection[i] += modifier.Stats.elementalProtection[i];
@@ -126,6 +130,7 @@ public class StatSystem
     public int CurrentHealth { get; private set; }
 
     public int CurrentArmor { get; private set; }
+    public int CurrentFury { get; private set; }
 
     public List<BaseElementalEffect> ElementalEffects => elementalEffects;
 
@@ -257,8 +262,9 @@ public class StatSystem
         RaiseOnHit();
     }
 
-    public void ChangeHealth(int amount)
+    public int ChangeHealth(int amount)
     {
+        int damageTaken = 0;
         if(amount < 0)
         {
             //Takes damage
@@ -266,6 +272,7 @@ public class StatSystem
             ChangeArmor(amount);
             if (lifeDamage < 0)
             {
+                damageTaken = -lifeDamage;
                 CurrentHealth = Mathf.Clamp(CurrentHealth + lifeDamage, 0, StatsCopy.Health);
             }
         }
@@ -276,6 +283,7 @@ public class StatSystem
         }
 
         RaiseOnHit();
+        return damageTaken;
     }
 
     public void ChangeArmor(int amount)
@@ -285,12 +293,19 @@ public class StatSystem
         RaiseOnHit();
     }
 
-    public void Damage(int totalDamage)
+    public void ChangeFury(int amount)
     {
-        if (!owner.IsAlive) return;
+        CurrentFury = Mathf.Clamp(CurrentFury + amount, 0, StatsCopy.Fury);
 
-        ChangeHealth(-totalDamage);
+        RaiseOnHit();
+    }
+
+    public int Damage(int totalDamage)
+    {
+        if (!owner.IsAlive) return 0;
+        int damage = ChangeHealth(-totalDamage);
         GameUI.Instance.DamageUI.NewDamage(totalDamage, owner.transform.position);
+        return damage;
     }
 
     #endregion

@@ -61,13 +61,13 @@ public class CardData : ScriptableObject
             switch (ce.TargetType)
             {
                 case Target.Aoe:
-                    ce.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
+                    ce.ApplyEffect(isPlayer? GameManager.Instance.Player:TargetingSystem.Instance.getTarget(), GameManager.Instance.BattleGround.Enemies);
                     break;
                 case Target.Self:
-                    ce.ApplyEffect(isPlayer? GameManager.Instance.Player : TargetingSystem.Instance.getTarget());
+                    ce.ApplyEffect(isPlayer ? GameManager.Instance.Player : TargetingSystem.Instance.getTarget(), isPlayer ? GameManager.Instance.Player : TargetingSystem.Instance.getTarget());
                     break;
                 case Target.SingleTarget:
-                    ce.ApplyEffect(isPlayer? TargetingSystem.Instance.getTarget() : GameManager.Instance.Player);
+                    ce.ApplyEffect(isPlayer ? GameManager.Instance.Player : TargetingSystem.Instance.getTarget(), isPlayer ? TargetingSystem.Instance.getTarget() : GameManager.Instance.Player);
                     break;
 
             }

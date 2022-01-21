@@ -175,6 +175,7 @@ public class GameManager : Singleton<GameManager>
         gameUI.StopFight();
 
         GameUI.Instance.GameOverPanel.SetActive(true);
+        player.ResetEndCombat();
 
         InBattle = false;
         BattleGround.FinishBattle();
@@ -254,6 +255,7 @@ public class GameManager : Singleton<GameManager>
         lootManager.SetupLoop(3);
         BattleGround.LeaveBattleGround();
         BattleData.Instance.Reset();
+        player.ResetEndCombat();
     }
 
     private IEnumerator EnemyTurn()

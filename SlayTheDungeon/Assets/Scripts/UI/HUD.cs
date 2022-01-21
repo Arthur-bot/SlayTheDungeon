@@ -17,6 +17,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private UIEffect uiNextAction;
 
     private CharacterData data;
+    private List<UIVisualEffect> visualEffects;
 
     #endregion
 
@@ -41,16 +42,6 @@ public class HUD : MonoBehaviour
         armorText.gameObject.SetActive(data.Stats.CurrentArmor > 0);
         healthSlider.value = data.Stats.CurrentHealth / (float)data.Stats.StatsCopy.Health;
 
-        int timedEffectCount = data.Stats.TimedModifierStack.Count;
-        for (int i = 0; i < timedEffectCount; ++i)
-        {
-            var effect = data.Stats.TimedModifierStack[i];
-
-            uiEffects[i].EffectIcon.sprite = effect.EffectSprite;
-            uiEffects[i].ValueText.text = effect.Timer.ToString();
-            uiEffects[i].gameObject.SetActive(true);
-        }
-
         int elementalEffectCount = data.Stats.ElementalEffects.Count;
         for (int i = 0; i < elementalEffectCount; ++i)
         {
@@ -61,7 +52,20 @@ public class HUD : MonoBehaviour
             uiEffects[i].gameObject.SetActive(true);
         }
 
-        for (int i = timedEffectCount + elementalEffectCount; i < uiEffects.Count; ++i)
+        visualEffects = new List<UIVisualEffect>();
+        if (data.Stats.CurrentFury > 0)
+        {
+            visualEffects.Add(new UIVisualEffect { sprite = DataBase.Instance.FuryIcon, value = data.Stats.CurrentFury });
+        }
+        
+        for (int i = 0; i < visualEffects.Count; ++i)
+        {
+            uiEffects[i + elementalEffectCount].EffectIcon.sprite = visualEffects[i].sprite;
+            uiEffects[i + elementalEffectCount].ValueText.text = visualEffects[i].value.ToString();
+            uiEffects[i + elementalEffectCount].gameObject.SetActive(true);
+        }
+
+        for (int i = elementalEffectCount + visualEffects.Count ; i < uiEffects.Count; ++i)
         {
             uiEffects[i].gameObject.SetActive(false);
         }

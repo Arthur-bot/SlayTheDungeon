@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
-  m_Name: Guard
+  m_Name: DrainLife
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 81fff7dd3dd35eb4fba2ce9d8e830531, type: 3}
+  sprite: {fileID: 21300000, guid: 2750628a7310c9142a92b6b96cdf3327, type: 3}
   cost: 1
-  cardName: Guard
-  description: Gain 5 Armors
+  cardName: Life Drain
+  description: Drain 2 lifes
   cardSoundEffect: {fileID: 0}
   cardEffects:
-  - {fileID: 574714333365325584}
-  keywords: 01000000
+  - {fileID: 8447836662170796641}
+  keywords: 0000000007000000
   limitedUse: 0
   nbUse: 0
---- !u!114 &574714333365325584
+--- !u!114 &8447836662170796641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,9 +31,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7139c490b08f844fa55f295b57861b4, type: 3}
+  m_Script: {fileID: 11500000, guid: a6c7454be6a4e2248bc8018cbb4b9d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Defend
-  targetType: 0
-  value: 5
+  description: 
+  targetType: 1
+  value: 2
+  drainLife: 1

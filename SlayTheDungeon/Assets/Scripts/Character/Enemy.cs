@@ -27,13 +27,13 @@ public class Enemy : CharacterData
         switch (attack.TargetType)
         {
             case Target.Aoe:
-                attack.ApplyEffect(GameManager.Instance.BattleGround.Enemies);
+                attack.ApplyEffect(this, GameManager.Instance.BattleGround.Enemies);
                 break;
             case Target.Self:
-                attack.ApplyEffect(TargetingSystem.Instance.getTarget());
+                attack.ApplyEffect(this, TargetingSystem.Instance.getTarget());
                 break;
             case Target.SingleTarget:
-                attack.ApplyEffect(GameManager.Instance.Player);
+                attack.ApplyEffect(this, GameManager.Instance.Player);
                 break;
         }
 
