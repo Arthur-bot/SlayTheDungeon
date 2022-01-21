@@ -303,8 +303,30 @@ public class StatSystem
     public int Damage(int totalDamage)
     {
         if (!owner.IsAlive) return 0;
-        int damage = ChangeHealth(-totalDamage);
-        GameUI.Instance.DamageUI.NewDamage(totalDamage, owner.transform.position);
+
+        var dodged = false;
+
+        // Check if can dodge
+        for (var i = 0; i < elementalEffects.Count; ++i)
+        {
+            var effect = elementalEffects[i];
+
+            if (!(effect is DodgeEffect)) continue;
+
+            effect.RemoveTick(1);
+            dodged = true;
+
+            if (!effect.Done) continue;
+
+            elementalEffects[i].Removed();
+            elementalEffects.RemoveAt(i);
+            i--;
+        }
+
+        RaiseOnHit();
+
+        var damage = dodged? 0 : ChangeHealth(-totalDamage);
+        GameUI.Instance.DamageUI.NewDamage(dodged ? 0 : totalDamage, owner.transform.position);
         return damage;
     }
 

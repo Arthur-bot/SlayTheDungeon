@@ -268,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773521850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0010652542, y: -0.36454678, z: 0}
+  m_LocalPosition: {x: -0.000022888184, y: -0.27130556, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2045747648}
@@ -286,6 +286,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1843520689}
+    - target: {fileID: 712802053, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 712802053, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 712802053, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 712802053, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 755194221, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -301,6 +317,38 @@ PrefabInstance:
     - target: {fileID: 1103823370, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757498008, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757498008, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757498008, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757498008, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341804076469375415, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341804076469375415, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341804076469375415, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341804076469375415, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 901939676198263110, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: arrowNodeNbr
@@ -573,7 +621,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e80de65ab6bf2e34d9f7fce0ee9336f6, type: 2}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[0]
@@ -599,6 +647,14 @@ PrefabInstance:
       propertyPath: startingDeck.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 414650ada940e8d4f95705b7328eb78f, type: 2}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 414650ada940e8d4f95705b7328eb78f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &1843520689 stripped

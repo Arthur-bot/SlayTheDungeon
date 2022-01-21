@@ -67,7 +67,7 @@ public class DamageUI : MonoBehaviour
     {
         var t = textPool.Dequeue();
 
-        t.text = amount.ToString();
+        t.text = amount > 0? amount.ToString() : "Dodged";
         t.gameObject.SetActive(true);
 
         ActiveText at = new ActiveText();

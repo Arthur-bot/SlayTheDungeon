@@ -43,9 +43,14 @@ public abstract class BaseElementalEffect : IEquatable<BaseElementalEffect>
         timer--;
     }
 
-    public virtual void AddDuration(int duration)
+    public virtual void AddTick(int numberOfTick)
     {
-        timer += duration;
+        timer += numberOfTick;
+    }
+
+    public virtual void RemoveTick(int numberOfTick)
+    {
+        timer -= numberOfTick;
     }
 
     public abstract bool Equals(BaseElementalEffect other);
@@ -106,9 +111,32 @@ public class PoisonEffect : BaseElementalEffect
     {
         PoisonEffect eff = other as PoisonEffect;
 
-        if (other == null)
-            return false;
+        return other != null;
+    }
+}
 
-        return true;
+public class DodgeEffect : BaseElementalEffect
+{
+    public DodgeEffect(int stack, Sprite effectSprite) :
+        base(stack)
+    {
+        this.effectSprite = effectSprite;
+    }
+
+    public override void Update(StatSystem statSystem)
+    {
+        
+    }
+
+    public override void OnEqual(BaseElementalEffect other)
+    {
+        timer += other.Duration;
+    }
+
+    public override bool Equals(BaseElementalEffect other)
+    {
+        DodgeEffect eff = other as DodgeEffect;
+
+        return other != null;
     }
 }
