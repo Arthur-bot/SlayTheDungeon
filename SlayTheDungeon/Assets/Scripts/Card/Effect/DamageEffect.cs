@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageEffect : CardEffect
 {
     [SerializeField] private bool drainLife;
+    [SerializeField] private bool sacrifice;
     public override void ApplyEffect(CharacterData caster, List<Enemy> targets)
     {
         int effectValue = value;
@@ -15,8 +16,9 @@ public class DamageEffect : CardEffect
         }
         foreach (var target in targets)
         {
+            bool kill = effectValue >= target.Stats.CurrentArmor + target.Stats.CurrentHealth;
             int damage = target.TakeDamage(effectValue);
-            if (drainLife) caster.Stats.ChangeHealth(damage);
+            if (drainLife || (kill & sacrifice)) caster.Stats.ChangeHealth(damage);
         }
     }
 
@@ -28,8 +30,9 @@ public class DamageEffect : CardEffect
             effectValue += caster.Stats.CurrentFury;
             caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
         }
+        bool kill = effectValue >= target.Stats.CurrentArmor + target.Stats.CurrentHealth;
         int damage = target.TakeDamage(effectValue);
-        if (drainLife) caster.Stats.ChangeHealth(damage);
+        if (drainLife || (kill & sacrifice)) caster.Stats.ChangeHealth(damage);
     }
 
     public override int GetEffectValue()

@@ -8,4 +8,8 @@ public class UIDeck : Pile
     {
         cards = GameManager.Instance.Player.Deck;
     }
+    private void Update()
+    {
+        UpdateUI();
+    }
 }

@@ -192,6 +192,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 333f6c113e94af642817f00cf0bc0151, type: 2}
   - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
   - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
+  - {fileID: 11400000, guid: 44638bc2d35ff224f8312dfd77b14671, type: 2}
+  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+  - {fileID: 11400000, guid: 68e3dbb59f018484295f27160bdb8e8b, type: 2}
+  - {fileID: 11400000, guid: 70f3e9406774592478b5c42a13b13484, type: 2}
+  - {fileID: 11400000, guid: f687aabc678c541489cf6ed9b3f4a2b5, type: 2}
+  - {fileID: 11400000, guid: 3c29b9833be0ae842b4e3de30d77479f, type: 2}
+  - {fileID: 11400000, guid: 057191aef142bba4080827291cd239a1, type: 2}
   ennemyCombos:
   - ennemies:
     - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
@@ -231,7 +238,7 @@ MonoBehaviour:
   attackIcon: {fileID: 3132663690335534207, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
   armorIcon: {fileID: 7636561763445232136, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
   poisonIcon: {fileID: -2876628808043661572, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
-  furyIcon: {fileID: 0}
+  furyIcon: {fileID: 21300000, guid: 0910e28ad8a404244b42f5d429bdb014, type: 3}
   gelIcon: {fileID: 0}
   pathToMods: 
 --- !u!114 &1448122152

@@ -43,8 +43,17 @@ public class Corridor : DungeonElement
     {
         foreach(Transform hotPoint in hotPoints)
         {
-            int randomIndex = Random.Range(0, hotPointsPrefab.Count);
-            GameObject newElement = Instantiate(hotPointsPrefab[randomIndex], hotPoint.position, Quaternion.identity, transform);
+            int randomIndex = -1;
+            int percent = Random.Range(0, 100);
+            if (percent < 10) randomIndex = 3;
+            else if (percent < 25) randomIndex = 2;
+            else if (percent < 55) randomIndex = 1;
+            else if (percent < 85) randomIndex = 0;
+            GameObject newElement = null;
+            if (randomIndex >= 0)
+            {
+                newElement = Instantiate(hotPointsPrefab[randomIndex], hotPoint.position, Quaternion.identity, transform);
+            }
             if (randomIndex == 0)
             {
                 newElement.GetComponent<EnnemyTriger>().Level = level;
