@@ -67,11 +67,10 @@ public class CharacterData : MonoBehaviour
 
     #region Public Methods
 
-    public virtual void TakeDamage(int amount)
+    public virtual int TakeDamage(int amount)
     {
-        stats.Damage(amount);
-
         GameManager.Instance.Shake(0.1f, 0.1f);
+        return stats.Damage(amount);
     }
 
     public void UpdateDurations()

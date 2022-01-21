@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class DamageEffect : CardEffect
 {
-    public override void ApplyEffect(List<Enemy> targets)
+    [SerializeField] private bool drainLife;
+    public override void ApplyEffect(CharacterData caster, List<Enemy> targets)
     {
         foreach (var target in targets)
         {
-            target.TakeDamage(value);
+            int damage = target.TakeDamage(value + caster.Stats.CurrentFury);
+            if (drainLife) caster.Stats.ChangeHealth(damage);
         }
+        caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
     }
 
-    public override void ApplyEffect(CharacterData target)
+    public override void ApplyEffect(CharacterData caster, CharacterData target)
     {
-        target.TakeDamage(value);
+        int damage = target.TakeDamage(value + caster.Stats.CurrentFury);
+        if (drainLife) caster.Stats.ChangeHealth(damage);
+        caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
     }
 
     public override int GetEffectValue()

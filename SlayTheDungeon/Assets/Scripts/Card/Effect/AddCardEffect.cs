@@ -6,7 +6,7 @@ public class AddCardEffect : CardEffect
 {
     [SerializeField] private List<CardData> toAdd;
 
-    public override void ApplyEffect(CharacterData target)
+    public override void ApplyEffect(CharacterData caster, CharacterData target)
     {
         target.AddCards(toAdd);
     }

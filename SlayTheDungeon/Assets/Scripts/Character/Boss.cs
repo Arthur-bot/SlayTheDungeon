@@ -13,7 +13,8 @@ public enum KeyWord
     Draw,
     Generation,
     Combo,
-    Energy
+    Energy,
+    Heal
 }
 
 public class Boss : Enemy

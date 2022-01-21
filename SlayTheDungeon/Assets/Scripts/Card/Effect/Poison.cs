@@ -5,7 +5,7 @@ using UnityEngine;
 public class Poison : CardEffect
 {
 
-    public override void ApplyEffect(List<Enemy> targets)
+    public override void ApplyEffect(CharacterData caster, List<Enemy> targets)
     {
         foreach (var target in targets)
         {
@@ -15,7 +15,7 @@ public class Poison : CardEffect
         }
     }
 
-    public override void ApplyEffect(CharacterData target)
+    public override void ApplyEffect(CharacterData caster, CharacterData target)
     {
         PoisonEffect effect = new PoisonEffect(value, DataBase.Instance.PoisonIcon);
 

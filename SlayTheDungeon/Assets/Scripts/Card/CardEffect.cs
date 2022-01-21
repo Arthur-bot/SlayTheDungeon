@@ -24,9 +24,9 @@ public abstract class CardEffect : ScriptableObject
 
     #region Public Methods
 
-    public virtual void ApplyEffect(List<Enemy> targets) { }
+    public virtual void ApplyEffect(CharacterData caster, List<Enemy> targets) { }
 
-    public virtual void ApplyEffect(CharacterData target) { }
+    public virtual void ApplyEffect(CharacterData caster, CharacterData target) { }
 
     public virtual Sprite GetIcon() { return null; }
 
