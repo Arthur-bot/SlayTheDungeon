@@ -14,7 +14,8 @@ public enum KeyWord
     Generation,
     Combo,
     Energy,
-    Heal
+    Heal,
+    Fury
 }
 
 public class Boss : Enemy

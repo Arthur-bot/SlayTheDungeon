@@ -4,6 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public class UIVisualEffect
+{
+    public Sprite sprite;
+    public int value;
+}
 public class UIEffect : MonoBehaviour
 {
     #region Fields

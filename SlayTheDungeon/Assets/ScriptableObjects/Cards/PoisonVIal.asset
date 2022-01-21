@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 806c900a58b98b245baa232ff854afae, type: 3}
   cost: 1
   cardName: Poison Vial
-  description: Deals 5 Poisons to an ennemy
+  description: Deals 4 Poisons to an ennemy
   cardSoundEffect: {fileID: 0}
   cardEffects:
   - {fileID: 9148272503166909337}
@@ -36,4 +36,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 1
-  value: 5
+  value: 4

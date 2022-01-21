@@ -295,9 +295,9 @@ public class StatSystem
 
     public void ChangeFury(int amount)
     {
-        Debug.Log(CurrentFury);
         CurrentFury = Mathf.Clamp(CurrentFury + amount, 0, StatsCopy.Fury);
-        Debug.Log(CurrentFury);
+
+        RaiseOnHit();
     }
 
     public int Damage(int totalDamage)
