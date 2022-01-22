@@ -20,19 +20,21 @@ MonoBehaviour:
       Armor: 50
       Strength: 0
       Agility: 0
+      Fury: 0
       elementalProtection: 000000000000000000000000
       elementalBoosts: 000000000000000000000000
   ennemyDeck:
-  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
-  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+  - {fileID: 11400000, guid: 4aac08d6f223631488dc9b0e3a08ca26, type: 2}
+  - {fileID: 11400000, guid: 4aac08d6f223631488dc9b0e3a08ca26, type: 2}
   - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
   - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
   - {fileID: 11400000, guid: d7011c2436c19eb44be8725c1a6c9d64, type: 2}
   - {fileID: 11400000, guid: 5f59872db6630264a9a1003baa2fae3d, type: 2}
   - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
   - {fileID: 11400000, guid: 68e3dbb59f018484295f27160bdb8e8b, type: 2}
-  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
-  - {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+  - {fileID: 11400000, guid: f687aabc678c541489cf6ed9b3f4a2b5, type: 2}
+  - {fileID: 11400000, guid: f687aabc678c541489cf6ed9b3f4a2b5, type: 2}
+  - {fileID: 11400000, guid: f687aabc678c541489cf6ed9b3f4a2b5, type: 2}
   boss: 1
   ai: {fileID: 8069420804026698023}
 --- !u!114 &8069420804026698023

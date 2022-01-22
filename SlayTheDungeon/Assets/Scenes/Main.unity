@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 971198991}
     - target: {fileID: 1038660990714895506, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: numberOfRooms
-      value: 2
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1038660990714895507, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: m_Name
@@ -240,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[0]
@@ -269,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[7]
       value: 
