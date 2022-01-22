@@ -85,6 +85,7 @@ public class CharacterData : MonoBehaviour
     {
         Stats.ChangeArmor(-1000);
         Stats.ChangeFury(-1000);
+        Stats.ClearEffect();
     }
     public virtual void DrawCards(int value) { }
     public virtual void AddCards(List<CardData> toAdd) { }

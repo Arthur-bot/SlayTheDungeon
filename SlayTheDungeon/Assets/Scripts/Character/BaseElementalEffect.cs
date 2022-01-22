@@ -111,7 +111,7 @@ public class PoisonEffect : BaseElementalEffect
     {
         PoisonEffect eff = other as PoisonEffect;
 
-        return other != null;
+        return eff != null;
     }
 }
 
@@ -137,6 +137,6 @@ public class DodgeEffect : BaseElementalEffect
     {
         DodgeEffect eff = other as DodgeEffect;
 
-        return other != null;
+        return eff != null;
     }
 }

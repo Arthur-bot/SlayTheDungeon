@@ -196,7 +196,30 @@ public class StatSystem
     public void AddElementalEffect(BaseElementalEffect effect)
     {
         effect.Applied(owner);
+        var dodged = false;
 
+        // Check if can dodge
+        if (!BattleData.Instance.PlayerTurn)
+        {
+            for (var i = 0; i < elementalEffects.Count; ++i)
+            {
+                var _effect = elementalEffects[i];
+
+                if (!(_effect is DodgeEffect)) continue;
+
+                _effect.RemoveTick(1);
+                dodged = true;
+
+                if (!_effect.Done) continue;
+
+                elementalEffects[i].Removed();
+                elementalEffects.RemoveAt(i);
+                i--;
+            }
+        }
+        if (dodged) return;
+
+        // Apply effect
         var effectExist = false;
         for (int i = 0; i < elementalEffects.Count; ++i)
         {
@@ -215,11 +238,7 @@ public class StatSystem
 
     public void OnDeath()
     {
-        foreach (var e in ElementalEffects)
-            e.Removed();
-
-        ElementalEffects.Clear();
-        TimedModifierStack.Clear();
+        ClearEffect();
 
         UpdateFinalStats();
     }
@@ -307,20 +326,23 @@ public class StatSystem
         var dodged = false;
 
         // Check if can dodge
-        for (var i = 0; i < elementalEffects.Count; ++i)
+        if (!BattleData.Instance.PlayerTurn)
         {
-            var effect = elementalEffects[i];
+            for (var i = 0; i < elementalEffects.Count; ++i)
+            {
+                var effect = elementalEffects[i];
 
-            if (!(effect is DodgeEffect)) continue;
+                if (!(effect is DodgeEffect)) continue;
 
-            effect.RemoveTick(1);
-            dodged = true;
+                effect.RemoveTick(1);
+                dodged = true;
 
-            if (!effect.Done) continue;
+                if (!effect.Done) continue;
 
-            elementalEffects[i].Removed();
-            elementalEffects.RemoveAt(i);
-            i--;
+                elementalEffects[i].Removed();
+                elementalEffects.RemoveAt(i);
+                i--;
+            }
         }
 
         RaiseOnHit();
@@ -328,6 +350,16 @@ public class StatSystem
         var damage = dodged? 0 : ChangeHealth(-totalDamage);
         GameUI.Instance.DamageUI.NewDamage(dodged ? 0 : totalDamage, owner.transform.position);
         return damage;
+    }
+
+    public void ClearEffect()
+    {
+        foreach (var e in ElementalEffects)
+            e.Removed();
+
+        ElementalEffects.Clear();
+        TimedModifierStack.Clear();
+        RaiseOnHit();
     }
 
     #endregion

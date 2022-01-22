@@ -24,7 +24,7 @@ public class DataBase : Singleton<DataBase>
     [SerializeField] private Sprite armorIcon;
     [SerializeField] private Sprite poisonIcon;
     [SerializeField] private Sprite furyIcon;
-    [SerializeField] private Sprite gelIcon;
+    [SerializeField] private Sprite dodgeIcon;
 
     [Header("Mod")] 
     [SerializeField] private string pathToMods;
@@ -42,7 +42,7 @@ public class DataBase : Singleton<DataBase>
 
     public Sprite FuryIcon => furyIcon;
 
-    public Sprite GelIcon => gelIcon;
+    public Sprite DodgeIcon => dodgeIcon;
 
     #endregion
 

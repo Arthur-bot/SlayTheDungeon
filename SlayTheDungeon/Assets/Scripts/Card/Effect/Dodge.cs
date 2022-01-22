@@ -6,7 +6,7 @@ public class Dodge : CardEffect
 {
     public override void ApplyEffect(CharacterData caster, CharacterData target)
     {
-        DodgeEffect effect = new DodgeEffect(value, DataBase.Instance.PoisonIcon);
+        DodgeEffect effect = new DodgeEffect(value, DataBase.Instance.DodgeIcon);
 
         target.Stats.AddElementalEffect(effect);
     }
@@ -18,6 +18,6 @@ public class Dodge : CardEffect
 
     public override Sprite GetIcon()
     {
-        return DataBase.Instance.PoisonIcon;
+        return DataBase.Instance.DodgeIcon;
     }
 }

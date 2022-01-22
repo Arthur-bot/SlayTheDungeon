@@ -240,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[0]
@@ -269,11 +269,11 @@ PrefabInstance:
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: fbdf74e853195704aabfc48be2e8b931, type: 2}
+      objectReference: {fileID: 11400000, guid: 2c5bbdc2d5a875b48a73299ed0c7e3a0, type: 2}
     - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
       propertyPath: startingDeck.Array.data[8]
       value: 
@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 562820538}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: dodgeIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 3711ad8a76dbc464794f5f5a8a9e3534, type: 3}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: m_RootOrder
       value: 2
