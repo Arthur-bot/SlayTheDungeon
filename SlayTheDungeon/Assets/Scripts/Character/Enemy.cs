@@ -24,6 +24,7 @@ public class Enemy : CharacterData
         transform.DOLocalMoveX(destination, 0.15f).OnComplete(ResetPosition);
 
         var attack = EnnemyData.Attacks[attackIndex];
+        BattleData.Instance.CurrentTarget = attack.TargetType;
         switch (attack.TargetType)
         {
             case Target.Aoe:

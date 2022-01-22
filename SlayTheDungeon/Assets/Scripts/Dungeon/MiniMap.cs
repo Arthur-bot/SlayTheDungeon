@@ -49,7 +49,7 @@ public class MiniMap : MonoBehaviour
     public void MovePlayer(Vector2 direction)
     {
         playerIcon.anchoredPosition -= direction;
-        thisTransform.anchoredPosition += direction;
+        thisTransform.anchoredPosition += direction *transform.localScale.x;
     }
     public void Recenter()
     {

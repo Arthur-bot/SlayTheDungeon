@@ -7,28 +7,24 @@ public class BattleData : Singleton<BattleData>
 {
     private GameManager gameManager;
     private int nbPlayedCard;
-    private bool playerTurn;
+    private Target currentTarget;
     public int NbPlayedCard { get => nbPlayedCard; }
-    public bool PlayerTurn { get => playerTurn; set => playerTurn = value; }
+    public Target CurrentTarget { get => currentTarget; set => currentTarget = value; }
 
     private void Start()
     {
         gameManager = GameManager.Instance;
         gameManager.OnEndTurn += EndTurn;
-        playerTurn = true;
     }
 
     private void EndTurn(object sender, EventArgs e)
     {
         ResetCounter();
-        playerTurn = !playerTurn;
-        Debug.Log(playerTurn);
     }
 
     public void Reset()
     {
         ResetCounter();
-        playerTurn = true;
     }
 
     private void ResetCounter()

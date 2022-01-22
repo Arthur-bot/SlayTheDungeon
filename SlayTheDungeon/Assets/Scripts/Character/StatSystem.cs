@@ -199,7 +199,7 @@ public class StatSystem
         var dodged = false;
 
         // Check if can dodge
-        if (!BattleData.Instance.PlayerTurn)
+        if (BattleData.Instance.CurrentTarget != Target.Self)
         {
             for (var i = 0; i < elementalEffects.Count; ++i)
             {
@@ -326,7 +326,7 @@ public class StatSystem
         var dodged = false;
 
         // Check if can dodge
-        if (!BattleData.Instance.PlayerTurn)
+        if (BattleData.Instance.CurrentTarget != Target.Self)
         {
             for (var i = 0; i < elementalEffects.Count; ++i)
             {

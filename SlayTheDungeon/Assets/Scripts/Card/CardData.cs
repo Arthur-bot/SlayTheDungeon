@@ -58,6 +58,7 @@ public class CardData : ScriptableObject
         nbUse--;
         foreach (var ce in cardEffects)
         {
+            BattleData.Instance.CurrentTarget = ce.TargetType;
             switch (ce.TargetType)
             {
                 case Target.Aoe:
