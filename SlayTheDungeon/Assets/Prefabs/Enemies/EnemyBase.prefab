@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4461588433202779421
+--- !u!114 &4013851919139301978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18,11 +18,13 @@ MonoBehaviour:
       Armor: 0
       Strength: 0
       Agility: 0
+      Fury: 0
       elementalProtection: 000000000000000000000000
       elementalBoosts: 000000000000000000000000
   hud: {fileID: 1725660802132548088}
-  baseMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  baseMaterial: {fileID: 2100000, guid: 3b65a184bfd698b4d82a4e35ebb973df, type: 2}
   outlineMaterial: {fileID: 2100000, guid: 021eb5eded8ece24c89366e4ca6e64b7, type: 2}
+  preshotTransform: {fileID: 7801669537009672840}
 --- !u!1001 &8668972767097452160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74,14 +76,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2211579483226114838, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211579483226114838, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6131406294064590338, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
       propertyPath: m_Name
       value: EnemyBase
@@ -116,3 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea0df94831c03f45bdc89d9d7345010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7801669537009672840 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1444382068989645832, guid: 06adeef9c5245094a97e591d9b37979d, type: 3}
+  m_PrefabInstance: {fileID: 8668972767097452160}
+  m_PrefabAsset: {fileID: 0}

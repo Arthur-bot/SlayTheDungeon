@@ -60,6 +60,10 @@ public class DataBase : Singleton<DataBase>
     protected void Start()
     {
         ChargeSet("Test");
+        for (int i = 0; i < 100; i++)
+        {
+            PickRandomEnnemyCombination(1);
+        }
     }
 
     #endregion
@@ -120,13 +124,15 @@ public class DataBase : Singleton<DataBase>
     public List<EnnemyData> PickRandomEnnemyCombination(int level)
     {
         List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level && x.boss == false).ToList();
-        List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count - 1)].ennemies;
+        Debug.Log(Random.Range(0, combinationOfExpectedLevel.Count));
+        List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count)].ennemies;
         return newPick;
     }
     public List<EnnemyData> PickRandomBoss()
     {
         List<Combinations> combinationOfBoss = ennemyCombos.Where(x => x.boss == true).ToList();
-        List<EnnemyData> newPick = combinationOfBoss[Random.Range(0, combinationOfBoss.Count - 1)].ennemies;
+        Debug.Log(Random.Range(0, combinationOfBoss.Count));
+        List<EnnemyData> newPick = combinationOfBoss[Random.Range(0, combinationOfBoss.Count)].ennemies;
         return newPick;
     }
 

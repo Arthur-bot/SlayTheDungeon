@@ -1,5 +1,6 @@
 using System.Collections;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Enemy : CharacterData
@@ -8,11 +9,15 @@ public class Enemy : CharacterData
     private int attackIndex;
 
     public EnnemyData EnnemyData { get; set; }
+    [SerializeField] private RectTransform preshotTransform;
 
     public virtual void SetupEnemy()
     {
         stats.BaseStats.Copy(EnnemyData.Stats.BaseStats);
         hud.CharacterSprite.sprite = EnnemyData.Sprite;
+        float size = Mathf.Max(EnnemyData.Sprite.bounds.size.x, EnnemyData.Sprite.bounds.size.y);
+        hud.CharacterSprite.GetComponent<RectTransform>().localScale = new Vector2(size * (GameManager.Instance.PlayerFacingRight ? 1 : -1), size);
+        if (preshotTransform != null) preshotTransform.localScale = new Vector2( 1 /size * (GameManager.Instance.PlayerFacingRight ? 1 : -1), 1 / size);
     }
 
     public virtual void PlayTurn()
