@@ -108,8 +108,13 @@ public class GameManager : Singleton<GameManager>
         }
         if (room is Room)
         {
+            gameUI.ShowMap();
             (room as Room).EnterRoom();
             player.Controller.IsMoving = false;
+        }
+        else
+        {
+            gameUI.HideMap();
         }
         room.gameObject.SetActive(true);
         currentRoom = room;
@@ -248,7 +253,6 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(1.0f);
 
         InBattle = false;
-        BattleGround.FinishBattle();
         // Reset player Status & modifiers
         // Provide Loot & exp pts
         // Remove combat state & restrictions (movements, inventory, ...)

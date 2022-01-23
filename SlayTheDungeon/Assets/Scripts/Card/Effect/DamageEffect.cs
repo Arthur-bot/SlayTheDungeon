@@ -16,9 +16,10 @@ public class DamageEffect : CardEffect
         }
         foreach (var target in targets)
         {
-            bool kill = effectValue >= target.Stats.CurrentArmor + target.Stats.CurrentHealth;
+            int remainedHealth = target.Stats.CurrentHealth;
             int damage = target.TakeDamage(effectValue);
-            if (drainLife || (kill & sacrifice)) caster.Stats.ChangeHealth(damage);
+            bool kill = damage >= remainedHealth;
+            if (drainLife || (kill & sacrifice)) caster.TakeDamage(-damage);
         }
     }
 
@@ -30,9 +31,10 @@ public class DamageEffect : CardEffect
             effectValue += caster.Stats.CurrentFury;
             caster.Stats.ChangeFury(-caster.Stats.CurrentFury);
         }
-        bool kill = effectValue >= target.Stats.CurrentArmor + target.Stats.CurrentHealth;
+        int remainedHealth = target.Stats.CurrentHealth;
         int damage = target.TakeDamage(effectValue);
-        if (drainLife || (kill & sacrifice)) caster.Stats.ChangeHealth(damage);
+        bool kill = damage >= remainedHealth;
+        if (drainLife || (kill & sacrifice)) caster.TakeDamage(-damage);
     }
 
     public override int GetEffectValue()

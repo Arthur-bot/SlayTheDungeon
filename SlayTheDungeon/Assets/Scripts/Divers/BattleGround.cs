@@ -106,7 +106,10 @@ public class BattleGround : MonoBehaviour
 
     public void FinishBattle()
     {
-
+        for (int i = 0; i < Enemies.Count; i++)
+        {
+            Destroy(Enemies[i].gameObject);
+        }
     }
 
     public void IsBattleEnded()

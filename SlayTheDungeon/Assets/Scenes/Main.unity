@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &114876059 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1550192697, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+  m_PrefabInstance: {fileID: 971198990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &562820537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1550192697, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -298
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 1837133451648158660, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -413,6 +418,18 @@ PrefabInstance:
     - target: {fileID: 4755857869740088048, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755857869740088049, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 114876059}
+    - target: {fileID: 4755857869740088049, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: mapPosition.x
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755857869740088049, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: mapPosition.y
+      value: -700
       objectReference: {fileID: 0}
     - target: {fileID: 4755857869740088051, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Name

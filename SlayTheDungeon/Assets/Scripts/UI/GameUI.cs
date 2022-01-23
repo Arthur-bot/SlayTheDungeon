@@ -25,8 +25,9 @@ public class GameUI : Singleton<GameUI>
 
     [SerializeField] private GameObject fightMaterial;
     [SerializeField] private GameObject exploreMaterial;
+    [SerializeField] private RectTransform map;
     [SerializeField] private Vector2 positionFightUI;
-    [SerializeField] private Vector2 positionExploreUI;
+    [SerializeField] private Vector2 mapPosition;
 
     #endregion
 
@@ -89,7 +90,14 @@ public class GameUI : Singleton<GameUI>
         fightMaterial.SetActive(false);
         exploreMaterial.SetActive(true);
     }
-
+    public void ShowMap()
+    {
+        map.DOLocalMoveY(mapPosition.x, 0.5f);
+    }
+    public void HideMap()
+    {
+        map.DOLocalMoveY(mapPosition.y, 0.5f);
+    }
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
