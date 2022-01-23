@@ -31,7 +31,7 @@ MonoBehaviour:
   cost: 0
   cardName: Frost Book
   description: Gain 2 armors and Draw 1 Card
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: 89e43e7520a5047df8404057af3aeb12, type: 3}
   cardEffects:
   - {fileID: -2087893312856474465}
   - {fileID: 5344360262950392546}

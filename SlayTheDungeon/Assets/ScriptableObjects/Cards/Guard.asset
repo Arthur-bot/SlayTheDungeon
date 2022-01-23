@@ -16,7 +16,7 @@ MonoBehaviour:
   cost: 1
   cardName: Guard
   description: Gain 5 Armors
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: bac66ffe5025e4ba88a0fe62caa066d3, type: 3}
   cardEffects:
   - {fileID: 574714333365325584}
   keywords: 01000000
