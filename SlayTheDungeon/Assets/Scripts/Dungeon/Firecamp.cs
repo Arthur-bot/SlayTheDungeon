@@ -22,6 +22,7 @@ public class Firecamp : MonoBehaviour
 
     public void Unlit()
     {
+        GetComponent<AudioSource>().Stop();
         animator.SetTrigger("Unlit");
     }
 }

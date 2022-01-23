@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     private DeckPile playerDeck;
     private Hand hand;
+    private AudioManager audioManager;
 
     private GameUI gameUI;
     private bool cameraShaking;
@@ -78,6 +79,7 @@ public class GameManager : Singleton<GameManager>
         }
         lootManager = LootManager.Instance;
         gameUI.StopFight();
+        audioManager = AudioManager.Instance;
     }
 
     #endregion
@@ -211,6 +213,7 @@ public class GameManager : Singleton<GameManager>
 
         // Announce Fight
         // Change Sounds & Music
+        audioManager.PlayCombat();
         // Change UI
         player.Controller.IsMoving = false;
         gameUI.SetupFight(player.Deck);
@@ -246,6 +249,7 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(0.5f);
 
         // Change Sounds & Music
+        audioManager.PlayExplore();
         // Check victory or GameOver & say it accordingly
         // Change UI
         gameUI.StopFight();

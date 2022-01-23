@@ -1,5 +1,259 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &520065242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 520065244}
+  - component: {fileID: 520065243}
+  m_Layer: 0
+  m_Name: SourceTheme
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &520065244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520065242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6382093280116942454}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &520065243
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520065242}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 09b0b1326cc92a3409c12b75f9e22081, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b5bc10f4d9bd65243b56e20218638cf8, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &1218982588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218982590}
+  - component: {fileID: 1218982589}
+  m_Layer: 0
+  m_Name: SourceCombat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218982590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218982588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6382093280116942454}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1218982589
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218982588}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 09b0b1326cc92a3409c12b75f9e22081, type: 2}
+  m_audioClip: {fileID: 8300000, guid: d721df7dc685e7c46a01fd7f763d713f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6894707509535821543
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +286,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 520065244}
+  - {fileID: 1218982590}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,6 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20d85115eefdf94fad9d23c735c5f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  themeSource: {fileID: 520065243}
+  combatSource: {fileID: 1218982589}
 --- !u!82 &1833276910266025990
 AudioSource:
   m_ObjectHideFlags: 0
@@ -205,13 +463,17 @@ MonoBehaviour:
     level: 1
     boss: 0
   - ennemies:
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
+    level: 2
+    boss: 0
+  - ennemies:
     - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
     - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
     level: 2
     boss: 0
   - ennemies:
-    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
-    level: 2
+    - {fileID: 11400000, guid: 3b2df5d5a5211404b9d23852faf2bee8, type: 2}
+    level: 3
     boss: 0
   - ennemies:
     - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
@@ -220,26 +482,55 @@ MonoBehaviour:
     level: 3
     boss: 0
   - ennemies:
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
     - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
-    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
-    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    level: 3
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 6d87a9dae53f659428f7f2e2af6a68f1, type: 2}
     level: 4
     boss: 0
   - ennemies:
-    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
-    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
-    - {fileID: 11400000, guid: 502970fb2742e8c4e88450d8676ebc7c, type: 2}
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
+    level: 4
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 3b2df5d5a5211404b9d23852faf2bee8, type: 2}
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    - {fileID: 11400000, guid: dd936fc7d1161f34594d6fc63e07aedc, type: 2}
+    level: 4
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 6d87a9dae53f659428f7f2e2af6a68f1, type: 2}
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
     level: 5
     boss: 0
   - ennemies:
-    - {fileID: 11400000, guid: 33aa71c2a5b3e9b41accbd03f891d61e, type: 2}
+    - {fileID: 11400000, guid: 3b2df5d5a5211404b9d23852faf2bee8, type: 2}
+    - {fileID: 11400000, guid: 6d87a9dae53f659428f7f2e2af6a68f1, type: 2}
     level: 5
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 3b2df5d5a5211404b9d23852faf2bee8, type: 2}
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
+    - {fileID: 11400000, guid: 859ec20d7ac6b314ca6541d5a410e334, type: 2}
+    level: 6
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 6d87a9dae53f659428f7f2e2af6a68f1, type: 2}
+    - {fileID: 11400000, guid: 6d87a9dae53f659428f7f2e2af6a68f1, type: 2}
+    level: 6
+    boss: 0
+  - ennemies:
+    - {fileID: 11400000, guid: 33aa71c2a5b3e9b41accbd03f891d61e, type: 2}
+    level: 1
     boss: 1
   attackIcon: {fileID: 3132663690335534207, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
   armorIcon: {fileID: 7636561763445232136, guid: e5eac551e7a74c6499a69e9c42d112a9, type: 3}
   poisonIcon: {fileID: -2876628808043661572, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
   furyIcon: {fileID: 21300000, guid: 0910e28ad8a404244b42f5d429bdb014, type: 3}
-  gelIcon: {fileID: 0}
+  dodgeIcon: {fileID: 21300000, guid: 3711ad8a76dbc464794f5f5a8a9e3534, type: 3}
   pathToMods: 
 --- !u!114 &1448122152
 MonoBehaviour:
