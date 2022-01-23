@@ -24,5 +24,6 @@ public class FirecampManager : Singleton<FirecampManager>
         currentFire.IsUsed = consume;
         firecampBtns.SetActive(false);
         isOpen = false;
+        if (consume) currentFire.Unlit();
     }
 }

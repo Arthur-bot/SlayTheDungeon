@@ -136,9 +136,6 @@ public class ComboAI : BaseAI
                 Owner.Hand.RemoveAt(i);
             }
         }
-        foreach (CardData card in Owner.Hand)
-        {
-        }
         return cost;
     }
 }

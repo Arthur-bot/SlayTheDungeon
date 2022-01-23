@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Firecamp : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     private bool isUsed;
     private FirecampManager firecampManager;
 
@@ -17,5 +18,10 @@ public class Firecamp : MonoBehaviour
     {
         firecampManager.CurrentFire = this;
         firecampManager.OpenFirecamp();
+    }
+
+    public void Unlit()
+    {
+        animator.SetTrigger("Unlit");
     }
 }
