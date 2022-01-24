@@ -60,7 +60,7 @@ public class DeckPile : Pile
 
             countText.text = cards.Count.ToString();
         }
-        else
+        else if (discardPile.Cards.Count > 0)
         {
             discardPile.Shuffle(this);
             Shuffle();
