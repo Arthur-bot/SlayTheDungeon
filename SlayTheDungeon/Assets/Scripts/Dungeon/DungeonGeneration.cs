@@ -233,6 +233,7 @@ public class DungeonGeneration : MonoBehaviour
 		MapCorridor newMapCorridor = miniMap.AddCorridor(between, angle, mapRooms[bigVector.x, bigVector.y], mapRooms[smallVector.x, smallVector.y]);
 		mapRooms[bigVector.x, bigVector.y].Corridors.Add(newMapCorridor);
 		mapRooms[smallVector.x, smallVector.y].Corridors.Add(newMapCorridor);
+		newCorridor.LinkedMapElement = newMapCorridor;
 	}
 	private void CreateOneRoom(Vector2 checkPos, bool firstRoom = false)
     {
@@ -249,8 +250,10 @@ public class DungeonGeneration : MonoBehaviour
 			type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = FindLevelOfRoom(checkPos, takenPositions);
 		}
+		MapRoomBtn newMapRoom = miniMap.AddRoom(checkPos);
 		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupRoom(type);
-		mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = miniMap.AddRoom(checkPos);
+		rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].LinkedDungeonElement = newMapRoom;
+		mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = newMapRoom;
 		mapRooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].SetupIcone(mapIcons[(int)type]);
 		takenPositions.Insert(0, checkPos);
 	}

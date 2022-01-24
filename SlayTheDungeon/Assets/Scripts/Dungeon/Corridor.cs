@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Corridor : DungeonElement
 {
+    private MapCorridor linkedMapElement;
     private List<float> positionTaken = new List<float>();
     [SerializeField] private Transform endPoint;
     [SerializeField] private Door door1;
@@ -23,6 +24,7 @@ public class Corridor : DungeonElement
     public Transform EndPoint { get => endPoint; set => endPoint = value; }
     public Door Door1 { get => door1; set => door1 = value; }
     public Door Door2 { get => door2; set => door2 = value; }
+    public MapCorridor LinkedMapElement { get => linkedMapElement; set => linkedMapElement = value; }
 
     public void SetRooms(Room _room1, Room _room2)
     {
@@ -59,5 +61,10 @@ public class Corridor : DungeonElement
                 newElement.GetComponent<EnnemyTriger>().Level = level;
             }
         }
+    }
+
+    public void OnEnter()
+    {
+        linkedMapElement.Enter();
     }
 }

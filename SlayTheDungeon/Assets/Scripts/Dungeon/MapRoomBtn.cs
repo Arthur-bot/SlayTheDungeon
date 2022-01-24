@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MapRoomBtn : MonoBehaviour
 {
     [SerializeField] private Image icon;
+    [SerializeField] private Image background;
     private GameManager gameManager;
     private FirecampManager firecampManager;
     private LootManager lootManager;
@@ -35,6 +36,7 @@ public class MapRoomBtn : MonoBehaviour
 
     public void RevealAround()
     {
+        background.color = Color.gray;
         foreach(var corridor in corridors)
         {
             corridor.gameObject.SetActive(true);
@@ -48,6 +50,11 @@ public class MapRoomBtn : MonoBehaviour
             icon.sprite = sprite;
         else
             icon.gameObject.SetActive(false);
+    }
+
+    public void Clean()
+    {
+        icon.enabled = false;
     }
 
 }

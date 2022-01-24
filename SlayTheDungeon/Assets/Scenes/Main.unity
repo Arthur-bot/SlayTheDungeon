@@ -186,6 +186,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654905758551701528, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
+      propertyPath: startingDeck.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aac08d6f223631488dc9b0e3a08ca26, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19ec73445d553cc4c87b4842218a8ad5, type: 3}
 --- !u!114 &562820538 stripped

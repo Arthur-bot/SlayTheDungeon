@@ -13,20 +13,21 @@ public class Firecamp : MonoBehaviour
     {
         firecampManager = FirecampManager.Instance;
     }
-    private void OnEnable()
-    {
-        if (isUsed) Unlit();
-    }
 
     private void OnMouseDown()
     {
         firecampManager.CurrentFire = this;
         firecampManager.OpenFirecamp();
     }
+    private void Update()
+    {
+        if (isUsed) Unlit();
+    }
 
     public void Unlit()
     {
-        GetComponent<AudioSource>().Stop();
         animator.SetTrigger("Unlit");
+        GetComponent<AudioSource>().Stop();
+        (GameManager.Instance.CurrentRoom as Room).LinkedDungeonElement.Clean();
     }
 }

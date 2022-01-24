@@ -116,6 +116,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
+            (room as Corridor).OnEnter();
             gameUI.HideMap();
         }
         room.gameObject.SetActive(true);
@@ -250,6 +251,7 @@ public class GameManager : Singleton<GameManager>
 
         // Change Sounds & Music
         audioManager.PlayExplore();
+        if (currentRoom is Room) (currentRoom as Room).LinkedDungeonElement.Clean();
         // Check victory or GameOver & say it accordingly
         // Change UI
         gameUI.StopFight();

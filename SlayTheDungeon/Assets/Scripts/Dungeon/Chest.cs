@@ -14,6 +14,7 @@ public class Chest : MonoBehaviour
         {
             isOpen = true;
             LootManager.Instance.SetupLoop(nbOfChoice);
+            (GameManager.Instance.CurrentRoom as Room).LinkedDungeonElement.Clean();
         }
     }
 }

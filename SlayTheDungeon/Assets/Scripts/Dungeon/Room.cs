@@ -12,6 +12,7 @@ public enum RoomType
 }
 public class Room : DungeonElement
 {
+    private MapRoomBtn linkedDungeonElement;
     [SerializeField] private List<GameObject> roomComponents;
     private Corridor c_Left;
     private Corridor c_Right;
@@ -25,6 +26,7 @@ public class Room : DungeonElement
     public Corridor C_Up { get => c_Up; set => c_Up = value; }
     public Corridor C_Down { get => c_Down; set => c_Down = value; }
     public MapRoomBtn Btn { get => btn; set => btn = value; }
+    public MapRoomBtn LinkedDungeonElement { get => linkedDungeonElement; set => linkedDungeonElement = value; }
 
     public void EnterRoom()
     {
