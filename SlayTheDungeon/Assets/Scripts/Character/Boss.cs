@@ -87,6 +87,7 @@ public class Boss : Enemy
     }
     private void DrawOneCard()
     {
+        if (deck.Count == 0 && discard.Count == 0) return;
         if (deck.Count == 0)
         {
             Shuffle();

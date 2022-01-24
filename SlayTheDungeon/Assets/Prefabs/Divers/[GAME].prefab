@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   themeSource: {fileID: 520065243}
   combatSource: {fileID: 1218982589}
+  defaultCardSfx: {fileID: 8300000, guid: d242307039d804d97b0b2cd6a7fe2f4a, type: 3}
 --- !u!82 &1833276910266025990
 AudioSource:
   m_ObjectHideFlags: 0

@@ -65,6 +65,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1038660990714895517}
     m_Modifications:
+    - target: {fileID: -4591661645418600683, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: stats.baseStats.Fury
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: -4591661645418600683, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: stats.baseStats.Armor
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: -4591661645418600683, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: stats.baseStats.Health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -4591661645418600683, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: startingDeck.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aac08d6f223631488dc9b0e3a08ca26, type: 2}
+    - target: {fileID: -4591661645418600683, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: startingDeck.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aac08d6f223631488dc9b0e3a08ca26, type: 2}
+    - target: {fileID: -4591661645418600683, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: startingDeck.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aac08d6f223631488dc9b0e3a08ca26, type: 2}
     - target: {fileID: 1840080391453089791, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -77,6 +101,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6047289837824600855, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6196239670328694057, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -87,7 +115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196239670328694057, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.92
       objectReference: {fileID: 0}
     - target: {fileID: 6196239670328694057, guid: b8d62a189f0bb1c4d8094a262f2a063f, type: 3}
       propertyPath: m_LocalPosition.z
