@@ -209,6 +209,7 @@ public class StatSystem
 
                 _effect.RemoveTick(1);
                 dodged = true;
+                GameUI.Instance.DamageUI.NewText("Dodged", owner.transform.position);
 
                 if (!_effect.Done) continue;
 
@@ -336,6 +337,7 @@ public class StatSystem
 
                 effect.RemoveTick(1);
                 dodged = true;
+                GameUI.Instance.DamageUI.NewText("Dodged", owner.transform.position);
 
                 if (!effect.Done) continue;
 

@@ -105,13 +105,7 @@ public class GameUI : Singleton<GameUI>
 
     public void Quit()
     {
-#if UNITY_EDITOR
-
-        UnityEditor.EditorApplication.isPlaying = false;
-
-#endif
-
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
 #endregion

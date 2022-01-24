@@ -19,7 +19,11 @@ public class DamageEffect : CardEffect
             int remainedHealth = target.Stats.CurrentHealth;
             int damage = target.TakeDamage(effectValue);
             bool kill = damage >= remainedHealth;
-            if (drainLife || (kill & sacrifice)) caster.TakeDamage(-damage);
+            if ((drainLife || (kill & sacrifice)) && damage > 0)
+            {
+                caster.Stats.ChangeHealth(damage);
+                GameUI.Instance.DamageUI.NewDamage(-damage, caster.transform.position);
+            }
         }
     }
 
@@ -34,7 +38,11 @@ public class DamageEffect : CardEffect
         int remainedHealth = target.Stats.CurrentHealth;
         int damage = target.TakeDamage(effectValue);
         bool kill = damage >= remainedHealth;
-        if (drainLife || (kill & sacrifice)) caster.TakeDamage(-damage);
+        if ((drainLife || (kill & sacrifice)) && damage > 0)
+        {
+            caster.Stats.ChangeHealth(damage);
+            GameUI.Instance.DamageUI.NewDamage(-damage, caster.transform.position);
+        }
     }
 
     public override int GetEffectValue()

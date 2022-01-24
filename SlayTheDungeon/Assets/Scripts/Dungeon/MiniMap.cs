@@ -20,6 +20,13 @@ public class MiniMap : MonoBehaviour
     {
         thisTransform = GetComponent<RectTransform>();
     }
+    private void Start()
+    {
+        for (int  i = 0;  i < 2;  i++)
+        {
+            ZoomOut();
+        }
+    }
 
     public MapRoomBtn AddRoom(Vector2 pos)
     {
@@ -54,14 +61,14 @@ public class MiniMap : MonoBehaviour
     public void Recenter()
     {
         thisTransform.DOAnchorPos(playerIcon.anchoredPosition * -1, 1.0f);
-        thisTransform.DOScale(Vector3.one, 1.0f).OnComplete(() => {
-            zoomLevel = 3;
+        thisTransform.DOScale(Vector3.one * 0.6f, 1.0f).OnComplete(() => {
+            zoomLevel = 5;
         });
 
     }
     public void ZoomIn()
     {
-        if (zoomLevel > 0)
+        if (zoomLevel > 3)
         {
             thisTransform.localScale = new Vector3(transform.localScale.x + 0.2f, transform.localScale.y + 0.2f, 1f);
             zoomLevel--;
@@ -69,7 +76,7 @@ public class MiniMap : MonoBehaviour
     }
     public void ZoomOut()
     {
-        if (zoomLevel < 6)
+        if (zoomLevel < 7)
         {
             thisTransform.localScale = new Vector3(transform.localScale.x - 0.2f, transform.localScale.y - 0.2f, 1f);
             zoomLevel++;

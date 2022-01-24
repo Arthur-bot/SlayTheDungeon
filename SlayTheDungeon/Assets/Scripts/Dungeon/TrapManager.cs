@@ -22,8 +22,6 @@ public class TrapManager : Singleton<TrapManager>
     {
         playerController.IsMoving = false;
         panel.SetActive(true);
-        trapButton.interactable = player.Deck.Count > 5;
-        trapButton.alpha = player.Deck.Count > 5 ? 1f : 0.75f;
         currentTrap = toTrigger;
     }
 
