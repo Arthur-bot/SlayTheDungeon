@@ -16,7 +16,7 @@ MonoBehaviour:
   cost: 0
   cardName: Kunai
   description: Deal 3 Damages
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: 0b130825d8b94450891e6322d55fd73b, type: 3}
   cardEffects:
   - {fileID: 8543570136979851701}
   keywords: 00000000
@@ -37,3 +37,4 @@ MonoBehaviour:
   description: 
   targetType: 1
   value: 3
+  drainLife: 0

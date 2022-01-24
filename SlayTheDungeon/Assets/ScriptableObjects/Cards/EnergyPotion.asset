@@ -16,9 +16,10 @@ MonoBehaviour:
   cost: 1
   cardName: EnergyPotion
   description: Gain 3 energy
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: 5ccd64812efb84675924a1af6c15a44a, type: 3}
   cardEffects:
   - {fileID: 2923589612379073143}
+  keywords: 
   limitedUse: 1
   nbUse: 2
 --- !u!114 &2923589612379073143

@@ -46,7 +46,7 @@ MonoBehaviour:
   cost: 0
   cardName: Forbidden Scrolls
   description: Pay 4 lifes, draw 1 card and get 1 energy
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: 981d8309b23ac45dfa22f6c8fd15ccc0, type: 3}
   cardEffects:
   - {fileID: -6563906396031790010}
   - {fileID: 3076189159543106765}

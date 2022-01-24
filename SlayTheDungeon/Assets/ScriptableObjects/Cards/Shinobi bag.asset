@@ -35,7 +35,7 @@ MonoBehaviour:
   cost: 2
   cardName: Shinobi bag
   description: Add 3 Kunais to your hand
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: 3e2f3f4543d334f19898e43ad3c3851b, type: 3}
   cardEffects:
   - {fileID: -3580903945539324185}
   keywords: 04000000

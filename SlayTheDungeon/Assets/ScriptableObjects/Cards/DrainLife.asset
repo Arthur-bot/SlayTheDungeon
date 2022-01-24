@@ -15,8 +15,13 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2750628a7310c9142a92b6b96cdf3327, type: 3}
   cost: 1
   cardName: Life Drain
+<<<<<<< Updated upstream
   description: Drain 2 lifes
   cardSoundEffect: {fileID: 0}
+=======
+  description: Drain 3 lifes
+  cardSoundEffect: {fileID: 8300000, guid: ec6b7fe896c544f94b1ddffcb8adfcb4, type: 3}
+>>>>>>> Stashed changes
   cardEffects:
   - {fileID: 8447836662170796641}
   keywords: 0000000007000000

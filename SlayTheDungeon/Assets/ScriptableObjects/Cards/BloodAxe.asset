@@ -16,7 +16,7 @@ MonoBehaviour:
   cost: 2
   cardName: Blood Axe
   description: Deals 10 Damages
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: 2e6dd0ccd618342f9a86ddd79f10627a, type: 3}
   cardEffects:
   - {fileID: 9172954252357745503}
   keywords: 00000000
@@ -37,3 +37,4 @@ MonoBehaviour:
   description: 
   targetType: 1
   value: 10
+  drainLife: 0

@@ -15,6 +15,7 @@ MonoBehaviour:
   description: 
   targetType: 1
   value: 2
+  drainLife: 0
 --- !u!114 &-6041371506181741167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,7 +47,7 @@ MonoBehaviour:
   cost: 0
   cardName: Fire Book
   description: Deals 2 Damages and Draw 1 Card
-  cardSoundEffect: {fileID: 0}
+  cardSoundEffect: {fileID: 8300000, guid: fc1d1d640df74483195489b3dd4fac7f, type: 3}
   cardEffects:
   - {fileID: -7763735533026279151}
   - {fileID: -6041371506181741167}
