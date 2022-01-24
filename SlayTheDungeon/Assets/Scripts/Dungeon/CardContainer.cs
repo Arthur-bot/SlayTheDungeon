@@ -12,7 +12,6 @@ public class CardContainer : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>() && !isOpen)
         {
-            Debug.Log("collision with box");
             isOpen = true;
             LootManager.Instance.SetupLoop(nbOfChoice);
             GameManager.Instance.Player.Controller.IsMoving = false;

@@ -124,7 +124,6 @@ public class DataBase : Singleton<DataBase>
     public List<EnnemyData> PickRandomEnnemyCombination(int level)
     {
         List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level && x.boss == false).ToList();
-        Debug.Log(Random.Range(0, combinationOfExpectedLevel.Count));
         List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count)].ennemies;
         return newPick;
     }

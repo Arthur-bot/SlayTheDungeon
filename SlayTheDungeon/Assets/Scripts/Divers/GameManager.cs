@@ -194,6 +194,7 @@ public class GameManager : Singleton<GameManager>
 
     public void EndEnnemyTurn()
     {
+        Debug.Log(InBattle);
         if (!InBattle) return;
         BattleGround.TurnType = TurnType.PlayerTurn;
         OnEndTurn.Invoke(this, EventArgs.Empty);
@@ -270,34 +271,37 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator EnemyTurn()
     {
-        List<Boss> bosses = new List<Boss>();
-        foreach (var monster in BattleGround.Enemies)
+        if (BattleGround.BattleStatus == BattleStatus.Fighting)
         {
-            monster.UpdateDurations();
-        }
-
-        yield return new WaitForSeconds(1.0f);
-
-        foreach (var monster in BattleGround.Enemies)
-        {
-            if (monster.IsAlive)
+            List<Boss> bosses = new List<Boss>();
+            foreach (var monster in BattleGround.Enemies)
             {
-                if (monster is Boss) bosses.Add(monster as Boss);
-                monster.PlayTurn();
-                yield return new WaitForSeconds(1.0f);
+                monster.UpdateDurations();
             }
-        }
-        while(bosses.Count > 0)
-        {
+
             yield return new WaitForSeconds(1.0f);
-            foreach (Boss boss in bosses)
+
+            foreach (var monster in BattleGround.Enemies)
             {
-                if (!boss.IsPlaying)
+                if (monster.IsAlive)
                 {
-                    boss.DiscardHand();
-                    boss.DrawCards(5);
-                    bosses.Remove(boss);
-                    break;
+                    if (monster is Boss) bosses.Add(monster as Boss);
+                    monster.PlayTurn();
+                    yield return new WaitForSeconds(1.0f);
+                }
+            }
+            while (bosses.Count > 0)
+            {
+                yield return new WaitForSeconds(1.0f);
+                foreach (Boss boss in bosses)
+                {
+                    if (!boss.IsPlaying)
+                    {
+                        boss.DiscardHand();
+                        boss.DrawCards(5);
+                        bosses.Remove(boss);
+                        break;
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public enum KeyWord
@@ -77,7 +78,6 @@ public class Boss : Enemy
                 (() => { StartCoroutine(FadeCard(playedCard.GetComponent<CanvasGroup>(), 0.5f)); });
             energy -= card.Cost;
             card.Use(false);
-            Debug.Log(card.CardName);
             hand.Remove(card);
             if (!card.LimitedUse || card.NbUse > 0)
                 discard.Add(card);
@@ -105,6 +105,10 @@ public class Boss : Enemy
             deck.Add(card);
         }
         discard.Clear();
+    }
+    protected override void OnDeath()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public override void DrawCards(int value)
