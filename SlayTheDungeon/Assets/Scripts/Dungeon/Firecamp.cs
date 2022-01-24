@@ -13,6 +13,10 @@ public class Firecamp : MonoBehaviour
     {
         firecampManager = FirecampManager.Instance;
     }
+    private void OnEnable()
+    {
+        if (isUsed) Unlit();
+    }
 
     private void OnMouseDown()
     {

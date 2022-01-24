@@ -326,7 +326,7 @@ public class StatSystem
         var dodged = false;
 
         // Check if can dodge
-        if (BattleData.Instance.CurrentTarget != Target.Self)
+        if (BattleData.Instance.CurrentTarget != Target.Self && totalDamage > 0)
         {
             for (var i = 0; i < elementalEffects.Count; ++i)
             {
