@@ -22,4 +22,8 @@ public class DungeonElement : MonoBehaviour
         gameManager = GameManager.Instance;
     }
     // Start is called before the first frame update
+    public virtual void OnEnter()
+    {
+
+    }
 }

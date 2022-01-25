@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 1
-  value: 10
+  value: 8
   drainLife: 0
   sacrifice: 0
 --- !u!114 &11400000
@@ -59,4 +59,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   targetType: 0
-  value: 7
+  value: 10

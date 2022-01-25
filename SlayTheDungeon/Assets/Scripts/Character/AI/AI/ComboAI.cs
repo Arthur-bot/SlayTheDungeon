@@ -5,6 +5,7 @@ using UnityEngine;
 public class ComboAI : BaseAI
 {
     private List<CardData> combosCards = new List<CardData>();
+    private List<CardData> eliminatedCards = new List<CardData>();
     private DrawBehaviour drawBehaviour = new DrawBehaviour();
     private MinCostBehaviour costBehaviour = new MinCostBehaviour();
     private BaseBehaviour baseBehaviour = new BaseBehaviour();
@@ -24,6 +25,7 @@ public class ComboAI : BaseAI
 
     IEnumerator TakeDecisionInTime()
     {
+        CleanCard();
         // Play all the cards to draw for a few energy
         drawBehaviour.FreeDraw = true;
         currentBehaviour = drawBehaviour;
@@ -64,6 +66,7 @@ public class ComboAI : BaseAI
                         break;
                     }
                 }
+                CleanCard();
                 canPlay = hasPlayedCard;
             }
             //Play  a maximum amount of cards
@@ -86,6 +89,7 @@ public class ComboAI : BaseAI
                     }
                 }
                 costBehaviour.LimitCost = Owner.Energy - toKeep;
+                CleanCard();
                 cardsToPay = LookForCards();
                 canPlay = hasPlayedCard;
             }
@@ -100,8 +104,8 @@ public class ComboAI : BaseAI
         }
         else
         {
-            //Tempo
-            baseBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Defend, KeyWord.Generation };
+            //Tempo with defense and heal cards
+            baseBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Defend, KeyWord.Heal };
             currentBehaviour = baseBehaviour;
             canPlay = true;
             cardsToPay = LookForCards();
@@ -120,7 +124,27 @@ public class ComboAI : BaseAI
                 }
                 canPlay = hasPlayedCard;
             }
+            //Remained energy with attack cards
+            baseBehaviour.PreferedKeywords = new List<KeyWord> { KeyWord.Attack };
+            canPlay = true;
+            cardsToPay = LookForCards();
+            while (canPlay)
+            {
+                bool hasPlayedCard = false;
+                foreach (CardData card in cardsToPay)
+                {
+                    if (Owner.PlayACard(card))
+                    {
+                        yield return new WaitForSeconds(1.5f);
+                        hasPlayedCard = true;
+                        cardsToPay.Remove(card);
+                        break;
+                    }
+                }
+                canPlay = hasPlayedCard;
+            }
         }
+        GetCardBack();
         Owner.IsPlaying = false;
     }
 
@@ -137,5 +161,27 @@ public class ComboAI : BaseAI
             }
         }
         return cost;
+    }
+
+    private void CleanCard()
+    {
+        if (Owner.Stats.CurrentHealth <= Owner.Stats.BaseStats.Health / 2)
+        {
+            for (int i = Owner.Hand.Count - 1; i >= 0; i--)
+            {
+                if (Owner.Hand[i].Keywords.Contains(KeyWord.PayLife))
+                {
+                    eliminatedCards.Add(Owner.Hand[i]);
+                    Owner.Hand.RemoveAt(i);
+                }
+            }
+        }
+    }
+    private void GetCardBack()
+    {
+        foreach (CardData card in eliminatedCards)
+        {
+            Owner.Hand.Add(card);
+        }
     }
 }

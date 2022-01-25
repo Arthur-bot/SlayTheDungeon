@@ -52,6 +52,7 @@ public class DamageEffect : CardEffect
 
     public override Sprite GetIcon()
     {
-        return DataBase.Instance.AttackIcon;
+        if (!drainLife) return DataBase.Instance.AttackIcon;
+        else return DataBase.Instance.DrainIcon;
     }
 }

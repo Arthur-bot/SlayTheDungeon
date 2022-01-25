@@ -17,6 +17,7 @@ public class DungeonGeneration : MonoBehaviour
 	private MiniMap miniMap;
 	MapRoomBtn[,] mapRooms;
 	// WorldField
+	private Stack<RoomType> types = new Stack<RoomType>();
 	private GameManager gameManager;
 	Room[,] rooms;
 	[SerializeField] private Corridor CorridorPrefab;
@@ -31,13 +32,18 @@ public class DungeonGeneration : MonoBehaviour
 
     void Start()
 	{
-
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
 		{ // make sure we dont try to make more rooms than can fit in our grid
 			numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));
 		}
 		gridSizeX = Mathf.RoundToInt(worldSize.x); //note: these are half-extents
 		gridSizeY = Mathf.RoundToInt(worldSize.y);
+		while(types.Count < numberOfRooms - 1)
+        {
+			types.Push(RoomType.Firecamp);
+			types.Push(RoomType.Chest);
+			types.Push(RoomType.Monster);
+		}
 		CreateRooms(); //lays out the actual map
 		SetRoomCorridors(); //assigns the doors where rooms would connect
 		FindBossRoom();
@@ -215,7 +221,7 @@ public class DungeonGeneration : MonoBehaviour
 		// Create corridor
 		Corridor newCorridor = Instantiate(CorridorPrefab, worldRoot);
 		newCorridor.GridPos = between;
-		newCorridor.Level = Mathf.Max(rooms[roomPos.x, roomPos.y].Level,1);
+		newCorridor.Level = Mathf.Max(rooms[bigVector.x, bigVector.y].Level, rooms[smallVector.x, smallVector.y].Level);
 		newCorridor.SetRooms(rooms[smallVector.x, smallVector.y], rooms[bigVector.x, bigVector.y]);
 		if (!horizontal)
         {
@@ -247,7 +253,7 @@ public class DungeonGeneration : MonoBehaviour
 		}
 		else
         {
-			type = (RoomType)Random.Range(2, RoomType.GetValues(typeof(RoomType)).Length);
+			type = types.Pop();
 			rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY].Level = FindLevelOfRoom(checkPos, takenPositions);
 		}
 		MapRoomBtn newMapRoom = miniMap.AddRoom(checkPos);

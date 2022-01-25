@@ -32,6 +32,7 @@ public class DataBase : Singleton<DataBase>
     [SerializeField] private Sprite poisonIcon;
     [SerializeField] private Sprite furyIcon;
     [SerializeField] private Sprite dodgeIcon;
+    [SerializeField] private Sprite drainIcon;
 
     [Header("Mod")] 
     [SerializeField] private string pathToMods;
@@ -50,6 +51,7 @@ public class DataBase : Singleton<DataBase>
     public Sprite FuryIcon => furyIcon;
 
     public Sprite DodgeIcon => dodgeIcon;
+    public Sprite DrainIcon => drainIcon;
 
     #endregion
 

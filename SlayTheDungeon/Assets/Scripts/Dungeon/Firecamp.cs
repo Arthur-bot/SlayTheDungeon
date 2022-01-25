@@ -19,13 +19,10 @@ public class Firecamp : MonoBehaviour
         firecampManager.CurrentFire = this;
         firecampManager.OpenFirecamp();
     }
-    private void Update()
-    {
-        if (isUsed) Unlit();
-    }
 
     public void Unlit()
     {
+        if (!isUsed) return;
         animator.SetTrigger("Unlit");
         GetComponent<AudioSource>().Stop();
         (GameManager.Instance.CurrentRoom as Room).LinkedDungeonElement.Clean();

@@ -533,6 +533,7 @@ MonoBehaviour:
   poisonIcon: {fileID: -2876628808043661572, guid: 2ad0b35b4d928bd4dba4847c1e7781f4, type: 3}
   furyIcon: {fileID: 21300000, guid: 0910e28ad8a404244b42f5d429bdb014, type: 3}
   dodgeIcon: {fileID: 21300000, guid: 3711ad8a76dbc464794f5f5a8a9e3534, type: 3}
+  drainIcon: {fileID: 21300000, guid: 62c60d386a895374991d15ed3f988a5a, type: 3}
   pathToMods: 
 --- !u!114 &1448122152
 MonoBehaviour:

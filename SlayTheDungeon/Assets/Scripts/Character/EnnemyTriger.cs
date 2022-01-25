@@ -12,9 +12,11 @@ public class EnnemyTriger : MonoBehaviour
     private GameManager gameManager;
     private int level;
     private bool bossTrigger;
+    private bool alreadyUsed;
 
     public int Level { get => level; set => level = value; }
     public bool BossTrigger { get => bossTrigger; set => bossTrigger = value; }
+    public bool AlreadyUsed { get => alreadyUsed; set => alreadyUsed = value; }
 
     #endregion
 
@@ -26,6 +28,7 @@ public class EnnemyTriger : MonoBehaviour
     }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
+        if (alreadyUsed) return;
         if (collision.GetComponent<PlayerController>())
         {
             List<EnnemyData> combination;
@@ -49,7 +52,7 @@ public class EnnemyTriger : MonoBehaviour
                 enemies.Add(newEnemy);
             }
             gameManager.StartEncounter(enemies);
-            Destroy(this);
+            alreadyUsed = true;
         }
     }
 

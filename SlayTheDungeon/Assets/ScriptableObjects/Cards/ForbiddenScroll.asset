@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: -6563906396031790010}
   - {fileID: 3076189159543106765}
   - {fileID: -5558010388897396059}
-  keywords: 0300000006000000
+  keywords: 030000000600000009000000
   limitedUse: 1
   nbUse: 1
 --- !u!114 &3076189159543106765
@@ -70,3 +70,4 @@ MonoBehaviour:
   targetType: 0
   value: 4
   drainLife: 0
+  sacrifice: 0

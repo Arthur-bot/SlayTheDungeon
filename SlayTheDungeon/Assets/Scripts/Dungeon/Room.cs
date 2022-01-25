@@ -19,6 +19,7 @@ public class Room : DungeonElement
     private Corridor c_Up;
     private Corridor c_Down;
     private MapRoomBtn btn;
+    private RoomType thisType;
 
 
     public Corridor C_Left { get => c_Left; set => c_Left = value; }
@@ -36,6 +37,7 @@ public class Room : DungeonElement
 
     public void SetupRoom(RoomType type)
     {
+        thisType = type;
         foreach(GameObject component in roomComponents)
         {
             component.SetActive(false);
@@ -48,6 +50,13 @@ public class Room : DungeonElement
                 roomComponents[(int)RoomType.Monster - 1].GetComponent<EnnemyTriger>().BossTrigger = true;
             }
             roomComponents[(int)type - 1].SetActive(true);
+        }
+    }
+    public override void OnEnter()
+    {
+        if (thisType == RoomType.Firecamp)
+        {
+            roomComponents[(int)RoomType.Firecamp - 1].GetComponent<Firecamp>().Unlit();
         }
     }
 }

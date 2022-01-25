@@ -15,6 +15,7 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             gameManager.EnterRoom(room, room.StartPoint);
+            room.OnEnter();
         }
     }
     public void SetRoom(Room _room)
