@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6dddd2ecafb4e445bc2b9aab7ff93a2, type: 3}
+  m_Name: DrawCardWhenOut
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 0
+  conditionalStat: 0
+  condition: 0
+  EffectPlayed: {fileID: 0}
+--- !u!114 &5069721634332840996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c7454be6a4e2248bc8018cbb4b9d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 2
+  drainLife: 0
+  sacrifice: 0

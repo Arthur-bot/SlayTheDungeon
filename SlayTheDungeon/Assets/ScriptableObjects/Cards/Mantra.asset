@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5764558100862051589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fefcd62eff65dd458c134f6402d4f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  targetType: 0
+  value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7d424ecbac7b24a994a44c2bf1280c, type: 3}
+  m_Name: Mantra
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: ffff52c5ac9d232449a68cda43310661, type: 3}
+  cost: 0
+  cardName: Mantra
+  description: Gain armor equal to the number of cards played this turn
+  cardSoundEffect: {fileID: 0}
+  cardEffects:
+  - {fileID: -5764558100862051589}
+  keywords: 0100000005000000
+  limitedUse: 0
+  nbUse: 0
