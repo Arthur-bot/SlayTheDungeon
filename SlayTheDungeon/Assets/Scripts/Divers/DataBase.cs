@@ -156,7 +156,6 @@ public class DataBase : Singleton<DataBase>
             // Copy data in a new scriptable object
             var effect = ScriptableObject.CreateInstance<ConditionnalEffect>();
             effect.name = effectData.name;
-            AssetDatabase.CreateAsset(effect, "Assets/Mods/" + effect.name + ".asset");
             effect.EffectFromJson(effectData);
         }
     }
