@@ -10,6 +10,13 @@ public struct Combinations
     public List<EnnemyData> ennemies;
     public int level;
     public bool boss;
+
+    public Combinations(EnnemyData enemy, int level)
+    {
+        this.ennemies = new List<EnnemyData>() { enemy };
+        this.level = level;
+        this.boss = false;
+    }
 }
 
 public class DataBase : Singleton<DataBase>
@@ -55,11 +62,10 @@ public class DataBase : Singleton<DataBase>
         pathToMods = Application.dataPath + "/Mods";
         if (!Directory.Exists(pathToMods))
             Directory.CreateDirectory(pathToMods);
-    }
 
-    protected void Start()
-    {
-        ChargeSet("Test");
+        ChargeModdedCards("Cards");
+        ChargeModdedMonsters("Monsters");
+
         for (int i = 0; i < 100; i++)
         {
             PickRandomEnnemyCombination(1);
@@ -70,36 +76,58 @@ public class DataBase : Singleton<DataBase>
 
     #region Private Methods
 
-    private void ChargeSet(string nameOfSet)
+    private void ChargeModdedCards(string nameOfSet)
     {
-        if (!Directory.Exists(pathToMods + "/" + nameOfSet))
+        if (!Directory.Exists(pathToMods + "/" + nameOfSet)) return;
+
+        // Get all JSON files
+        ListOfJSON = Directory.GetFiles(pathToMods + "/" + nameOfSet, "*.json");
+
+        for (var i = 0; i < ListOfJSON.Length; i++)
         {
-            return;
-        }
-        else
-        {
-            ListOfJSON = Directory.GetFiles(pathToMods + "/" + nameOfSet, "*.json");
+            // Get data from JSON
+            StreamReader reader = new StreamReader(ListOfJSON[i]);
+            var jsonString = reader.ReadToEnd();
+            var cardData = new CardStructure();
+            JsonUtility.FromJsonOverwrite(jsonString, cardData);
 
-            for (int i = 0; i < ListOfJSON.Length; i++)
-            {
-                // Get data from JSON
-                StreamReader reader = new StreamReader(ListOfJSON[i]);
-                var jsonString = reader.ReadToEnd();
-                var cardData = new CardStructure();
-                JsonUtility.FromJsonOverwrite(jsonString, cardData);
+            // Copy data in a new scriptable object
+            var card = ScriptableObject.CreateInstance<CardData>();
+            card.name = cardData.cardName;
+            card.CardFromStructure(cardData);
 
-                // Copy data in a new scriptable object
-                var card = ScriptableObject.CreateInstance<CardData>();
-                card.name = cardData.cardName;
-                card.CardFromStructure(cardData);
-
-                allCards.Add(card);
-            }
-
-            return;
-
+            allCards.Add(card);
         }
 
+    }
+
+    private void ChargeModdedMonsters(string nameOfSet)
+    {
+        if (!Directory.Exists(pathToMods + "/" + nameOfSet)) return;
+
+        //Get all JSON files
+        ListOfJSON = Directory.GetFiles(pathToMods + "/" + nameOfSet, "*.json");
+
+        for (var i = 0; i < ListOfJSON.Length; i++)
+        {
+            // Get data from JSON
+            StreamReader reader = new StreamReader(ListOfJSON[i]);
+            var jsonString = reader.ReadToEnd();
+            var monsterData = new MonsterStructure();
+            JsonUtility.FromJsonOverwrite(jsonString, monsterData);
+
+            // Copy data in a new scriptable object
+            var monster = ScriptableObject.CreateInstance<EnnemyData>();
+            monster.name = monsterData.name;
+            monster.MonsterFormStructure(monsterData);
+
+            var combination = new Combinations(
+                monster,
+                monsterData.difficulty
+            );
+
+            ennemyCombos.Add(combination);
+        }
     }
 
     #endregion

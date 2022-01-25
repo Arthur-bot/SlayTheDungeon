@@ -154,6 +154,15 @@ public class StatSystem
         this.owner = owner;
     }
 
+    public void StatsFromStructure(StatsStructure statsStructure)
+    {
+        baseStats = new Stats
+        {
+            Health = statsStructure.health, Armor = statsStructure.maxArmor, Fury = statsStructure.maxFury
+        };
+
+    }
+
     public void AddModifier(StatModifier modifier)
     {
         modifiersStack.Add(modifier);

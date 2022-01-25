@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -12,8 +13,8 @@ public class EnnemyData : ScriptableObject
 {
     #region Fields
     [SerializeField] private Sprite sprite;
-    [SerializeField] private List<CardEffect> attacks;
-    [SerializeField] private StatSystem stats;
+    [SerializeField] private List<CardEffect> attacks = new List<CardEffect>();
+    [SerializeField] private StatSystem stats = new StatSystem();
     [SerializeField] private List<CardData> ennemyDeck;
     [SerializeField] private bool boss;
     [SerializeField] private BaseAI ai;
@@ -28,6 +29,35 @@ public class EnnemyData : ScriptableObject
     public bool Boss { get => boss; set => boss = value; }
     public List<CardData> EnnemyDeck { get => ennemyDeck; set => ennemyDeck = value; }
     public BaseAI Ai { get => ai; set => ai = value; }
+
+    #endregion
+
+    #region Public Methods
+
+    public void MonsterFormStructure(MonsterStructure data)
+    {
+        //Stats
+        stats.StatsFromStructure(data.stats);
+
+        //Effects
+        foreach (var effectData in data.attacks)
+        {
+            var effect = CreateInstance(effectData.name) as CardEffect;
+
+            if (effect == null) continue;
+
+            effect.EffectFromJson(effectData);
+            attacks.Add(effect);
+        }
+
+        //Sprite
+        var loadedSprite = Resources.Load<Sprite>("Cards/" + data.spritePath);
+
+        if (loadedSprite != null)
+        {
+            sprite = loadedSprite;
+        }
+    }
 
     #endregion
 

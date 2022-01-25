@@ -1,8 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class CardStructure
 {
     public string spritePath;
@@ -15,12 +15,31 @@ public class CardStructure
     public int nbUse;
 }
 
-[System.Serializable]
+[Serializable]
+public class MonsterStructure
+{
+    public string spritePath;
+    public string name;
+    public int difficulty;
+    public StatsStructure stats;
+    public List<EffectStructure> attacks;
+}
+
+[Serializable]
 public class EffectStructure
 {
     public string name;
     public string targetType;
     public int value;
+
+}
+
+[Serializable]
+public class StatsStructure
+{
+    public int health;
+    public int maxArmor;
+    public int maxFury;
 
 }
 
