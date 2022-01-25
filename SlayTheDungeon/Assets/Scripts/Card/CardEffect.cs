@@ -7,8 +7,8 @@ public abstract class CardEffect : ScriptableObject
 {
     #region Fields
 
-    [SerializeField] private string description;
-    [SerializeField] private Target targetType;
+    [SerializeField] protected string description;
+    [SerializeField] protected Target targetType;
     [SerializeField] protected int value;
 
     #endregion

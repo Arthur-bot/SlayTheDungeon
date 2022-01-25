@@ -29,6 +29,8 @@ public class Hand : MonoBehaviour
 
     #region Public Methods
 
+    public int GetNumberOfCard() => cards.Count;
+
     public void DiscardHand()
     {
         if (cards == null) return;

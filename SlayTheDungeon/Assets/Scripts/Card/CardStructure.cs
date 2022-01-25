@@ -31,7 +31,6 @@ public class EffectStructure
     public string name;
     public string targetType;
     public int value;
-
 }
 
 [Serializable]
@@ -40,7 +39,15 @@ public class StatsStructure
     public int health;
     public int maxArmor;
     public int maxFury;
-
 }
 
-
+[Serializable]
+public class ConditionalEffectStructure
+{
+    public string name;
+    public string targetType;
+    public int value;
+    public string conditionalStats;
+    public string condition;
+    public EffectStructure effectPlayed;
+}

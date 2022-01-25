@@ -61,8 +61,14 @@ public class DataBase : Singleton<DataBase>
 
         pathToMods = Application.dataPath + "/Mods";
         if (!Directory.Exists(pathToMods))
+        {
             Directory.CreateDirectory(pathToMods);
+            Directory.CreateDirectory(pathToMods + "/Cards");
+            Directory.CreateDirectory(pathToMods + "/Monsters");
+            Directory.CreateDirectory(pathToMods + "/Effects");
+        }
 
+        ChargeModdedEffect("Effects");
         ChargeModdedCards("Cards");
         ChargeModdedMonsters("Monsters");
 
@@ -127,6 +133,29 @@ public class DataBase : Singleton<DataBase>
             );
 
             ennemyCombos.Add(combination);
+        }
+    }
+
+    private void ChargeModdedEffect(string nameOfSet)
+    {
+        if (!Directory.Exists(pathToMods + "/" + nameOfSet)) return;
+
+        //Get all JSON files
+        ListOfJSON = Directory.GetFiles(pathToMods + "/" + nameOfSet, "*.json");
+
+        for (var i = 0; i < ListOfJSON.Length; i++)
+        {
+            // Get data from JSON
+            StreamReader reader = new StreamReader(ListOfJSON[i]);
+            var jsonString = reader.ReadToEnd();
+            var effectData = new ConditionalEffectStructure();
+            JsonUtility.FromJsonOverwrite(jsonString, effectData);
+
+            // Copy data in a new scriptable object
+            var effect = ScriptableObject.CreateInstance<ConditionnalEffect>();
+            effect.name = effectData.name;
+            AssetDatabase.CreateAsset(effect, "Assets/Mods/" + effect.name + ".asset");
+            effect.EffectFromJson(effectData);
         }
     }
 

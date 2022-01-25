@@ -1,0 +1,12 @@
+{
+  "name": "DrawCardWhenOut",
+  "targetType": "Self",
+  "value": 3,
+  "conditionalStats": "CardsPlayed",
+  "condition": "Greater",
+  "effectPlayed": {
+    "name": "DamageEffect",
+    "targetType": "Self",
+    "value": 2
+  }
+}
