@@ -226,6 +226,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 562820538}
+    - target: {fileID: 217494692108445579, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 99.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284569937229761800, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 97.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870584389988890359, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 97.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277581626559338509, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 97.58
+      objectReference: {fileID: 0}
     - target: {fileID: 4755857868621211072, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Camera
       value: 
@@ -277,6 +293,18 @@ PrefabInstance:
     - target: {fileID: 4755857869740088051, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
       propertyPath: m_Name
       value: '[GAME-UI]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260938807701093242, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_Name
+      value: ButtonResume
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440951993552542620, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973400669033631159, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dfad1a2e372b6f43a754cb177f96c89, type: 3}

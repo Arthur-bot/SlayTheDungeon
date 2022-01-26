@@ -103,7 +103,7 @@ public class ConditionnalEffect : CardEffect
         effect.EffectFromJson(effectStructure.effectPlayed);
         EffectPlayed = effect;
 
-        AssetDatabase.AddObjectToAsset(effect, this);
+        //AssetDatabase.AddObjectToAsset(effect, this);
     }
 
     #endregion
