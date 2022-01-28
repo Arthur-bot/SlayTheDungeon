@@ -471,6 +471,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 562820538}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[17]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3171f392a41863941b0ea793d296b103, type: 2}
+    - target: {fileID: 3139266491860590680, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
+      propertyPath: allCards.Array.data[18]
+      value: 
+      objectReference: {fileID: 11400000, guid: c7c995f19615c62468a03663e9c9e030, type: 2}
     - target: {fileID: 6382093280116942454, guid: 149ac9c01731ed64d815ceaf966ddc64, type: 3}
       propertyPath: m_RootOrder
       value: 2

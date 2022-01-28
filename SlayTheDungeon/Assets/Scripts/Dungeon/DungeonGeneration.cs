@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class DungeonGeneration : MonoBehaviour
 {
+	private DungeonParameters dungeonSettings;
 	[SerializeField] private Vector2 worldSize = new Vector2(4, 4);
 	List<Vector2> takenPositions = new List<Vector2>();
 	int gridSizeX, gridSizeY;
-	[SerializeField] private int numberOfRooms = 20;
+	private int numberOfRooms;
 	[SerializeField] private float randomCompare = 0.2f;
 	[SerializeField] private float randomCompareStart = 0.2f;
 	[SerializeField] private float randomCompareEnd = 0.01f;
@@ -23,33 +24,99 @@ public class DungeonGeneration : MonoBehaviour
 	[SerializeField] private Corridor CorridorPrefab;
 	[SerializeField] private Room RoomPrefab; 
 	[SerializeField] private Transform worldRoot;
+	private int chestFrequency, fireFrequency, monsterFrequency;
 
     protected void Awake()
     {
         gameManager = GameManager.Instance;
-        miniMap = GameUI.Instance.MiniMap;
+		miniMap = GameUI.Instance.MiniMap;
     }
 
     void Start()
 	{
-		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
-		{ // make sure we dont try to make more rooms than can fit in our grid
-			numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));
-		}
+		if (DungeonParameters.Instance) dungeonSettings = DungeonParameters.Instance;
+		numberOfRooms = dungeonSettings ? dungeonSettings.NumberOfRoom : 12;
+		Debug.Log("Number of Rooms " + numberOfRooms.ToString());
+		chestFrequency = dungeonSettings ? dungeonSettings.ChestFrequency : 5;
+		monsterFrequency = dungeonSettings ? dungeonSettings.MonsterFrequency : 5;
+		fireFrequency = dungeonSettings ? dungeonSettings.FireCampFrequency : 5;
+		int size = (int)Mathf.Ceil(Mathf.Sqrt(numberOfRooms));
+		worldSize = new Vector2(size, size);
 		gridSizeX = Mathf.RoundToInt(worldSize.x); //note: these are half-extents
 		gridSizeY = Mathf.RoundToInt(worldSize.y);
-		while(types.Count < numberOfRooms - 1)
-        {
-			types.Push(RoomType.Firecamp);
-			types.Push(RoomType.Chest);
-			types.Push(RoomType.Monster);
-		}
+		CreateTypes();
 		CreateRooms(); //lays out the actual map
 		SetRoomCorridors(); //assigns the doors where rooms would connect
 		FindBossRoom();
 		gameManager.EnterRoom(rooms[gridSizeX, gridSizeY], rooms[gridSizeX, gridSizeY].StartPoint);
 	}
-	void CreateRooms()
+
+    private void CreateTypes()
+    {
+		while (types.Count < numberOfRooms - 1)
+		{
+			int percent = Random.Range(0, 100);
+			if (fireFrequency >= 5)
+            {
+				types.Push(RoomType.Firecamp);
+				if (percent < (fireFrequency - 5) * 20)
+                {
+					types.Push(RoomType.Firecamp);
+				}
+			}
+			else
+            {
+				if (percent < fireFrequency * 20)
+                {
+					types.Push(RoomType.Firecamp);
+				}
+				else
+                {
+					types.Push(RoomType.None);
+				}
+            }
+			if (chestFrequency >= 5)
+			{
+				types.Push(RoomType.Chest);
+				if (percent < (chestFrequency - 5) * 20)
+				{
+					types.Push(RoomType.Chest);
+				}
+			}
+			else
+			{
+				if (percent < chestFrequency * 20)
+				{
+					types.Push(RoomType.Chest);
+				}
+				else
+				{
+					types.Push(RoomType.None);
+				}
+			}
+			if (monsterFrequency >= 5)
+			{
+				types.Push(RoomType.Monster);
+				if (percent < (monsterFrequency - 5) * 20)
+				{
+					types.Push(RoomType.Monster);
+				}
+			}
+			else
+			{
+				if (percent < monsterFrequency * 20)
+				{
+					types.Push(RoomType.Monster);
+				}
+				else
+				{
+					types.Push(RoomType.None);
+				}
+			}
+		}
+	}
+
+    void CreateRooms()
 	{
 		//setup
 		miniMap.SetWorldSize(gridSizeX, gridSizeY);
