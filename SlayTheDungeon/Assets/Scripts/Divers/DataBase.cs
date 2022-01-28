@@ -37,6 +37,7 @@ public class DataBase : Singleton<DataBase>
     [Header("Mod")] 
     [SerializeField] private string pathToMods;
     private string[] ListOfJSON;
+    private int maxLevel = 0;
 
     #endregion
 
@@ -73,10 +74,9 @@ public class DataBase : Singleton<DataBase>
         ChargeModdedEffect("Effects");
         ChargeModdedCards("Cards");
         ChargeModdedMonsters("Monsters");
-
-        for (int i = 0; i < 100; i++)
+        foreach(Combinations combi in ennemyCombos)
         {
-            PickRandomEnnemyCombination(1);
+            maxLevel = Mathf.Max(maxLevel, combi.level);
         }
     }
 
@@ -179,8 +179,9 @@ public class DataBase : Singleton<DataBase>
         return picks;
     }
 
-    public List<EnnemyData> PickRandomEnnemyCombination(int level)
+    public List<EnnemyData> PickRandomEnnemyCombination(int _level)
     {
+        int level = Mathf.Min(maxLevel, _level);
         List<Combinations> combinationOfExpectedLevel = ennemyCombos.Where(x => x.level == level && x.boss == false).ToList();
         List<EnnemyData> newPick = combinationOfExpectedLevel[Random.Range(0, combinationOfExpectedLevel.Count)].ennemies;
         return newPick;

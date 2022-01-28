@@ -36,7 +36,6 @@ public class DungeonGeneration : MonoBehaviour
 	{
 		if (DungeonParameters.Instance) dungeonSettings = DungeonParameters.Instance;
 		numberOfRooms = dungeonSettings ? dungeonSettings.NumberOfRoom : 12;
-		Debug.Log("Number of Rooms " + numberOfRooms.ToString());
 		chestFrequency = dungeonSettings ? dungeonSettings.ChestFrequency : 5;
 		monsterFrequency = dungeonSettings ? dungeonSettings.MonsterFrequency : 5;
 		fireFrequency = dungeonSettings ? dungeonSettings.FireCampFrequency : 5;
